@@ -23,10 +23,11 @@ A react component for creating tables configured by a set of columns.
 - [x] value, sort value, render
 - [ ] column grouping
 - [ ] group headers
-- [ ] row specific formatting
+- [x] row specific formatting
 
 ## Stretch features
 - [ ] search within table to filter rows?
+- [ ] auxiliary data section at bottom of table
 - [ ] loading view
 - [ ] selecting rows
 - [ ] fixed headers

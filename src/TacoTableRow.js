@@ -1,10 +1,12 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
-import classNames from 'classnames';
 import TacoTableCell from './TacoTableCell';
 const propTypes = {
   /* The column definitions */
   columns: React.PropTypes.array.isRequired,
+
+  /* The class name for the row */
+  className: React.PropTypes.string,
 
   /* The data to render in this row */
   rowData: React.PropTypes.object.isRequired,
@@ -29,9 +31,9 @@ class TacoTableRow extends React.Component {
   }
 
   render() {
-    const { columns, rowData, rowNumber, tableData, CellComponent } = this.props;
+    const { className, columns, rowData, rowNumber, tableData, CellComponent } = this.props;
     return (
-      <tr>
+      <tr className={className}>
         {columns.map((column, i) =>
           <CellComponent
             key={i}

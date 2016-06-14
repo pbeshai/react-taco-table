@@ -34,6 +34,9 @@ const propTypes = {
   /* Whether the table takes up full width or not */
   fullWidth: React.PropTypes.bool,
 
+  /* Function that maps (rowData, rowNumber) to a class name */
+  rowClassName: React.PropTypes.func,
+
   /* allow configuration of which components to use for headers and rows */
   HeaderComponent: React.PropTypes.func,
   RowComponent: React.PropTypes.func,
@@ -178,20 +181,29 @@ class TacoTable extends React.Component {
    * @return {React.Component} <tbody>
    */
   renderRows() {
-    const { columns, RowComponent } = this.props;
+    const { columns, RowComponent, rowClassName } = this.props;
     const { data } = this.state;
 
     return (
       <tbody>
-        {data.map((rowData, i) =>
-          <RowComponent
-            key={i}
-            rowNumber={i}
-            rowData={rowData}
-            columns={columns}
-            tableData={data}
-          />
-        )}
+        {data.map((rowData, i) => {
+          // compute the class name if a row class name function is provided
+          let className;
+          if (rowClassName) {
+            className = rowClassName(rowData, i);
+          }
+
+          return (
+            <RowComponent
+              key={i}
+              rowNumber={i}
+              rowData={rowData}
+              columns={columns}
+              tableData={data}
+              className={className}
+            />
+          );
+        })}
       </tbody>
     );
   }
