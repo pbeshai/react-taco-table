@@ -10,6 +10,9 @@ const propTypes = {
   /* The column definitions */
   columns: React.PropTypes.array.isRequired,
 
+  /* Whether or not to turn on mouse listeners for column highlighting */
+  columnHighlighting: React.PropTypes.bool,
+
   /* The class names to apply to the table */
   className: React.PropTypes.string,
 
@@ -46,6 +49,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  columnHighlighting: true,
   initialSortDirection: SortDirection.Ascending,
   striped: false,
   sortable: true,
@@ -96,6 +100,7 @@ class TacoTable extends React.Component {
     // bind handlers
     this.handleHeaderClick = this.handleHeaderClick.bind(this);
     this.handleRowHighlight = this.handleRowHighlight.bind(this);
+    this.handleColumnHighlight = this.handleColumnHighlight.bind(this);
     this.sort = this.sort.bind(this);
   }
 
@@ -126,7 +131,18 @@ class TacoTable extends React.Component {
    */
   handleRowHighlight(rowData) {
     this.setState({
-      rowHighlight: rowData,
+      highlightedRowData: rowData,
+    });
+  }
+
+  /**
+   * Callback when a column is highlighted
+   *
+   * @param {String} columnId The ID of the column being highlighted
+   */
+  handleColumnHighlight(columnId) {
+    this.setState({
+      highlightedColumnId: columnId,
     });
   }
 
@@ -174,6 +190,7 @@ class TacoTable extends React.Component {
    */
   renderHeaders() {
     const { columns, HeaderComponent, sortable } = this.props;
+    const { highlightedColumnId } = this.state;
 
     return (
       <thead>
@@ -182,6 +199,7 @@ class TacoTable extends React.Component {
             <HeaderComponent
               key={i}
               column={column}
+              highlightedColumn={column.id === highlightedColumnId}
               sortableTable={sortable}
               onClick={this.handleHeaderClick}
             />
@@ -197,8 +215,9 @@ class TacoTable extends React.Component {
    * @return {React.Component} <tbody>
    */
   renderRows() {
-    const { columns, RowComponent, rowClassName, rowHighlighting } = this.props;
-    const { data, rowHighlight } = this.state;
+    const { columns, RowComponent, rowClassName, rowHighlighting,
+      columnHighlighting } = this.props;
+    const { data, highlightedRowData, highlightedColumnId } = this.state;
 
     return (
       <tbody>
@@ -217,8 +236,10 @@ class TacoTable extends React.Component {
               columns={columns}
               tableData={data}
               className={className}
-              highlighted={rowHighlight === rowData}
+              highlighted={highlightedRowData === rowData}
               onHighlight={rowHighlighting ? this.handleRowHighlight : undefined}
+              highlightedColumnId={highlightedColumnId}
+              onColumnHighlight={columnHighlighting ? this.handleColumnHighlight : undefined}
             />
           );
         })}

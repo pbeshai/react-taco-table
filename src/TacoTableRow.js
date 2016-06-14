@@ -12,6 +12,12 @@ const propTypes = {
   /** Whether this row is highlighted or not */
   highlighted: React.PropTypes.bool,
 
+  /** The ID of the highlighted column */
+  highlightedColumnId: React.PropTypes.string,
+
+  /* callback for when a column is highlighted / unhighlighted */
+  onColumnHighlight: React.PropTypes.func,
+
   /* callback for when a row is highlighted / unhighlighted */
   onHighlight: React.PropTypes.func,
 
@@ -34,20 +40,37 @@ const defaultProps = {
 
 /** TODO: Add your class def here */
 class TacoTableRow extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
 
+  handleMouseEnter() {
+    const { onHighlight, rowData } = this.props;
+    onHighlight(rowData);
+  }
+
+  handleMouseLeave() {
+    const { onHighlight } = this.props;
+    onHighlight(null);
+  }
+
   render() {
     const { className, columns, rowData, rowNumber, tableData, CellComponent,
-      onHighlight, highlighted } = this.props;
+      onHighlight, onColumnHighlight, highlighted, highlightedColumnId } = this.props;
 
     // attach mouse listeners for highlighting
     let onMouseEnter;
     let onMouseLeave;
     if (onHighlight) {
-      onMouseEnter = () => onHighlight(rowData);
-      onMouseLeave = () => onHighlight(null);
+      onMouseEnter = this.handleMouseEnter;
+      onMouseLeave = this.handleMouseLeave;
     }
 
     return (
@@ -64,6 +87,8 @@ class TacoTableRow extends React.Component {
             rowNumber={rowNumber}
             rowData={rowData}
             tableData={tableData}
+            onHighlight={onColumnHighlight}
+            highlightedColumn={column.id === highlightedColumnId}
           />
         )}
       </tr>

@@ -7,6 +7,9 @@ const propTypes = {
   /* The column definition */
   column: React.PropTypes.object.isRequired,
 
+  /** Whether this column is highlighted or not */
+  highlightedColumn: React.PropTypes.bool,
+
   /* Callback when clicked. Gets passed `column.id` */
   onClick: React.PropTypes.func,
 
@@ -38,7 +41,7 @@ class TacoTableHeader extends React.Component {
   }
 
   render() {
-    const { column, sortableTable } = this.props;
+    const { column, sortableTable, highlightedColumn } = this.props;
     const { className, thClassName, header, id, width, type } = column;
 
     const contents = header == null ? id : header;
@@ -60,7 +63,10 @@ class TacoTableHeader extends React.Component {
 
     return (
       <th
-        className={classNames(className, thClassName, `data-type-${type}`, { sortable })}
+        className={classNames(className, thClassName, `data-type-${type}`, {
+          sortable,
+          'column-highlight': highlightedColumn
+        })}
         onClick={onClick}
         style={style}
       >
