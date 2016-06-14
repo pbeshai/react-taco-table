@@ -11,33 +11,33 @@ A react component for creating tables configured by a set of columns.
 
 # Features Roadmap
 
-- sort
-- column hover
-- th classes
-- td classes
-- fixed widths
-- striping
-- anything as a th (component, string)
-- formatting
-- highlighting a max or min value
-- value, sort value, render
-- column grouping
-- group headers
-- repeat headers every N
-- loading view
+- [ ] sort
+- [ ] column hover
+- [x] th classes
+- [x] td classes
+- [ ] fixed widths
+- [x] striping
+- [x] anything as a th (component, string)
+- [ ] formatting
+- [ ] highlighting a max or min value
+- [ ] value, sort value, render
+- [ ] column grouping
+- [ ] group headers
+- [ ] repeat headers every N
 
 ## Stretch features
-- selecting rows
-- fixed headers
-- fixed columns
-- CSV export
-- heatmap
-- paging
-- showing row numbers on hover
-- ImmutableJS support?
-- hiding rows below threshold
-- hiding cells below threshold
-- expandable rows?
+- [ ] loading view
+- [ ] selecting rows
+- [ ] fixed headers
+- [ ] fixed columns
+- [ ] CSV export
+- [ ] heatmap
+- [ ] paging
+- [ ] showing row numbers on hover
+- [ ] ImmutableJS support?
+- [ ] hiding rows below threshold
+- [ ] hiding cells below threshold
+- [ ] expandable rows?
 
 
 # Columns
