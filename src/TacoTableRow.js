@@ -32,6 +32,7 @@ const defaultProps = {
   CellComponent: TacoTableCell,
 };
 
+/** TODO: Add your class def here */
 class TacoTableRow extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);

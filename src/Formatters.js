@@ -1,3 +1,4 @@
+/** @module Formatters */
 import * as d3 from 'd3-format';
 
 // //////////////////////////////
@@ -119,9 +120,10 @@ export function decFormat3(value) {
 
 /**
  * Formatter - renders value with at most one decimal point
- * 10.89321 = 10.9
- * 15 = 15
- * 15.001 = 15.0
+ * 
+ * - 10.89321 = 10.9
+ * - 15 = 15
+ * - 15.001 = 15.0
  *
  * @param {Number} value value to format
  * @return {String} formatted value

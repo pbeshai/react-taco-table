@@ -1,3 +1,4 @@
+/** @module  Utils */
 import SortDirection from './SortDirection';
 import DataType from './DataType';
 
@@ -189,5 +190,31 @@ export function sortData(data, columnId, sortDirection, columns) {
   }
 
   return sortedData;
+}
+
+/**
+ * Renders a cell's contents based on the renderer function. If no
+ * renderer is provided, it just returns the raw cell data. In such
+ * cases, the user should take care that cellData can be rendered
+ * directly.
+ *
+ * @param {Any} cellData The data for the cell
+ * @param {Object} column The column definition
+ * @param {Object} rowData The data for the row
+ * @param {Number} rowNumber The number of the row
+ * @param {Array} tableData The array of data for the whole table
+ * @param {Array} columns The column definitions for the whole table
+ * @return {Renderable} The contents of the cell
+ */
+export function renderCell(cellData, column, rowData, rowNumber, tableData, columns) {
+  const { renderer } = column;
+
+  // if renderer is provided, call it
+  if (renderer != null) {
+    return renderer(cellData, column, rowData, rowNumber, tableData, columns);
+  }
+
+  // otherwise, render the raw cell data
+  return cellData;
 }
 

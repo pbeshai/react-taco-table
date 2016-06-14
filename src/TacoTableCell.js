@@ -1,7 +1,7 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
-import { getCellData } from './utils';
+import { getCellData, renderCell } from './utils';
 
 const propTypes = {
   /* The column definition */
@@ -24,33 +24,10 @@ const defaultProps = {
 
 };
 
-/**
- * Renders a cell's contents based on the renderer function. If no
- * renderer is provided, it just returns the raw cell data. In such
- * cases, the user should take care that cellData can be rendered
- * directly.
- *
- * @param {Any} cellData The data for the cell
- * @param {Object} column The column definition
- * @param {Object} rowData The data for the row
- * @param {Number} rowNumber The number of the row
- * @param {Array} tableData The array of data for the whole table
- * @param {Array} columns The column definitions for the whole table
- * @return {Renderable} The contents of the cell
- */
-function renderCell(cellData, column, rowData, rowNumber, tableData, columns) {
-  const { renderer } = column;
-
-  // if renderer is provided, call it
-  if (renderer != null) {
-    return renderer(cellData, column, rowData, rowNumber, tableData, columns);
-  }
-
-  // otherwise, render the raw cell data
-  return cellData;
-}
 
 
+
+/** TODO: Add your class def here */
 class TacoTableCell extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
