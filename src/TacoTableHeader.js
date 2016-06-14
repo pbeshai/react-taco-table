@@ -38,7 +38,7 @@ class TacoTableHeader extends React.Component {
 
   render() {
     const { column, sortableTable } = this.props;
-    const { className, thClassName, header, id } = column;
+    const { className, thClassName, header, id, width } = column;
 
     const contents = header == null ? id : header;
 
@@ -51,8 +51,18 @@ class TacoTableHeader extends React.Component {
       onClick = this.handleClick;
     }
 
+    // add in a fixed width if specified
+    let style;
+    if (width != null) {
+      style = { width };
+    }
+
     return (
-      <th className={classNames(className, thClassName, { sortable })} onClick={onClick}>
+      <th
+        className={classNames(className, thClassName, { sortable })}
+        onClick={onClick}
+        style={style}
+      >
         {contents}
       </th>
     );

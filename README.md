@@ -15,7 +15,7 @@ A react component for creating tables configured by a set of columns.
 - [ ] column hover
 - [x] th classes
 - [x] td classes
-- [ ] fixed widths
+- [x] fixed widths
 - [x] striping
 - [x] anything as a th (component, string)
 - [x] formatting
