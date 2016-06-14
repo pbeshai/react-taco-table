@@ -18,6 +18,7 @@ const defaultProps = {
 
 };
 
+/** TODO: Add your class def here */
 class TacoTableHeader extends React.Component {
   constructor(props) {
     super(props);

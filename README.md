@@ -8,6 +8,8 @@ A react component for creating tables configured by a set of columns.
 ## Building
 1. To build files for production, run `grunt`
 
+## Documentation
+1. To generate the documentation, run `npm run docs`. They will appear in `/docs`.
 
 # Features Roadmap
 

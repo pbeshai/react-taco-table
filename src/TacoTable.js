@@ -48,7 +48,7 @@ const defaultProps = {
   RowComponent: TacoTableRow,
 };
 
-
+/** TODO: add your class def here. */
 class TacoTable extends React.Component {
   constructor(props) {
     super(props);
