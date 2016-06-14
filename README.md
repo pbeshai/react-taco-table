@@ -1,4 +1,4 @@
-# ColumnTable
+# react-taco-table
 
 A react component for creating tables configured by a set of columns.
 
@@ -6,30 +6,32 @@ A react component for creating tables configured by a set of columns.
 1. Install dependencies with `npm install`
 
 ## Building
-1. To build files for production, run `grunt deploy`
+1. To build files for production, run `grunt`
 
 
 # Features Roadmap
 
-- [ ] sort
+- [x] sort
 - [ ] column hover
 - [x] th classes
 - [x] td classes
 - [ ] fixed widths
 - [x] striping
 - [x] anything as a th (component, string)
-- [ ] formatting
+- [x] formatting
 - [ ] highlighting a max or min value
-- [ ] value, sort value, render
+- [x] value, sort value, render
 - [ ] column grouping
 - [ ] group headers
-- [ ] repeat headers every N
+- [ ] row specific formatting
 
 ## Stretch features
+- [ ] search within table to filter rows?
 - [ ] loading view
 - [ ] selecting rows
 - [ ] fixed headers
 - [ ] fixed columns
+- [ ] repeat headers every N
 - [ ] CSV export
 - [ ] heatmap
 - [ ] paging
