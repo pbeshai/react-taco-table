@@ -18,10 +18,13 @@ class TacoTableHeader extends React.Component {
 
   render() {
     const { column } = this.props;
-    const { className, thClassName, header } = column;
+    const { className, thClassName, header, id } = column;
+
+    const contents = header == null ? id : header;
+
     return (
       <th className={classNames(className, thClassName)}>
-        {header}
+        {contents}
       </th>
     );
   }
