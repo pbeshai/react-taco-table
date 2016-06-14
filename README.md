@@ -12,18 +12,20 @@ A react component for creating tables configured by a set of columns.
 # Features Roadmap
 
 - [x] sort
-- [ ] column hover
 - [x] th classes
 - [x] td classes
 - [x] fixed widths
 - [x] striping
 - [x] anything as a th (component, string)
 - [x] formatting
-- [ ] highlighting a max or min value
 - [x] value, sort value, render
+- [x] row specific formatting
+- [x] row highlighting
+- [ ] sort indicators
 - [ ] column grouping
 - [ ] group headers
-- [x] row specific formatting
+- [ ] highlighting a max or min value
+- [ ] column hover
 
 ## Stretch features
 - [ ] search within table to filter rows?

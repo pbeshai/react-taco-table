@@ -37,6 +37,9 @@ const propTypes = {
   /* Function that maps (rowData, rowNumber) to a class name */
   rowClassName: React.PropTypes.func,
 
+  /* Whether or not to turn on mouse listeners for row highlighting */
+  rowHighlighting: React.PropTypes.bool,
+
   /* allow configuration of which components to use for headers and rows */
   HeaderComponent: React.PropTypes.func,
   RowComponent: React.PropTypes.func,
@@ -47,6 +50,7 @@ const defaultProps = {
   striped: false,
   sortable: true,
   fullWidth: true,
+  rowHighlighting: true,
   HeaderComponent: TacoTableHeader,
   RowComponent: TacoTableRow,
 };
@@ -91,6 +95,7 @@ class TacoTable extends React.Component {
 
     // bind handlers
     this.handleHeaderClick = this.handleHeaderClick.bind(this);
+    this.handleRowHighlight = this.handleRowHighlight.bind(this);
     this.sort = this.sort.bind(this);
   }
 
@@ -112,6 +117,17 @@ class TacoTable extends React.Component {
         this.setState(sortResults);
       }
     }
+  }
+
+  /**
+   * Callback when a row is highlighted
+   *
+   * @param {Object} rowData The row data for the row that is highlighted
+   */
+  handleRowHighlight(rowData) {
+    this.setState({
+      rowHighlight: rowData,
+    });
   }
 
   /**
@@ -181,8 +197,8 @@ class TacoTable extends React.Component {
    * @return {React.Component} <tbody>
    */
   renderRows() {
-    const { columns, RowComponent, rowClassName } = this.props;
-    const { data } = this.state;
+    const { columns, RowComponent, rowClassName, rowHighlighting } = this.props;
+    const { data, rowHighlight } = this.state;
 
     return (
       <tbody>
@@ -201,6 +217,8 @@ class TacoTable extends React.Component {
               columns={columns}
               tableData={data}
               className={className}
+              highlighted={rowHighlight === rowData}
+              onHighlight={rowHighlighting ? this.handleRowHighlight : undefined}
             />
           );
         })}

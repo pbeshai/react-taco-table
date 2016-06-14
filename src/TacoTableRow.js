@@ -1,5 +1,6 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
+import classNames from 'classnames';
 import TacoTableCell from './TacoTableCell';
 const propTypes = {
   /* The column definitions */
@@ -7,6 +8,12 @@ const propTypes = {
 
   /* The class name for the row */
   className: React.PropTypes.string,
+
+  /** Whether this row is highlighted or not */
+  highlighted: React.PropTypes.bool,
+
+  /* callback for when a row is highlighted / unhighlighted */
+  onHighlight: React.PropTypes.func,
 
   /* The data to render in this row */
   rowData: React.PropTypes.object.isRequired,
@@ -31,9 +38,23 @@ class TacoTableRow extends React.Component {
   }
 
   render() {
-    const { className, columns, rowData, rowNumber, tableData, CellComponent } = this.props;
+    const { className, columns, rowData, rowNumber, tableData, CellComponent,
+      onHighlight, highlighted } = this.props;
+
+    // attach mouse listeners for highlighting
+    let onMouseEnter;
+    let onMouseLeave;
+    if (onHighlight) {
+      onMouseEnter = () => onHighlight(rowData);
+      onMouseLeave = () => onHighlight(null);
+    }
+
     return (
-      <tr className={className}>
+      <tr
+        className={classNames(className, { 'row-highlight': highlighted })}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+      >
         {columns.map((column, i) =>
           <CellComponent
             key={i}
