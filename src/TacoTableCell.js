@@ -1,6 +1,7 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
+import { getCellData } from './utils';
 
 const propTypes = {
   /* The column definition */
@@ -22,34 +23,6 @@ const propTypes = {
 const defaultProps = {
 
 };
-
-/**
- * Gets the value of a cell given the row data. If column.value is
- * a function, it gets called, otherwise it is interpreted as a
- * key to rowData. If column.value is not defined, column.id is
- * used as a key to rowData.
- *
- * @param {Object} column The column definition
- * @param {Object} rowData The data for the row
- * @param {Number} rowNumber The number of the row
- * @param {Array} tableData The array of data for the whole table
- * @param {Array} columns The column definitions for the whole table
- * @return {Any} The value for this cell
- */
-function getCellData(column, rowData, rowNumber, tableData, columns) {
-  const { value, id } = column;
-  // call value as a function
-  if (typeof value === 'function') {
-    return value(rowData, rowNumber, tableData, columns);
-
-  // interpret value as a key
-  } else if (value != null) {
-    return rowData[value];
-  }
-
-  // otherwise, use the ID as a key
-  return rowData[id];
-}
 
 /**
  * Renders a cell's contents based on the renderer function. If no

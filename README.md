@@ -51,6 +51,7 @@ Here `Renderable` means anything React can render (e.g., React.Component, String
 | -------- | ---- | -------- | ----------- |
 | id | String | Yes | The id of the column. Typically corresponds to a key in the rowData object. |
 | className | String |  | The class name to be applied to both `<td>` and `<th>` |
+| firstSortDirection | Boolean |  | The direction which this column gets sorted by on first click |
 | header | Renderable |  | What is rendered in the column header. If not provided, uses the columnId. |
 | highlight | Function |  | `function (cellData, columnSummary, columnDefinition, rowData, rowNumber, tableData, columnsDefinition)`<br>A function that returns a boolean indicating whether or not to highlight the cell. |
 | renderer | Function |  | `function (cellData, columnDefinition, rowData, rowNumber, tableData, columnsDefinition)`<br>The function that renders the value in the table. Can return anything React can render. |

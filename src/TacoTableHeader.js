@@ -1,10 +1,17 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
+import DataType from './DataType';
 
 const propTypes = {
   /* The column definition */
   column: React.PropTypes.object.isRequired,
+
+  /* Callback when clicked. Gets passed `column.id` */
+  onClick: React.PropTypes.func,
+
+  /* Whether the table is sortable or not */
+  sortableTable: React.PropTypes.bool,
 };
 
 const defaultProps = {
@@ -12,18 +19,40 @@ const defaultProps = {
 };
 
 class TacoTableHeader extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
 
+  handleClick() {
+    const { column, onClick } = this.props;
+    if (onClick) {
+      onClick(column.id);
+    }
+  }
+
   render() {
-    const { column } = this.props;
+    const { column, sortableTable } = this.props;
     const { className, thClassName, header, id } = column;
 
     const contents = header == null ? id : header;
 
+    // this is a sortable column if it is in a sortable table and it has a datatype and
+    // sortValue isn't explicitly set to null (undefined is ok).
+    const sortable = sortableTable && column.type !== DataType.None && column.sortValue !== null;
+
+    let onClick;
+    if (sortable) {
+      onClick = this.handleClick;
+    }
+
     return (
-      <th className={classNames(className, thClassName)}>
+      <th className={classNames(className, thClassName, { sortable })} onClick={onClick}>
         {contents}
       </th>
     );
