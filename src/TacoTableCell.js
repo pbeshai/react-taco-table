@@ -35,12 +35,12 @@ class TacoTableCell extends React.Component {
 
   render() {
     const { column, rowData, rowNumber, tableData, columns } = this.props;
-    const { className, tdClassName } = column;
+    const { className, tdClassName, type } = column;
 
     const cellData = getCellData(column, rowData, rowNumber, tableData, columns);
     const rendered = renderCell(cellData, column, rowData, rowNumber, tableData, columns);
     return (
-      <td className={classNames(className, tdClassName)}>
+      <td className={classNames(className, tdClassName, `data-type-${type}`)}>
         {rendered}
       </td>
     );

@@ -39,7 +39,7 @@ class TacoTableHeader extends React.Component {
 
   render() {
     const { column, sortableTable } = this.props;
-    const { className, thClassName, header, id, width } = column;
+    const { className, thClassName, header, id, width, type } = column;
 
     const contents = header == null ? id : header;
 
@@ -60,7 +60,7 @@ class TacoTableHeader extends React.Component {
 
     return (
       <th
-        className={classNames(className, thClassName, { sortable })}
+        className={classNames(className, thClassName, `data-type-${type}`, { sortable })}
         onClick={onClick}
         style={style}
       >
