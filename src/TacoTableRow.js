@@ -112,6 +112,7 @@ class TacoTableRow extends React.Component {
               tableData={tableData}
               onHighlight={onColumnHighlight}
               highlightedColumn={column.id === highlightedColumnId}
+              highlightedRow={highlighted}
             />
           );
         })}

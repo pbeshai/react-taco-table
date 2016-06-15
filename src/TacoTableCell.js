@@ -20,6 +20,9 @@ const propTypes = {
   /** Whether this column is highlighted or not */
   highlightedColumn: React.PropTypes.bool,
 
+  /** Whether this row is highlighted or not */
+  highlightedRow: React.PropTypes.bool,
+
   /* callback for when a column is highlighted / unhighlighted */
   onHighlight: React.PropTypes.func,
 
@@ -69,7 +72,7 @@ class TacoTableCell extends React.Component {
    */
   computeWithPlugins(property, cellData) {
     const { column, rowData, rowNumber, tableData, columns,
-      columnSummary, plugins } = this.props;
+      highlightedColumn, highlightedRow, columnSummary, plugins } = this.props;
 
     let result;
 
@@ -77,7 +80,7 @@ class TacoTableCell extends React.Component {
     function getValue(maybeFunction) {
       if (typeof maybeFunction === 'function') {
         return maybeFunction(cellData, columnSummary, column, rowData,
-          rowNumber, tableData, columns);
+          highlightedColumn, highlightedRow, rowNumber, tableData, columns);
       }
 
       return maybeFunction;
@@ -134,7 +137,7 @@ class TacoTableCell extends React.Component {
 
   render() {
     const { column, rowData, rowNumber, tableData, columns,
-      onHighlight, highlightedColumn, columnGroup } = this.props;
+      onHighlight, highlightedColumn, highlightedRow, columnGroup } = this.props;
     const { className, type } = column;
 
     const cellData = getCellData(column, rowData, rowNumber, tableData, columns);

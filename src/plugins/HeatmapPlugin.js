@@ -2,7 +2,7 @@
  * Adds heatmap coloring to cells. By default colors based on min and max in the data and
  * the inferno color scheme via d3-scale.
  *
- * Plugin options found in `plugins.heatmap`
+ * Plugin options found in `plugins.heatmap` since the plugin has id `heatmap`
  *
  * - **domain** {Array} the domain to use for the color scale, if not provided, uses summary min and max
  * - **backgroundScale** {Function} the scale to use for the background-color
@@ -124,6 +124,7 @@ function columnTest(column) {
 }
 
 const Plugin = {
+  id: 'heatmap',
   summarize: Summarizers.minMaxSummarizer,
   tdStyle,
   tdClassName: 'has-heatmap',
