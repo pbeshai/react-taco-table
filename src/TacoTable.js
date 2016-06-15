@@ -265,7 +265,7 @@ class TacoTable extends React.Component {
     const { columns, columnGroups } = this.props;
 
     // only render if we have labels
-    if (!columnGroups.some(columnGroup => columnGroup.header)) {
+    if (!columnGroups || !columnGroups.some(columnGroup => columnGroup.header)) {
       return null;
     }
 
