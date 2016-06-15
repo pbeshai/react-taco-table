@@ -24,6 +24,9 @@ const propTypes = {
   /* callback for when a row is highlighted / unhighlighted */
   onHighlight: React.PropTypes.func,
 
+  /* Collection of plugins to run to compute cell style, cell class name, column summaries */
+  plugins: React.PropTypes.array,
+
   /* The data to render in this row */
   rowData: React.PropTypes.object.isRequired,
 
@@ -67,7 +70,7 @@ class TacoTableRow extends React.Component {
 
   render() {
     const { className, columnSummaries, columns, rowData, rowNumber, tableData, CellComponent,
-      onHighlight, onColumnHighlight, highlighted, highlightedColumnId } = this.props;
+      plugins, onHighlight, onColumnHighlight, highlighted, highlightedColumnId } = this.props;
 
     // attach mouse listeners for highlighting
     let onMouseEnter;
@@ -89,6 +92,7 @@ class TacoTableRow extends React.Component {
             column={column}
             columnSummary={columnSummaries[i]}
             columns={columns}
+            plugins={plugins}
             rowNumber={rowNumber}
             rowData={rowData}
             tableData={tableData}

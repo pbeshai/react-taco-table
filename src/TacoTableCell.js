@@ -1,7 +1,7 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
-import { getCellData, renderCell } from './utils';
+import { getCellData, renderCell } from './Utils';
 
 const propTypes = {
   /* The column definition */
@@ -18,6 +18,9 @@ const propTypes = {
 
   /* callback for when a column is highlighted / unhighlighted */
   onHighlight: React.PropTypes.func,
+
+  /* Collection of plugins to run to compute cell style, cell class name, column summaries */
+  plugins: React.PropTypes.array,
 
   /* The data to render in this row */
   rowData: React.PropTypes.object.isRequired,
@@ -56,10 +59,79 @@ class TacoTableCell extends React.Component {
     onHighlight(null);
   }
 
+  /**
+   * Computes the value of a property such as tdClassName or tdStyle
+   * by also considering plugins
+   */
+  computeWithPlugins(property, cellData) {
+    const { column, rowData, rowNumber, tableData, columns,
+      columnSummary, plugins } = this.props;
+
+    let result;
+
+    /** evaluates `maybeFunction` as a function if it is one, otherwise returns it as a value */
+    function getValue(maybeFunction) {
+      if (typeof maybeFunction === 'function') {
+        return maybeFunction(cellData, columnSummary, column, rowData,
+          rowNumber, tableData, columns);
+      }
+
+      return maybeFunction;
+    }
+
+    // interpret plugins
+    // run the td class name from each plugin
+    if (plugins) {
+      plugins.forEach(plugin => {
+        // if the plugin has property and this column matches the column test (if provided)
+        if (plugin[property] && (!plugin.columnTest || plugin.columnTest(column))) {
+          const pluginResult = getValue(plugin[property]);
+
+          if (pluginResult) {
+            if (!result) {
+              result = [pluginResult];
+            } else {
+              result.push(pluginResult);
+            }
+          }
+        }
+      });
+    }
+
+    // compute the column result
+    const columnResult = getValue(column[property]);
+
+    // combine column result and plugin results
+    if (!result) {
+      result = columnResult;
+    } else if (columnResult) {
+      result.push(columnResult);
+    }
+
+    return result;
+  }
+
+  computeTdClassName(cellData) {
+    return this.computeWithPlugins('tdClassName', cellData);
+  }
+
+  computeTdStyle(cellData) {
+    const tdStyle = this.computeWithPlugins('tdStyle', cellData);
+    // combine the array into a single object if it is an array
+    if (Array.isArray(tdStyle)) {
+      return tdStyle.reduce((merged, style) => {
+        Object.assign(merged, style);
+        return merged;
+      }, {});
+    }
+
+    return tdStyle;
+  }
+
   render() {
-    const { column, rowData, rowNumber, tableData, columns, onHighlight,
-      highlightedColumn, columnSummary } = this.props;
-    const { className, tdClassName, tdStyle, type } = column;
+    const { column, rowData, rowNumber, tableData, columns,
+      onHighlight, highlightedColumn } = this.props;
+    const { className, type } = column;
 
     const cellData = getCellData(column, rowData, rowNumber, tableData, columns);
     const rendered = renderCell(cellData, column, rowData, rowNumber, tableData, columns);
@@ -72,30 +144,17 @@ class TacoTableCell extends React.Component {
       onMouseLeave = this.handleMouseLeave;
     }
 
-    let computedClassName;
-    if (typeof tdClassName === 'function') {
-      computedClassName = tdClassName(cellData, columnSummary, column, rowData,
-        rowNumber, tableData, columns);
-    } else {
-      computedClassName = tdClassName;
-    }
-
-    let computedStyle;
-    if (typeof tdStyle === 'function') {
-      computedStyle = tdStyle(cellData, columnSummary, column, rowData,
-        rowNumber, tableData, columns);
-    } else {
-      computedStyle = tdStyle;
-    }
+    const computedTdClassName = 'phony'; //this.computeTdClassName(cellData);
+    const computedTdStyle = this.computeTdStyle(cellData);
 
     return (
       <td
-        className={classNames(className, computedClassName, `data-type-${type}`, {
+        className={classNames(className, computedTdClassName, `data-type-${type}`, {
           'column-highlight': highlightedColumn,
         })}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
-        style={computedStyle}
+        style={computedTdStyle}
       >
         {rendered}
       </td>

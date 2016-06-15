@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import TacoTableHeader from './TacoTableHeader';
 import TacoTableRow from './TacoTableRow';
 import SortDirection from './SortDirection';
-import { sortData, getColumnById } from './utils';
+import { sortData, getColumnById } from './Utils';
 
 const propTypes = {
   /* The column definitions */
@@ -228,8 +228,6 @@ class TacoTable extends React.Component {
       return result;
     });
 
-    console.log('summaries are', summaries);
-
     return summaries;
   }
 
@@ -266,7 +264,7 @@ class TacoTable extends React.Component {
    */
   renderRows() {
     const { columns, RowComponent, rowClassName, rowHighlighting,
-      columnHighlighting } = this.props;
+      columnHighlighting, plugins } = this.props;
     const { data, highlightedRowData, highlightedColumnId } = this.state;
 
     const columnSummaries = this.summarizeColumns();
@@ -288,6 +286,7 @@ class TacoTable extends React.Component {
               columns={columns}
               columnSummaries={columnSummaries}
               tableData={data}
+              plugins={plugins}
               className={className}
               highlighted={highlightedRowData === rowData}
               onHighlight={rowHighlighting ? this.handleRowHighlight : undefined}
