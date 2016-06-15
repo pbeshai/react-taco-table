@@ -28,6 +28,9 @@ const propTypes = {
   /* Direction by which to sort initially */
   initialSortDirection: React.PropTypes.bool,
 
+  /* Collection of plugins to run to compute cell style, cell class name, column summaries */
+  plugins: React.PropTypes.array,
+
   /* Whether the table can be sorted or not */
   sortable: React.PropTypes.bool,
 
@@ -190,15 +193,42 @@ class TacoTable extends React.Component {
    *   without a `summarize` property.
    */
   summarizeColumns() {
-    const { columns, data } = this.props;
+    const { columns, data, plugins } = this.props;
 
     const summaries = columns.map(column => {
-      if (!column.summarize) {
-        return null;
+      let result;
+
+      // run the summarize from each plugin
+      if (plugins) {
+        plugins.forEach(plugin => {
+          // if the plugin has summarize and this column matches the column test (if provided)
+          if (plugin.summarize && (!plugin.columnTest || plugin.columnTest(column))) {
+            const pluginResult = plugin.summarize(column, data, columns);
+            if (pluginResult) {
+              if (!result) {
+                result = pluginResult;
+              } else {
+                Object.assign(result, pluginResult);
+              }
+            }
+          }
+        });
       }
 
-      return column.summarize(column, data, columns);
+      // run the column summarize last to potentially override plugins
+      if (column.summarize) {
+        const columnResult = column.summarize(column, data, columns);
+        if (!result) {
+          result = columnResult;
+        } else {
+          Object.assign(result, columnResult);
+        }
+      }
+
+      return result;
     });
+
+    console.log('summaries are', summaries);
 
     return summaries;
   }
