@@ -77,8 +77,19 @@ export function makePercent(formatter) {
 /**
  * Formatter (curried) - renders to `numDecimals` decimal places
  *
- * 10.89321 = 10.9
+ * @example
+ * decFormat(1, 10.89321)
+ * > '10.9'
  *
+ * @example
+ * decFormat(2, 10.89321)
+ * > '10.89'
+ *
+ * @example
+ * decFormat(1)(10.89321)
+ * > '10.9'
+ *
+ * @function
  * @param {Number} numDecimals number of decimals to use
  * @param {Number} value value to format
  * @return {String} formatted value
@@ -92,8 +103,11 @@ export const decFormat = curry((numDecimals, value) =>
  * with `numDecimal` decimal points.
  * Commonly used for percentages without the %.
  *
- * 0.8132 = 81.3
+ * @example
+ * decPercentFormat(1, 0.8132)
+ * > '81.3'
  *
+ * @function
  * @param {Number} numDecimals number of decimals to use
  * @param {Number} value value to format
  * @return {String} formatted value
@@ -105,9 +119,17 @@ export const decPercentFormat = curry((value) =>
 /**
  * Formatter - renders value with at most one decimal point
  *
- * - 10.89321 = 10.9
- * - 15 = 15
- * - 15.001 = 15.0
+ * @example
+ * atMostDecFormat(10.89321)
+ * > '10.9'
+ *
+ * @example
+ * atMostDecFormat(15)
+ * > '15'
+ *
+ * @example
+ * atMostDecFormat(15.001)
+ * > '15.0'
  *
  * @param {Number} value value to format
  * @return {String} formatted value
@@ -123,8 +145,11 @@ export function atMostDecFormat(value) {
 /**
  * Formatter (curried) - renders value as a percentage
  *
- * 0.38523 = 38.5%
+ * @example
+ * pctFormat(1, 0.38523)
+ * > '38.5%'
  *
+ * @function
  * @param {Number} numDecimals number of decimals to use
  * @param {Number} value value to format
  * @return {String} formatted value
@@ -137,9 +162,15 @@ export const pctFormat = curry((numDecimals, value) =>
  * Formatter (curried) - renders positive values with a +
  * and negative with a -.
  *
- * 0.38523 = +0.4
- * -15 = -15.0
+ * @example
+ * plusMinusFormat(1, 0.38523)
+ * > '+0.4'
  *
+ * @example
+ * plusMinusFormat(1, -15)
+ * > '-15.0'
+ *
+ * @function
  * @param {Number} numDecimals number of decimals to use
  * @param {Number} value value to format
  * @return {String} formatted value
@@ -151,9 +182,15 @@ export const plusMinusFormat = curry((numDecimals, value) =>
 /**
  * Formatter (curried) - renders values prefixed with a ±
  *
- * - 0.38523 = ±0.4
- * - -15 = ±15.0
+ * @example
+ * seFormat(1, 0.38523)
+ * > '±0.4'
  *
+ * @example
+ * seFormat(2, -15)
+ * > '±15.00'
+ *
+ * @function
  * @param {Number} numDecimals number of decimals to use
  * @param {Number} value value to format
  * @return {String} formatted value
@@ -165,8 +202,13 @@ export const seFormat = curry((numDecimals, value) =>
 /**
  * Formatter - adds leading zeroes to a value
  *
- * (5, 2) => '05'
- * (12, 2) => '12'
+ * @example
+ * leadingZeroFormat(5, 2)
+ * > '05'
+ *
+ * @example
+ * leadingZeroFormat(12, 2)
+ * > '12'
  *
  * @param {Number} value value to format
  * @param {Number} length desired length of string
@@ -178,7 +220,10 @@ export function leadingZeroFormat(value, length) {
 
 /**
  * Formatter - renders values formatted as money (prefixed with $, uses commas)
- * 9.132 = $9.13
+ *
+ * @example
+ * moneyFormat(9.132)
+ * > '$9.13'
  *
  * @param {Number} value value to format
  * @return {String} formatted value
