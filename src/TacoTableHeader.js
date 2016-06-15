@@ -65,7 +65,7 @@ class TacoTableHeader extends React.Component {
       <th
         className={classNames(className, thClassName, `data-type-${type}`, {
           sortable,
-          'column-highlight': highlightedColumn
+          'column-highlight': highlightedColumn,
         })}
         onClick={onClick}
         style={style}

@@ -10,6 +10,9 @@ const propTypes = {
   /* The column definitions */
   columns: React.PropTypes.array.isRequired,
 
+  /* How to group columns - an array of { header:String, columns:[colId1, colId2, ...], className:String} */
+  columnGroups: React.PropTypes.array,
+
   /* Whether or not to turn on mouse listeners for column highlighting */
   columnHighlighting: React.PropTypes.bool,
 
@@ -232,9 +235,55 @@ class TacoTable extends React.Component {
   }
 
   /**
+   * Renders the group headers above column headers
+   *
+   * @return {React.Component} `<tr>`
+   */
+  renderGroupHeaders() {
+    const { columns, columnGroups } = this.props;
+
+    // only render if we have labels
+    if (!columnGroups.some(columnGroup => columnGroup.header)) {
+      return null;
+    }
+
+    // note we iterate over columns instead of columnGroups since not all columns
+    // may be in a defined group
+    return (
+      <tr className="group-headers">
+        {columns.map((column, i) => {
+          const columnGroup = columnGroups.find(group =>
+            group.columns.includes(column.id));
+
+          // if not in a group, render an empty th
+          if (!columnGroup) {
+            return <th key={i} className="group-header-no-group" />;
+          }
+
+          // if first item in the group, render a multiple column spanning header
+          if (columnGroup.columns.indexOf(column.id) === 0) {
+            return (
+              <th
+                key={i}
+                colSpan={columnGroup.columns.length}
+                className={classNames('group-header', `group-header-${i}`, columnGroup.className)}
+              >
+                {columnGroup.header}
+              </th>
+            );
+          }
+
+          // if not the first item in the group, do not render it since colSpan handles it
+          return null;
+        })}
+      </tr>
+    );
+  }
+
+  /**
    * Renders the headers of the table in a thead
    *
-   * @return {React.Component} <thead>
+   * @return {React.Component} `<thead>`
    */
   renderHeaders() {
     const { columns, HeaderComponent, sortable } = this.props;
@@ -242,6 +291,7 @@ class TacoTable extends React.Component {
 
     return (
       <thead>
+        {this.renderGroupHeaders()}
         <tr>
           {columns.map((column, i) =>
             <HeaderComponent
@@ -260,7 +310,7 @@ class TacoTable extends React.Component {
   /**
    * Renders the rows of the table in a tbody
    *
-   * @return {React.Component} <tbody>
+   * @return {React.Component} `<tbody>`
    */
   renderRows() {
     const { columns, RowComponent, rowClassName, rowHighlighting,
@@ -300,11 +350,7 @@ class TacoTable extends React.Component {
   }
 
   render() {
-    const { columns, className, containerClassName, fullWidth, striped, sortable } = this.props;
-    const { data } = this.state;
-    // console.log('Table render.');
-    // console.table(columns);
-    // console.log('Data = ', data);
+    const { className, containerClassName, fullWidth, striped, sortable } = this.props;
 
     return (
       <div className={classNames('taco-table-container', containerClassName)}>
