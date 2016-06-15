@@ -10,7 +10,8 @@ const propTypes = {
   /* The column definitions */
   columns: React.PropTypes.array.isRequired,
 
-  /* How to group columns - an array of { header:String, columns:[colId1, colId2, ...], className:String} */
+  /* How to group columns - an array of
+   * { header:String, columns:[colId1, colId2, ...], className:String} */
   columnGroups: React.PropTypes.array,
 
   /* Whether or not to turn on mouse listeners for column highlighting */
@@ -286,22 +287,32 @@ class TacoTable extends React.Component {
    * @return {React.Component} `<thead>`
    */
   renderHeaders() {
-    const { columns, HeaderComponent, sortable } = this.props;
+    const { columns, columnGroups, HeaderComponent, sortable } = this.props;
     const { highlightedColumnId } = this.state;
 
     return (
       <thead>
         {this.renderGroupHeaders()}
         <tr>
-          {columns.map((column, i) =>
-            <HeaderComponent
-              key={i}
-              column={column}
-              highlightedColumn={column.id === highlightedColumnId}
-              sortableTable={sortable}
-              onClick={this.handleHeaderClick}
-            />
-          )}
+          {columns.map((column, i) => {
+            // find the associated column group
+            let columnGroup;
+            if (columnGroups) {
+              columnGroup = columnGroups.find(group =>
+                group.columns.includes(column.id));
+            }
+
+            return (
+              <HeaderComponent
+                key={i}
+                column={column}
+                columnGroup={columnGroup}
+                highlightedColumn={column.id === highlightedColumnId}
+                sortableTable={sortable}
+                onClick={this.handleHeaderClick}
+              />
+            );
+          })}
         </tr>
       </thead>
     );
@@ -314,7 +325,7 @@ class TacoTable extends React.Component {
    */
   renderRows() {
     const { columns, RowComponent, rowClassName, rowHighlighting,
-      columnHighlighting, plugins } = this.props;
+      columnHighlighting, plugins, columnGroups } = this.props;
     const { data, highlightedRowData, highlightedColumnId } = this.state;
 
     const columnSummaries = this.summarizeColumns();
@@ -334,6 +345,7 @@ class TacoTable extends React.Component {
               rowNumber={i}
               rowData={rowData}
               columns={columns}
+              columnGroups={columnGroups}
               columnSummaries={columnSummaries}
               tableData={data}
               plugins={plugins}

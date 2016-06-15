@@ -7,6 +7,10 @@ const propTypes = {
   /* The column definition */
   column: React.PropTypes.object.isRequired,
 
+  /* Column group definition:
+   * { header:String, columns:[colId1, colId2, ...], className:String} */
+  columnGroup: React.PropTypes.object,
+
   /* summary information for the column */
   columnSummary: React.PropTypes.object,
 
@@ -130,7 +134,7 @@ class TacoTableCell extends React.Component {
 
   render() {
     const { column, rowData, rowNumber, tableData, columns,
-      onHighlight, highlightedColumn } = this.props;
+      onHighlight, highlightedColumn, columnGroup } = this.props;
     const { className, type } = column;
 
     const cellData = getCellData(column, rowData, rowNumber, tableData, columns);
@@ -147,11 +151,27 @@ class TacoTableCell extends React.Component {
     const computedTdClassName = this.computeTdClassName(cellData);
     const computedTdStyle = this.computeTdStyle(cellData);
 
+    // get classes based on column group
+    let columnGroupClass;
+    if (columnGroup) {
+      columnGroupClass = [columnGroup.className];
+      const columnGroupIndex = columnGroup.columns.indexOf(column.id);
+
+      // first column in group
+      if (columnGroupIndex === 0) {
+        columnGroupClass.push('group-first');
+      }
+
+      // last column in group
+      if (columnGroupIndex === columnGroup.columns.length - 1) {
+        columnGroupClass.push('group-last');
+      }
+    }
+
     return (
       <td
-        className={classNames(className, computedTdClassName, `data-type-${type}`, {
-          'column-highlight': highlightedColumn,
-        })}
+        className={classNames(className, columnGroupClass, computedTdClassName,
+          `data-type-${type}`, { 'column-highlight': highlightedColumn })}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         style={computedTdStyle}

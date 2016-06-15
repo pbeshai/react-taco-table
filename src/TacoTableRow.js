@@ -6,6 +6,10 @@ const propTypes = {
   /* The column definitions */
   columns: React.PropTypes.array.isRequired,
 
+  /* How to group columns - an array of
+   * { header:String, columns:[colId1, colId2, ...], className:String} */
+  columnGroups: React.PropTypes.array,
+
   /* An array of summaries, one for each column, matched by index */
   columnSummaries: React.PropTypes.array,
 
@@ -70,7 +74,8 @@ class TacoTableRow extends React.Component {
 
   render() {
     const { className, columnSummaries, columns, rowData, rowNumber, tableData, CellComponent,
-      plugins, onHighlight, onColumnHighlight, highlighted, highlightedColumnId } = this.props;
+      plugins, onHighlight, onColumnHighlight, highlighted, highlightedColumnId,
+      columnGroups } = this.props;
 
     // attach mouse listeners for highlighting
     let onMouseEnter;
@@ -86,20 +91,30 @@ class TacoTableRow extends React.Component {
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
-        {columns.map((column, i) =>
-          <CellComponent
-            key={i}
-            column={column}
-            columnSummary={columnSummaries[i]}
-            columns={columns}
-            plugins={plugins}
-            rowNumber={rowNumber}
-            rowData={rowData}
-            tableData={tableData}
-            onHighlight={onColumnHighlight}
-            highlightedColumn={column.id === highlightedColumnId}
-          />
-        )}
+        {columns.map((column, i) => {
+          // find the associated column group if configured
+          let columnGroup;
+          if (columnGroups) {
+            columnGroup = columnGroups.find(group =>
+              group.columns.includes(column.id));
+          }
+
+          return (
+            <CellComponent
+              key={i}
+              column={column}
+              columnGroup={columnGroup}
+              columnSummary={columnSummaries[i]}
+              columns={columns}
+              plugins={plugins}
+              rowNumber={rowNumber}
+              rowData={rowData}
+              tableData={tableData}
+              onHighlight={onColumnHighlight}
+              highlightedColumn={column.id === highlightedColumnId}
+            />
+          );
+        })}
       </tr>
     );
   }

@@ -7,6 +7,10 @@ const propTypes = {
   /* The column definition */
   column: React.PropTypes.object.isRequired,
 
+  /* Column group definition:
+   * { header:String, columns:[colId1, colId2, ...], className:String} */
+  columnGroup: React.PropTypes.object,
+
   /** Whether this column is highlighted or not */
   highlightedColumn: React.PropTypes.bool,
 
@@ -41,7 +45,7 @@ class TacoTableHeader extends React.Component {
   }
 
   render() {
-    const { column, sortableTable, highlightedColumn } = this.props;
+    const { column, sortableTable, highlightedColumn, columnGroup } = this.props;
     const { className, thClassName, header, id, width, type } = column;
 
     const contents = header == null ? id : header;
@@ -61,12 +65,28 @@ class TacoTableHeader extends React.Component {
       style = { width };
     }
 
+    // get classes based on column group
+    let columnGroupClass;
+    if (columnGroup) {
+      columnGroupClass = [columnGroup.className];
+      const columnGroupIndex = columnGroup.columns.indexOf(column.id);
+
+      // first column in group
+      if (columnGroupIndex === 0) {
+        columnGroupClass.push('group-first');
+      }
+
+      // last column in group
+      if (columnGroupIndex === columnGroup.columns.length - 1) {
+        columnGroupClass.push('group-last');
+      }
+    }
+
+
     return (
       <th
-        className={classNames(className, thClassName, `data-type-${type}`, {
-          sortable,
-          'column-highlight': highlightedColumn,
-        })}
+        className={classNames(className, thClassName, columnGroupClass,
+          `data-type-${type}`, { sortable, 'column-highlight': highlightedColumn })}
         onClick={onClick}
         style={style}
       >
