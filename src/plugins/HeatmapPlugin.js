@@ -29,6 +29,7 @@ const ColorSchemes = keyMirror({
   Warm: null,
   Cool: null,
   Rainbow: null,
+  CubehelixDefault: null,
 });
 
 /**
