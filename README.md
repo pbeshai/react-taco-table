@@ -11,6 +11,9 @@ A react component for creating tables configured by a set of columns.
 ## Documentation
 1. To generate the documentation, run `npm run docs`. They will appear in `/docs`.
 
+## Testing
+1. To run the tests, run `npm test`
+
 # Features Roadmap
 
 - [x] sort
