@@ -8,12 +8,17 @@
   },
   "globals": {
     "expect": false,
-    "sinon": false
+    "sinon": false,
+    "assert": false
   },
   "rules": {
     // expect assertions are commonly unused
     "no-unused-expressions": 0,
     // Don't need to write prop validations in unit tests
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    // Don't require arrow callbacks for mocha functions
+    "prefer-arrow-callback" : 0,
+    // Don't require function names for mocha test functions
+    "func-names": 0
   }
 }
