@@ -52,7 +52,7 @@ export function minClassName(cellData, summary, column, rowData) {
  */
 export function maxClassName(cellData, summary, column, rowData) {
   const sortValue = Utils.getSortValueFromCellData(cellData, column, rowData);
-  if (sortValue === summary.min) {
+  if (sortValue === summary.max) {
     return 'highlight-max';
   }
 
