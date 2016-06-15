@@ -1,5 +1,6 @@
 /** @module Formatters */
 import * as d3 from 'd3-format';
+import curry from 'lodash.curry';
 
 // //////////////////////////////
 // Utility Functions
@@ -74,53 +75,36 @@ export function makePercent(formatter) {
 // //////////////////////////////
 
 /**
- * Formatter - renders one decimal point
+ * Formatter (curried) - renders to `numDecimals` decimal places
+ *
  * 10.89321 = 10.9
  *
+ * @param {Number} numDecimals number of decimals to use
  * @param {Number} value value to format
  * @return {String} formatted value
  */
-export function decFormat(value) {
-  return safeFormat(value, d3.format('0.1f'));
-}
+export const decFormat = curry((numDecimals, value) =>
+  safeFormat(value, d3.format(`0.${numDecimals}f`))
+);
 
 /**
- * Formatter - renders value multiplied by 100 with one decimal point
+ * Formatter (curried) - renders value multiplied by 100
+ * with `numDecimal` decimal points.
  * Commonly used for percentages without the %.
+ *
  * 0.8132 = 81.3
  *
+ * @param {Number} numDecimals number of decimals to use
  * @param {Number} value value to format
  * @return {String} formatted value
  */
-export function dec100Format(value) {
-  return safeFormat(value * 100, d3.format('0.1f'));
-}
-
-/**
- * Formatter - renders value with two decimal points
- * 10.89321 = 10.89
- *
- * @param {Number} value value to format
- * @return {String} formatted value
- */
-export function decFormat2(value) {
-  return safeFormat(value, d3.format('0.2f'));
-}
-
-/**
- * Formatter - renders value with three decimal points
- * 10.89321 = 10.893
- *
- * @param {Number} value value to format
- * @return {String} formatted value
- */
-export function decFormat3(value) {
-  return safeFormat(value, d3.format('0.3f'));
-}
+export const decPercentFormat = curry((value) =>
+  safeFormat(value * 100, d3.format('0.1f'))
+);
 
 /**
  * Formatter - renders value with at most one decimal point
- * 
+ *
  * - 10.89321 = 10.9
  * - 15 = 15
  * - 15.001 = 15.0
@@ -133,71 +117,50 @@ export function atMostDecFormat(value) {
     return value;
   }
 
-  return decFormat(value);
+  return decFormat(1, value);
 }
 
 /**
- * Formatter - renders value as a percentage
+ * Formatter (curried) - renders value as a percentage
+ *
  * 0.38523 = 38.5%
  *
+ * @param {Number} numDecimals number of decimals to use
  * @param {Number} value value to format
  * @return {String} formatted value
  */
-export function pctFormat(value) {
-  return safeFormat(value, d3.format('0.1%'));
-}
+export const pctFormat = curry((numDecimals, value) =>
+  safeFormat(value, d3.format(`0.${numDecimals}%`))
+);
 
 /**
- * Formatter - renders positive values with a + and negative with a -
- * Uses one decimal point.
+ * Formatter (curried) - renders positive values with a +
+ * and negative with a -.
+ *
  * 0.38523 = +0.4
  * -15 = -15.0
  *
+ * @param {Number} numDecimals number of decimals to use
  * @param {Number} value value to format
  * @return {String} formatted value
  */
-export function plusMinusFormat(value) {
-  return safeFormat(value, d3.format('+0.1f'));
-}
+export const plusMinusFormat = curry((numDecimals, value) =>
+  safeFormat(value, d3.format(`+0.${numDecimals}f`))
+);
 
 /**
- * Formatter - renders positive values with a + and negative with a -
- * Uses two decimal points.
- * 0.38523 = +0.39
- * -15 = -15.00
+ * Formatter (curried) - renders values prefixed with a ±
  *
+ * - 0.38523 = ±0.4
+ * - -15 = ±15.0
+ *
+ * @param {Number} numDecimals number of decimals to use
  * @param {Number} value value to format
  * @return {String} formatted value
  */
-export function plusMinusFormat2(value) {
-  return safeFormat(value, d3.format('+0.2f'));
-}
-
-/**
- * Formatter - renders values prefixed with a ±
- * Uses one decimal point.
- * 0.38523 = ±0.4
- * -15 = ±15.0
- *
- * @param {Number} value value to format
- * @return {String} formatted value
- */
-export function seFormat(value) {
-  return safeFormat(value, x => `±${d3.format('0.1f')(Math.abs(x))}`);
-}
-
-/**
- * Formatter - renders values prefixed with a ±
- * Uses two decimal points.
- * 0.38523 = ±0.39
- * -15 = ±15.00
- *
- * @param {Number} value value to format
- * @return {String} formatted value
- */
-export function seFormat2(value) {
-  return safeFormat(value, x => `±${d3.format('0.2f')(Math.abs(x))}`);
-}
+export const seFormat = curry((numDecimals, value) =>
+  safeFormat(value, x => `±${d3.format(`0.${numDecimals}f`)(Math.abs(x))}`)
+);
 
 /**
  * Formatter - adds leading zeroes to a value
