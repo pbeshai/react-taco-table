@@ -4,7 +4,8 @@
   "description": "A react component for creating tables configured by a set of columns.",
   "main": "src/index.js",
   "scripts": {
-    "test-dev": "karma start .karma.conf.js"
+    "test-dev": "karma start .karma.conf.js",
+    "docs": "jsdoc --configure .jsdoc.json --readme README.md"
   },
   "author": {
     "name": "Peter Beshai",
@@ -23,6 +24,7 @@
     "classnames": "^2.2.5",
     "css-loader": "^0.23.1",
     "d3-format": "^0.6.0",
+    "d3-scale": "^0.9.1",
     "eslint": "^2.10.2",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.8.1",
@@ -44,6 +46,9 @@
     "keymirror": "^0.1.1",
     "lolex": "^1.5.0",
     "mocha": "^2.5.3",
+    "jsdoc": "^3.4.0",
+    "keymirror": "^0.1.1",
+    "minami": "^1.1.1",
     "node-sass": "^3.7.0",
     "promise": "^7.1.1",
     "react": "^15.1.0",

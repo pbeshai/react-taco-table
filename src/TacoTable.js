@@ -4,11 +4,14 @@ import classNames from 'classnames';
 import TacoTableHeader from './TacoTableHeader';
 import TacoTableRow from './TacoTableRow';
 import SortDirection from './SortDirection';
-import { sortData, getColumnById } from './utils';
+import { sortData, getColumnById } from './Utils';
 
 const propTypes = {
   /* The column definitions */
   columns: React.PropTypes.array.isRequired,
+
+  /* Whether or not to turn on mouse listeners for column highlighting */
+  columnHighlighting: React.PropTypes.bool,
 
   /* The class names to apply to the table */
   className: React.PropTypes.string,
@@ -25,6 +28,9 @@ const propTypes = {
   /* Direction by which to sort initially */
   initialSortDirection: React.PropTypes.bool,
 
+  /* Collection of plugins to run to compute cell style, cell class name, column summaries */
+  plugins: React.PropTypes.array,
+
   /* Whether the table can be sorted or not */
   sortable: React.PropTypes.bool,
 
@@ -37,21 +43,26 @@ const propTypes = {
   /* Function that maps (rowData, rowNumber) to a class name */
   rowClassName: React.PropTypes.func,
 
+  /* Whether or not to turn on mouse listeners for row highlighting */
+  rowHighlighting: React.PropTypes.bool,
+
   /* allow configuration of which components to use for headers and rows */
   HeaderComponent: React.PropTypes.func,
   RowComponent: React.PropTypes.func,
 };
 
 const defaultProps = {
+  columnHighlighting: true,
   initialSortDirection: SortDirection.Ascending,
   striped: false,
   sortable: true,
   fullWidth: true,
+  rowHighlighting: true,
   HeaderComponent: TacoTableHeader,
   RowComponent: TacoTableRow,
 };
 
-
+/** TODO: add your class def here. */
 class TacoTable extends React.Component {
   constructor(props) {
     super(props);
@@ -91,6 +102,8 @@ class TacoTable extends React.Component {
 
     // bind handlers
     this.handleHeaderClick = this.handleHeaderClick.bind(this);
+    this.handleRowHighlight = this.handleRowHighlight.bind(this);
+    this.handleColumnHighlight = this.handleColumnHighlight.bind(this);
     this.sort = this.sort.bind(this);
   }
 
@@ -112,6 +125,28 @@ class TacoTable extends React.Component {
         this.setState(sortResults);
       }
     }
+  }
+
+  /**
+   * Callback when a row is highlighted
+   *
+   * @param {Object} rowData The row data for the row that is highlighted
+   */
+  handleRowHighlight(rowData) {
+    this.setState({
+      highlightedRowData: rowData,
+    });
+  }
+
+  /**
+   * Callback when a column is highlighted
+   *
+   * @param {String} columnId The ID of the column being highlighted
+   */
+  handleColumnHighlight(columnId) {
+    this.setState({
+      highlightedColumnId: columnId,
+    });
   }
 
   /**
@@ -152,12 +187,58 @@ class TacoTable extends React.Component {
   }
 
   /**
+   * Computes a summary for each column that is configured to have one.
+   *
+   * @return {Array} array of summaries matching the indices for `columns`, null for those
+   *   without a `summarize` property.
+   */
+  summarizeColumns() {
+    const { columns, data, plugins } = this.props;
+
+    const summaries = columns.map(column => {
+      let result;
+
+      // run the summarize from each plugin
+      if (plugins) {
+        plugins.forEach(plugin => {
+          // if the plugin has summarize and this column matches the column test (if provided)
+          if (plugin.summarize && (!plugin.columnTest || plugin.columnTest(column))) {
+            const pluginResult = plugin.summarize(column, data, columns);
+            if (pluginResult) {
+              if (!result) {
+                result = pluginResult;
+              } else {
+                Object.assign(result, pluginResult);
+              }
+            }
+          }
+        });
+      }
+
+      // run the column summarize last to potentially override plugins
+      if (column.summarize) {
+        const columnResult = column.summarize(column, data, columns);
+        if (!result) {
+          result = columnResult;
+        } else {
+          Object.assign(result, columnResult);
+        }
+      }
+
+      return result;
+    });
+
+    return summaries;
+  }
+
+  /**
    * Renders the headers of the table in a thead
    *
    * @return {React.Component} <thead>
    */
   renderHeaders() {
     const { columns, HeaderComponent, sortable } = this.props;
+    const { highlightedColumnId } = this.state;
 
     return (
       <thead>
@@ -166,6 +247,7 @@ class TacoTable extends React.Component {
             <HeaderComponent
               key={i}
               column={column}
+              highlightedColumn={column.id === highlightedColumnId}
               sortableTable={sortable}
               onClick={this.handleHeaderClick}
             />
@@ -181,8 +263,11 @@ class TacoTable extends React.Component {
    * @return {React.Component} <tbody>
    */
   renderRows() {
-    const { columns, RowComponent, rowClassName } = this.props;
-    const { data } = this.state;
+    const { columns, RowComponent, rowClassName, rowHighlighting,
+      columnHighlighting, plugins } = this.props;
+    const { data, highlightedRowData, highlightedColumnId } = this.state;
+
+    const columnSummaries = this.summarizeColumns();
 
     return (
       <tbody>
@@ -199,8 +284,14 @@ class TacoTable extends React.Component {
               rowNumber={i}
               rowData={rowData}
               columns={columns}
+              columnSummaries={columnSummaries}
               tableData={data}
+              plugins={plugins}
               className={className}
+              highlighted={highlightedRowData === rowData}
+              onHighlight={rowHighlighting ? this.handleRowHighlight : undefined}
+              highlightedColumnId={highlightedColumnId}
+              onColumnHighlight={columnHighlighting ? this.handleColumnHighlight : undefined}
             />
           );
         })}
