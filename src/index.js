@@ -1,5 +1,6 @@
 import DataType from './DataType';
 import * as Formatters from './Formatters';
+import * as Plugins from './plugins';
 import SortDirection from './SortDirection';
 import * as Summarizers from './Summarizers';
 import TacoTable from './TacoTable';
@@ -12,6 +13,7 @@ import * as Utils from './Utils';
 module.exports = {
   DataType,
   Formatters,
+  Plugins,
   SortDirection,
   Summarizers,
   TacoTable,

@@ -144,7 +144,7 @@ class TacoTableCell extends React.Component {
       onMouseLeave = this.handleMouseLeave;
     }
 
-    const computedTdClassName = 'phony'; //this.computeTdClassName(cellData);
+    const computedTdClassName = this.computeTdClassName(cellData);
     const computedTdStyle = this.computeTdStyle(cellData);
 
     return (

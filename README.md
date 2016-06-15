@@ -38,7 +38,7 @@ A react component for creating tables configured by a set of columns.
 - [ ] fixed columns
 - [ ] repeat headers every N
 - [ ] CSV export
-- [ ] heatmap
+- [x] heatmap
 - [ ] paging
 - [ ] showing row numbers on hover
 - [ ] ImmutableJS support?
@@ -64,7 +64,7 @@ Here `Renderable` means anything React can render (e.g., React.Component, String
 | rendererOptions | Object |  | Object of options that can be read by the renderer |
 | simpleRenderer | Function |  | `function (cellData, columnDefinition, rowData, rowNumber, tableData, columnDefinitions)`<br>The function that render the cell's value in a simpler format. Must return a String or Number. |
 | sortValue | Function |  | `function (cellData, rowData)`<br>Function to use when sorting instead of `value`. |
-| summarize | Function |  | `function (columnDefinition, tableData, columnDefinitions)`<br>Produces an object representing a summary of the column (e.g., min and max) to be used in the | 
+| summarize | Function |  | `function (columnDefinition, tableData, columnDefinitions)`<br>Produces an object representing a summary of the column (e.g., min and max) to be used in the |
 | tdClassName | Function, String |  | `function (cellData, columnSummary, columnDefinition, rowData, rowNumber, tableData, columnDefinitions)`<br>A function that returns a class name based on the cell data and column summary or other information. If a string is provided, it is used directly as the class name. |
 | tdStyle | Function, Object |  | `function (cellData, columnSummary, columnDefinition, rowData, rowNumber, tableData, columnDefinitions)`<br>A function that returns the style to be applied to the cell. If an object is provided, it is used directly as the style attribute. |
 | thClassName | String |  | The class name to be applied to `<th>` only |
