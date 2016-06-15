@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
   unmountComponentAtNode,
+  findDOMNode,
 } from 'react-dom';
 
 import {
@@ -25,7 +26,7 @@ describe('TacoTable', function () {
     return findRenderedComponentWithType(table, TacoTable);
   }
 
-  const columnDefinition = [
+  const columns = [
     {
       id: 'name',
       className: 'name-col',
@@ -47,36 +48,38 @@ describe('TacoTable', function () {
     { name: 'Thing', value: 123456 },
   ];
   const props = {
-    columns: columnDefinition,
+    columns,
     data: rows,
     initialSortColumnId: 'name',
     initialSortDirection: SortDirection.Ascending,
   };
 
-  before(function () {
+  beforeEach(function () {
     root = document.createElement('div');
     document.body.appendChild(root);
   });
-  after(function () {
-    document.body.removeChild(root);
-  });
+
   afterEach(function () {
+    document.body.removeChild(root);
     unmountComponentAtNode(root);
   });
 
   describe('basic render', function () {
     let foundTable;
+    let domTableNode;
     before(function () {
       foundTable = defineTable(props);
+      domTableNode = findDOMNode(foundTable);
     });
     it('should have a table rendered', function () {
       expect(foundTable).to.be.ok;
+      assert.isOk(domTableNode.querySelector('table'));
     });
     it('should have two columns', function () {
-      assert.equal(foundTable.props.columns.length, 2);
+      assert.equal(domTableNode.querySelectorAll('thead > tr th').length, 2);
     });
     it('should have 5 rows', function () {
-      assert.equal(foundTable.props.data.length, 5);
+      assert.equal(domTableNode.querySelectorAll('tbody > tr').length, 5);
     });
   });
 
