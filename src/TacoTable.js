@@ -288,7 +288,7 @@ class TacoTable extends React.Component {
    */
   renderHeaders() {
     const { columns, columnGroups, HeaderComponent, sortable } = this.props;
-    const { highlightedColumnId } = this.state;
+    const { highlightedColumnId, sortColumnId, sortDirection } = this.state;
 
     return (
       <thead>
@@ -310,6 +310,7 @@ class TacoTable extends React.Component {
                 highlightedColumn={column.id === highlightedColumnId}
                 sortableTable={sortable}
                 onClick={this.handleHeaderClick}
+                sortDirection={sortColumnId === column.id ? sortDirection : undefined}
               />
             );
           })}

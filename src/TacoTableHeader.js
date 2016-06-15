@@ -2,6 +2,8 @@ import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
 import DataType from './DataType';
+import SortDirection from './SortDirection';
+
 
 const propTypes = {
   /* The column definition */
@@ -19,6 +21,9 @@ const propTypes = {
 
   /* Whether the table is sortable or not */
   sortableTable: React.PropTypes.bool,
+
+  /* The current sort direction of this column -- null or undefined if not sorted */
+  sortDirection: React.PropTypes.bool,
 };
 
 const defaultProps = {
@@ -45,7 +50,8 @@ class TacoTableHeader extends React.Component {
   }
 
   render() {
-    const { column, sortableTable, highlightedColumn, columnGroup } = this.props;
+    const { column, sortableTable, highlightedColumn, columnGroup,
+      sortDirection } = this.props;
     const { className, thClassName, header, id, width, type } = column;
 
     const contents = header == null ? id : header;
@@ -55,8 +61,17 @@ class TacoTableHeader extends React.Component {
     const sortable = sortableTable && column.type !== DataType.None && column.sortValue !== null;
 
     let onClick;
+    let sortIndicator;
     if (sortable) {
       onClick = this.handleClick;
+      sortIndicator = (
+        <span
+          className={classNames('sort-indicator', {
+            'sort-ascending': sortDirection === SortDirection.Ascending,
+            'sort-descending': sortDirection === SortDirection.Descending,
+          })}
+        />
+      );
     }
 
     // add in a fixed width if specified
@@ -86,11 +101,18 @@ class TacoTableHeader extends React.Component {
     return (
       <th
         className={classNames(className, thClassName, columnGroupClass,
-          `data-type-${type}`, { sortable, 'column-highlight': highlightedColumn })}
+          `data-type-${type}`, {
+            sortable,
+            'column-highlight': highlightedColumn,
+            'sort-ascending': sortDirection === SortDirection.Ascending,
+            'sort-descending': sortDirection === SortDirection.Descending,
+            sorted: sortDirection != null,
+          })}
         onClick={onClick}
         style={style}
       >
         {contents}
+        {sortIndicator}
       </th>
     );
   }

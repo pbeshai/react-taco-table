@@ -27,7 +27,7 @@ A react component for creating tables configured by a set of columns.
 - [x] highlighting a max or min value
 - [x] column grouping
 - [x] group headers
-- [ ] sort indicators
+- [x] sort indicators
 
 ## Stretch features
 - [ ] search within table to filter rows?
