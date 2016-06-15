@@ -75,6 +75,7 @@ class TacoTable extends React.Component {
     // non-sortable tables. Take a slice to ensure we do not modify the original
     this.state = {
       data: props.data.slice(),
+      columnSummaries: this.summarizeColumns(props),
     };
 
     // if sortable, do the initial sort
@@ -104,11 +105,31 @@ class TacoTable extends React.Component {
       }
     }
 
+
     // bind handlers
     this.handleHeaderClick = this.handleHeaderClick.bind(this);
     this.handleRowHighlight = this.handleRowHighlight.bind(this);
     this.handleColumnHighlight = this.handleColumnHighlight.bind(this);
     this.sort = this.sort.bind(this);
+  }
+
+  /**
+   * On receiving new props, sort the data and recompute column summaries if the data
+   * has changed.
+   */
+  componentWillReceiveProps(nextProps) {
+    const { data } = this.props;
+    if (data !== nextProps.data) {
+      const newState = Object.assign({}, this.state, { data: nextProps.data.slice() });
+
+      // re-sort the data
+      Object.assign(newState, this.sort(newState.sortColumnId, nextProps, newState));
+
+      // recompute column summaries
+      newState.columnSummaries = this.summarizeColumns(nextProps);
+
+      this.setState(newState);
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -158,10 +179,10 @@ class TacoTable extends React.Component {
    *
    * @param {String} columnId the ID of the column to sort by
    */
-  sort(columnId) {
-    const { columns } = this.props;
-    const { sortColumnId, data } = this.state;
-    let { sortDirection } = this.state;
+  sort(columnId, props = this.props, state = this.state) {
+    const { columns } = props;
+    const { sortColumnId, data } = state;
+    let { sortDirection } = state;
     const column = getColumnById(columns, columnId);
 
     if (!column) {
@@ -196,8 +217,8 @@ class TacoTable extends React.Component {
    * @return {Array} array of summaries matching the indices for `columns`, null for those
    *   without a `summarize` property.
    */
-  summarizeColumns() {
-    const { columns, data, plugins } = this.props;
+  summarizeColumns(props = this.props) {
+    const { columns, data, plugins } = props;
 
     const summaries = columns.map(column => {
       let result;
@@ -327,9 +348,7 @@ class TacoTable extends React.Component {
   renderRows() {
     const { columns, RowComponent, rowClassName, rowHighlighting,
       columnHighlighting, plugins, columnGroups } = this.props;
-    const { data, highlightedRowData, highlightedColumnId } = this.state;
-
-    const columnSummaries = this.summarizeColumns();
+    const { data, highlightedRowData, highlightedColumnId, columnSummaries } = this.state;
 
     return (
       <tbody>
