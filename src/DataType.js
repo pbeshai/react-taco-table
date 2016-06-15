@@ -1,12 +1,16 @@
-import keyMirror from 'keymirror';
+/** @module DataType */
 
-const DataType = keyMirror({
-  Number: null,
-  NumberOrdinal: null,
-  String: null,
-  Boolean: null,
-  Date: null,
-  None: null,
-});
+/**
+ * Data types available for TacoTable columns
+ * @enum {String}
+ */
+const DataType = {
+  Number: 'Number',
+  NumberOrdinal: 'NumberOrdinal',
+  String: 'String',
+  Boolean: 'Boolean',
+  Date: 'Date',
+  None: 'None',
+};
 
 export default DataType;
