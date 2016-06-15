@@ -35,6 +35,27 @@ export function getCellData(column, rowData, rowNumber, tableData, columns) {
  * no sortValue function is provided on the column, the cellData is
  * returned.
  *
+ * @param {Object} cellData The cell data
+ * @param {Object} column The column definition
+ * @param {Object} rowData The data for the row
+ * @return {Any} The sort value for this cell
+ */
+export function getSortValueFromCellData(cellData, column, rowData) {
+  const { sortValue } = column;
+
+  if (sortValue) {
+    return sortValue(cellData, rowData);
+  }
+
+  return cellData;
+}
+
+
+/**
+ * Gets the sort value for a cell by first computing the cell data. If
+ * no sortValue function is provided on the column, the cellData is
+ * returned.
+ *
  * @param {Object} column The column definition
  * @param {Object} rowData The data for the row
  * @param {Number} rowNumber The number of the row
@@ -44,14 +65,10 @@ export function getCellData(column, rowData, rowNumber, tableData, columns) {
  */
 export function getSortValue(column, rowData, rowNumber, tableData, columns) {
   const cellData = getCellData(column, rowData, rowNumber, tableData, columns);
-  const { sortValue } = column;
 
-  if (sortValue) {
-    return sortValue(cellData, rowData);
-  }
-
-  return cellData;
+  return getSortValueFromCellData(cellData, column, rowData);
 }
+
 
 /**
  * Gets a column from the column definitions based on its ID

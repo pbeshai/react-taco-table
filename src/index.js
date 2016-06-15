@@ -5,6 +5,7 @@ import TacoTable from './TacoTable';
 import TacoTableCell from './TacoTableCell';
 import TacoTableHeader from './TacoTableHeader';
 import TacoTableRow from './TacoTableRow';
+import * as Utils from './Utils';
 
 module.exports = {
   DataType,
@@ -14,4 +15,5 @@ module.exports = {
   TacoTableCell,
   TacoTableHeader,
   TacoTableRow,
+  Utils,
 };

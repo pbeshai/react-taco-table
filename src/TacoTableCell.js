@@ -7,6 +7,9 @@ const propTypes = {
   /* The column definition */
   column: React.PropTypes.object.isRequired,
 
+  /* summary information for the column */
+  columnSummary: React.PropTypes.object,
+
   /* The column definitions */
   columns: React.PropTypes.array,
 
@@ -55,8 +58,8 @@ class TacoTableCell extends React.Component {
 
   render() {
     const { column, rowData, rowNumber, tableData, columns, onHighlight,
-      highlightedColumn } = this.props;
-    const { className, tdClassName, type } = column;
+      highlightedColumn, columnSummary } = this.props;
+    const { className, tdClassName, tdStyle, type } = column;
 
     const cellData = getCellData(column, rowData, rowNumber, tableData, columns);
     const rendered = renderCell(cellData, column, rowData, rowNumber, tableData, columns);
@@ -69,13 +72,30 @@ class TacoTableCell extends React.Component {
       onMouseLeave = this.handleMouseLeave;
     }
 
+    let computedClassName;
+    if (typeof tdClassName === 'function') {
+      computedClassName = tdClassName(cellData, columnSummary, column, rowData,
+        rowNumber, tableData, columns);
+    } else {
+      computedClassName = tdClassName;
+    }
+
+    let computedStyle;
+    if (typeof tdStyle === 'function') {
+      computedStyle = tdStyle(cellData, columnSummary, column, rowData,
+        rowNumber, tableData, columns);
+    } else {
+      computedStyle = tdStyle;
+    }
+
     return (
       <td
-        className={classNames(className, tdClassName, `data-type-${type}`, {
-          'column-highlight': highlightedColumn
+        className={classNames(className, computedClassName, `data-type-${type}`, {
+          'column-highlight': highlightedColumn,
         })}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
+        style={computedStyle}
       >
         {rendered}
       </td>

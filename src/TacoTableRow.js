@@ -6,6 +6,9 @@ const propTypes = {
   /* The column definitions */
   columns: React.PropTypes.array.isRequired,
 
+  /* An array of summaries, one for each column, matched by index */
+  columnSummaries: React.PropTypes.array,
+
   /* The class name for the row */
   className: React.PropTypes.string,
 
@@ -35,6 +38,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  columnSummaries: [],
   CellComponent: TacoTableCell,
 };
 
@@ -62,7 +66,7 @@ class TacoTableRow extends React.Component {
   }
 
   render() {
-    const { className, columns, rowData, rowNumber, tableData, CellComponent,
+    const { className, columnSummaries, columns, rowData, rowNumber, tableData, CellComponent,
       onHighlight, onColumnHighlight, highlighted, highlightedColumnId } = this.props;
 
     // attach mouse listeners for highlighting
@@ -83,6 +87,7 @@ class TacoTableRow extends React.Component {
           <CellComponent
             key={i}
             column={column}
+            columnSummary={columnSummaries[i]}
             columns={columns}
             rowNumber={rowNumber}
             rowData={rowData}

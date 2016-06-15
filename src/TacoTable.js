@@ -184,6 +184,26 @@ class TacoTable extends React.Component {
   }
 
   /**
+   * Computes a summary for each column that is configured to have one.
+   *
+   * @return {Array} array of summaries matching the indices for `columns`, null for those
+   *   without a `summarize` property.
+   */
+  summarizeColumns() {
+    const { columns, data } = this.props;
+
+    const summaries = columns.map(column => {
+      if (!column.summarize) {
+        return null;
+      }
+
+      return column.summarize(column, data, columns);
+    });
+
+    return summaries;
+  }
+
+  /**
    * Renders the headers of the table in a thead
    *
    * @return {React.Component} <thead>
@@ -219,6 +239,8 @@ class TacoTable extends React.Component {
       columnHighlighting } = this.props;
     const { data, highlightedRowData, highlightedColumnId } = this.state;
 
+    const columnSummaries = this.summarizeColumns();
+
     return (
       <tbody>
         {data.map((rowData, i) => {
@@ -234,6 +256,7 @@ class TacoTable extends React.Component {
               rowNumber={i}
               rowData={rowData}
               columns={columns}
+              columnSummaries={columnSummaries}
               tableData={data}
               className={className}
               highlighted={highlightedRowData === rowData}
