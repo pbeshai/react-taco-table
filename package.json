@@ -4,8 +4,17 @@
   "description": "A react component for creating tables configured by a set of columns.",
   "main": "src/index.js",
   "scripts": {
-    "test": "ENV=test karma start .karma.conf.js",
-    "docs": "jsdoc --configure .jsdoc.json --readme README.md"
+    "build": "grunt build",
+    "docs": "jsdoc --configure .jsdoc.json --readme README.md",
+    "gh-pages": "gh-pages-deploy",
+    "site-build": "grunt site-build",
+    "test": "ENV=test karma start .karma.conf.js"
+  },
+  "gh-pages-deploy": {
+    "staticpath": "site/dist",
+    "prep": [
+      "site-build"
+    ]
   },
   "author": {
     "name": "Peter Beshai",
