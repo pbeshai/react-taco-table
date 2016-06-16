@@ -19,8 +19,8 @@ import * as Utils from './Utils';
  * Computes the minimum and maximum values in a column as `min` and `max`.
  *
  * @param {Object} column The column definition
- * @param {Array} tableData the data for the whole table
- * @param {Array} columns The definitions of columns for the whole table
+ * @param {Object[]} tableData the data for the whole table
+ * @param {Object[]} columns The definitions of columns for the whole table
  *
  * @return {Object} The minimum and maximum values as {min, max}
  */

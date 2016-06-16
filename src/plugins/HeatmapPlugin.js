@@ -14,7 +14,7 @@
  *
  * Plugin options found in `column.plugins.heatmap` since the plugin has id `heatmap`.
  *
- * - **domain** {Array} the domain to use for the color scale, if not provided, uses summary min and max
+ * - **domain** {Number[]} the domain to use for the color scale, if not provided, uses summary min and max
  * - **backgroundScale** {Function} the scale to use for the background-color
  * - **colorScale** {Function} the scale to use for the color
  * - **colorShift** {Number} if provided, shifts the background color to create the foreground color.

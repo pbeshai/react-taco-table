@@ -15,8 +15,8 @@ import DataType from './DataType';
  * @param {Object} column The column definition
  * @param {Object} rowData The data for the row
  * @param {Number} rowNumber The number of the row
- * @param {Array} tableData The array of data for the whole table
- * @param {Array} columns The column definitions for the whole table
+ * @param {Object[]} tableData The array of data for the whole table
+ * @param {Object[]} columns The column definitions for the whole table
  * @return {Any} The value for this cell
  */
 export function getCellData(column, rowData, rowNumber, tableData, columns) {
@@ -63,8 +63,8 @@ export function getSortValueFromCellData(cellData, column, rowData) {
  * @param {Object} column The column definition
  * @param {Object} rowData The data for the row
  * @param {Number} rowNumber The number of the row
- * @param {Array} tableData The array of data for the whole table
- * @param {Array} columns The column definitions for the whole table
+ * @param {Object[]} tableData The array of data for the whole table
+ * @param {Object[]} columns The column definitions for the whole table
  * @return {Any} The sort value for this cell
  */
 export function getSortValue(column, rowData, rowNumber, tableData, columns) {
@@ -77,7 +77,7 @@ export function getSortValue(column, rowData, rowNumber, tableData, columns) {
 /**
  * Gets a column from the column definitions based on its ID
  *
- * @param {Array} columns The column definitions for the whole table
+ * @param {Object[]} columns The column definitions for the whole table
  * @param {String} columnId the `id` of the column
  * @return {Object} The column definition
  */
@@ -183,11 +183,11 @@ export function getSortComparator(type) {
  * Sorts the data based on sort value and column type. Uses a stable sort
  * by keeping track of the original position to break ties.
  *
- * @param {Array} data the array of data for the whole table
+ * @param {Object[]} data the array of data for the whole table
  * @param {String} columnId the column ID of the column to sort by
  * @param {Boolean} sortDirection The direction to sort in
- * @param {Array} columns The column definitions for the whole table
- * @return {Array} The sorted data
+ * @param {Object[]} columns The column definitions for the whole table
+ * @return {Object[]} The sorted data
  */
 export function sortData(data, columnId, sortDirection, columns) {
   const column = getColumnById(columns, columnId);
@@ -226,8 +226,8 @@ export function sortData(data, columnId, sortDirection, columns) {
  * @param {Object} column The column definition
  * @param {Object} rowData The data for the row
  * @param {Number} rowNumber The number of the row
- * @param {Array} tableData The array of data for the whole table
- * @param {Array} columns The column definitions for the whole table
+ * @param {Object[]} tableData The array of data for the whole table
+ * @param {Object[]} columns The column definitions for the whole table
  * @return {Renderable} The contents of the cell
  */
 export function renderCell(cellData, column, rowData, rowNumber, tableData, columns) {
