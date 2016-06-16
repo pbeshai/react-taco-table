@@ -6,10 +6,16 @@ A react component for creating tables configured by a set of columns.
 1. Install dependencies with `npm install`
 
 ## Building
-1. To build files for production, run `grunt`
+1. To build files for production, run `grunt build`
 
 ## Documentation
 1. To generate the documentation, run `npm run docs`. They will appear in `/docs`.
+
+## Site Dev
+1. To run the webpack-dev-server for the site, run `grunt site`
+
+### Building the Site
+1. To build the prod files for the site, run `grunt site-build`
 
 ## Testing
 1. To run the tests, run `npm test`
