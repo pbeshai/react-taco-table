@@ -4,38 +4,16 @@ import classNames from 'classnames';
 import { getCellData, renderCell } from './Utils';
 
 const propTypes = {
-  /* The column definition */
   column: React.PropTypes.object.isRequired,
-
-  /* Column group definition:
-   * { header:String, columns:[colId1, colId2, ...], className:String} */
   columnGroup: React.PropTypes.object,
-
-  /* summary information for the column */
   columnSummary: React.PropTypes.object,
-
-  /* The column definitions */
   columns: React.PropTypes.array,
-
-  /** Whether this column is highlighted or not */
   highlightedColumn: React.PropTypes.bool,
-
-  /** Whether this row is highlighted or not */
   highlightedRow: React.PropTypes.bool,
-
-  /* callback for when a column is highlighted / unhighlighted */
   onHighlight: React.PropTypes.func,
-
-  /* Collection of plugins to run to compute cell style, cell class name, column summaries */
   plugins: React.PropTypes.array,
-
-  /* The data to render in this row */
   rowData: React.PropTypes.object.isRequired,
-
-  /* The row number in the table */
   rowNumber: React.PropTypes.number,
-
-  /* The table data */
   tableData: React.PropTypes.array,
 };
 
@@ -43,8 +21,27 @@ const defaultProps = {
 
 };
 
-/** TODO: Add your class def here */
+/**
+ * React component for rendering table cells, uses `<td>`.
+ *
+ * @prop {Object} column            The column definition
+ * @prop {Object} columnGroup       Column group definition
+ *   `{ header:String, columns:[colId1, colId2, ...], className:String} `
+ * @prop {Object} columnSummary     summary information for the column
+ * @prop {Object[]} columns            The column definitions
+ * @prop {Boolean} highlightedColumn   Whether this column is highlighted or not
+ * @prop {Boolean} highlightedRow      Whether this row is highlighted or not
+ * @prop {Function} onHighlight         callback for when a column is highlighted / unhighlighted
+ * @prop {Object[]} plugins            Collection of plugins to run to compute cell style,
+ *   cell class name, column summaries
+ * @prop {Object} rowData           The data to render in this row
+ * @prop {Number} rowNumber         The row number in the table
+ * @prop {Object[]} tableData          The table data
+ */
 class TacoTableCell extends React.Component {
+  /**
+   * @param {Object} props React props
+   */
   constructor(props) {
     super(props);
 
@@ -52,15 +49,29 @@ class TacoTableCell extends React.Component {
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
 
+  /**
+   * Uses `shallowCompare`
+   * @param {Object} nextProps The next props
+   * @param {Object} nextState The next state
+   * @return {Boolean}
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
 
+  /**
+   * Handler for when the mouse enters the `<td>`. Calls `onHighlight(column.id)`.
+   * @private
+   */
   handleMouseEnter() {
     const { onHighlight, column } = this.props;
     onHighlight(column.id);
   }
 
+  /**
+   * Handler for when the mouse leaves the `<td>`. Calls `onHighlight(null)`.
+   * @private
+   */
   handleMouseLeave() {
     const { onHighlight } = this.props;
     onHighlight(null);
@@ -69,6 +80,7 @@ class TacoTableCell extends React.Component {
   /**
    * Computes the value of a property such as tdClassName or tdStyle
    * by also considering plugins
+   * @private
    */
   computeWithPlugins(property, cellData) {
     const { column, rowData, rowNumber, tableData, columns,
@@ -118,10 +130,18 @@ class TacoTableCell extends React.Component {
     return result;
   }
 
+  /**
+   * Computes the tdClassName value based on the prop and plugins.
+   * @private
+   */
   computeTdClassName(cellData) {
     return this.computeWithPlugins('tdClassName', cellData);
   }
 
+  /**
+   * Computes the tdStyle value based on the prop and plugins.
+   * @private
+   */
   computeTdStyle(cellData) {
     const tdStyle = this.computeWithPlugins('tdStyle', cellData);
     // combine the array into a single object if it is an array
@@ -135,9 +155,13 @@ class TacoTableCell extends React.Component {
     return tdStyle;
   }
 
+  /**
+   * Main render method
+   * @return {React.Component}
+   */
   render() {
     const { column, rowData, rowNumber, tableData, columns,
-      onHighlight, highlightedColumn, highlightedRow, columnGroup } = this.props;
+      onHighlight, highlightedColumn, columnGroup } = this.props;
     const { className, type } = column;
 
     const cellData = getCellData(column, rowData, rowNumber, tableData, columns);
@@ -151,6 +175,7 @@ class TacoTableCell extends React.Component {
       onMouseLeave = this.handleMouseLeave;
     }
 
+    // compute class name and style
     const computedTdClassName = this.computeTdClassName(cellData);
     const computedTdStyle = this.computeTdStyle(cellData);
 

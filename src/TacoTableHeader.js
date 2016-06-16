@@ -4,44 +4,54 @@ import classNames from 'classnames';
 import DataType from './DataType';
 import SortDirection from './SortDirection';
 
-
 const propTypes = {
-  /* The column definition */
   column: React.PropTypes.object.isRequired,
-
-  /* Column group definition:
-   * { header:String, columns:[colId1, colId2, ...], className:String} */
   columnGroup: React.PropTypes.object,
-
-  /** Whether this column is highlighted or not */
   highlightedColumn: React.PropTypes.bool,
-
-  /* Callback when clicked. Gets passed `column.id` */
   onClick: React.PropTypes.func,
-
-  /* Whether the table is sortable or not */
   sortableTable: React.PropTypes.bool,
-
-  /* The current sort direction of this column -- null or undefined if not sorted */
   sortDirection: React.PropTypes.bool,
 };
 
 const defaultProps = {
-
 };
 
-/** TODO: Add your class def here */
+/**
+ * React component for rendering table headers, uses `<th>`.
+ *
+ * @prop {Object} column          The column definition
+ * @prop {Object} columnGroup     Column group definition:
+ *   `{ header:String, columns:[colId1, colId2, ...], className:String}`
+ * @prop {Boolean} highlightedColumn  Whether this column is highlighted or not
+ * @prop {Function} onClick       Callback when clicked. Gets passed `column.id`
+ * @prop {Boolean} sortableTable  Whether the table is sortable or not
+ * @prop {Boolean} sortDirection  The current sort direction of this column --
+ *   null or undefined if not sorted
+ */
 class TacoTableHeader extends React.Component {
+  /**
+   * @param {Object} props React props
+   */
   constructor(props) {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
   }
 
+  /**
+   * Uses `shallowCompare`
+   * @param {Object} nextProps The next props
+   * @param {Object} nextState The next state
+   * @return {Boolean}
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
 
+  /**
+   * Handler for when the header is clicked. Calls `onClick(column.id)`.
+   * @private
+   */
   handleClick() {
     const { column, onClick } = this.props;
     if (onClick) {
@@ -49,6 +59,10 @@ class TacoTableHeader extends React.Component {
     }
   }
 
+  /**
+   * Main render method
+   * @return {React.Component}
+   */
   render() {
     const { column, sortableTable, highlightedColumn, columnGroup,
       sortDirection } = this.props;

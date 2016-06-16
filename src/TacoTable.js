@@ -7,56 +7,26 @@ import SortDirection from './SortDirection';
 import { sortData, getColumnById } from './Utils';
 
 const propTypes = {
-  /* The column definitions */
   columns: React.PropTypes.array.isRequired,
-
-  /* How to group columns - an array of
-   * { header:String, columns:[colId1, colId2, ...], className:String} */
   columnGroups: React.PropTypes.array,
-
-  /* Whether or not to turn on mouse listeners for column highlighting */
   columnHighlighting: React.PropTypes.bool,
-
-  /* The class names to apply to the table */
   className: React.PropTypes.string,
-
-  /* The class name to apply to the table container */
   containerClassName: React.PropTypes.string,
-
-  /* The data to be rendered as rows */
   data: React.PropTypes.array,
-
-  /* Column ID of the data to sort by initially */
-  initialSortColumnId: React.PropTypes.string,
-
-  /* Direction by which to sort initially */
-  initialSortDirection: React.PropTypes.bool,
-
-  /* Collection of plugins to run to compute cell style, cell class name, column summaries */
-  plugins: React.PropTypes.array,
-
-  /* Whether the table can be sorted or not */
-  sortable: React.PropTypes.bool,
-
-  /* Whether the table is striped */
-  striped: React.PropTypes.bool,
-
-  /* Whether the table takes up full width or not */
   fullWidth: React.PropTypes.bool,
-
-  /* Function that maps (rowData, rowNumber) to a class name */
+  initialSortColumnId: React.PropTypes.string,
+  initialSortDirection: React.PropTypes.bool,
+  plugins: React.PropTypes.array,
   rowClassName: React.PropTypes.func,
-
-  /* Whether or not to turn on mouse listeners for row highlighting */
   rowHighlighting: React.PropTypes.bool,
-
-  /* allow configuration of which components to use for headers and rows */
+  sortable: React.PropTypes.bool,
+  striped: React.PropTypes.bool,
   HeaderComponent: React.PropTypes.func,
   RowComponent: React.PropTypes.func,
 };
 
 const defaultProps = {
-  columnHighlighting: true,
+  columnHighlighting: false,
   initialSortDirection: SortDirection.Ascending,
   striped: false,
   sortable: true,
@@ -66,8 +36,89 @@ const defaultProps = {
   RowComponent: TacoTableRow,
 };
 
-/** TODO: add your class def here. */
+/**
+ * React component for rendering a table, uses `<table className="taco-table">`
+ * wrapped in a `<div className="taco-table-container">`.
+ *
+ * Note that `Renderable` means anything React can render (e.g., String, Number,
+ * React.Component, etc.).
+ *
+ * ### Column Definition
+ *
+ * Columns are defined by objects with the following format:
+ *
+ * - `id` {String} The id of the column. Typically corresponds to a key in the rowData object.
+ * - `[className]` {String} The class name to be applied to both `<td>` and `<th>`
+ * - `[firstSortDirection]` {Boolean} The direction which this column gets sorted by on first click
+ * - `[header]` {Renderable} What is rendered in the column header. If not provided, uses the columnId.
+ * - `[renderer]` {Function} `function (cellData, column, rowData, rowNumber, tableData, columns)`
+ *    The function that renders the value in the table. Can return anything React can render.
+ * - `[rendererOptions]` {Object} Object of options that can be read by the renderer
+ * - `[simpleRenderer]` {Function} `function (cellData, column, rowData, rowNumber, tableData, columns)`
+ *    The function that render the cell's value in a simpler format. Must return a String or Number.
+ * - `[sortValue]` {Function} `function (cellData, rowData)`
+ *    Function to use when sorting instead of `value`.
+ * - `[summarize]` {Function} `function (column, tableData, columns)`
+ *    Produces an object representing a summary of the column (e.g., min and max) to be used in the
+ * - `[tdClassName]` {(Function|String)} `function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)`
+ *    A function that returns a class name based on the cell data and column summary or other information. If a string is provided, it is used directly as the class name.
+ * - `[tdStyle]` {(Function|Object)} `function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)`
+ *    A function that returns the style to be applied to the cell. If an object is provided, it is used directly as the style attribute.
+ * - `[thClassName]` {String} The class name to be applied to `<th>` only
+ * - `[type]` {String} The `DataType` of the column - number, string, etc
+ * - `[value]` {(Function|String)} `function (rowData, rowNumber, tableData, columns)`
+ *    Function to produce cellData's value. If a String, reads that as a key into the rowData object. If not provided, columnId is used as a key into the rowData object.
+ * - `[width]` {(Number|String)} The value to set for the style `width` property on the column.
+ *
+ *
+ * ### Column Groups
+ *
+ * Column groups are defined by objects with the following format:
+ *
+ * - `[className]` {String} The className to apply to cells and headers in this group
+ * - `columns` {String[]} The column IDs to render
+ * - `[header]` {Renderable} What shows up in the table header if provided
+ *
+ *
+ * ### Plugins
+ *
+ * Plugins are defined by objects with the following format:
+ *
+ * - `[columnTest]` {Function} A function that takes a column and returns true or false
+ *    if it the plugin should be run on this column. Default is true for everything.
+ * - `id` {String} The ID of the plugin
+ * - `[summarize]` {Function} A column summarizer function
+ * - `[tdStyle]` {(Function|Object)} The TD style function
+ * - `[tdClassName]` {(Function|String)} The TD class name function
+ *
+ *
+ * @prop {Object[]} columns   The column definitions
+ * @prop {Object[]} columnGroups   How to group columns - an array of
+ *   `{ header:String, columns:[colId1, colId2, ...], className:String}`
+ * @prop {Boolean} columnHighlighting=false   Whether or not to turn on mouse listeners
+ *    for column highlighting
+ * @prop {String} className   The class names to apply to the table
+ * @prop {String} containerClassName   The class name to apply to the table container
+ * @prop {Object[]} data   The data to be rendered as rows
+ * @prop {String} initialSortColumnId   Column ID of the data to sort by initially
+ * @prop {Boolean} initialSortDirection=true(Ascending)   Direction by which to sort initially
+ * @prop {Object[]} plugins   Collection of plugins to run to compute cell style,
+ *    cell class name, column summaries
+ * @prop {Boolean} sortable=true   Whether the table can be sorted or not
+ * @prop {Boolean} striped=false   Whether the table is striped
+ * @prop {Boolean} fullWidth=true   Whether the table takes up full width or not
+ * @prop {Function} rowClassName   Function that maps (rowData, rowNumber) to a class name
+ * @prop {Boolean} rowHighlighting=true   Whether or not to turn on mouse
+ *    listeners for row highlighting
+ * @prop {Function} HeaderComponent=TacoTableHeader   allow configuration of which
+ *     component to use for headers
+ * @prop {Function} RowComponent=TacoTableRow   allow configuration of which
+ *     component to use for rows
+ */
 class TacoTable extends React.Component {
+  /**
+   * @param {Object} props React props
+   */
   constructor(props) {
     super(props);
 
@@ -116,6 +167,7 @@ class TacoTable extends React.Component {
   /**
    * On receiving new props, sort the data and recompute column summaries if the data
    * has changed.
+   * @param {Object} nextProps The next props
    */
   componentWillReceiveProps(nextProps) {
     const { data } = this.props;
@@ -132,6 +184,12 @@ class TacoTable extends React.Component {
     }
   }
 
+  /**
+   * Uses `shallowCompare`
+   * @param {Object} nextProps The next props
+   * @param {Object} nextState The next state
+   * @return {Boolean}
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
@@ -140,6 +198,7 @@ class TacoTable extends React.Component {
    * Callback when a header is clicked. If a sortable table, sorts the table.
    *
    * @param {Object} column The column that was clicked.
+   * @private
    */
   handleHeaderClick(columnId) {
     const { sortable } = this.props;
@@ -156,6 +215,7 @@ class TacoTable extends React.Component {
    * Callback when a row is highlighted
    *
    * @param {Object} rowData The row data for the row that is highlighted
+   * @private
    */
   handleRowHighlight(rowData) {
     this.setState({
@@ -167,6 +227,7 @@ class TacoTable extends React.Component {
    * Callback when a column is highlighted
    *
    * @param {String} columnId The ID of the column being highlighted
+   * @private
    */
   handleColumnHighlight(columnId) {
     this.setState({
@@ -178,6 +239,11 @@ class TacoTable extends React.Component {
    * Sort the table based on a column
    *
    * @param {String} columnId the ID of the column to sort by
+   * @param {Object} props=this.props
+   * @param {Object} props=this.state
+   * @return {Object} Object representing sort state
+   *    `{ sortDirection, sortColumnId, data }`.
+   * @private
    */
   sort(columnId, props = this.props, state = this.state) {
     const { columns } = props;
@@ -214,8 +280,9 @@ class TacoTable extends React.Component {
   /**
    * Computes a summary for each column that is configured to have one.
    *
-   * @return {Array} array of summaries matching the indices for `columns`, null for those
-   *   without a `summarize` property.
+   * @return {Array} array of summaries matching the indices for `columns`,
+   *   null for those without a `summarize` property.
+   * @private
    */
   summarizeColumns(props = this.props) {
     const { columns, data, plugins } = props;
@@ -260,6 +327,7 @@ class TacoTable extends React.Component {
    * Renders the group headers above column headers
    *
    * @return {React.Component} `<tr>`
+   * @private
    */
   renderGroupHeaders() {
     const { columns, columnGroups } = this.props;
@@ -306,6 +374,7 @@ class TacoTable extends React.Component {
    * Renders the headers of the table in a thead
    *
    * @return {React.Component} `<thead>`
+   * @private
    */
   renderHeaders() {
     const { columns, columnGroups, HeaderComponent, sortable } = this.props;
@@ -344,6 +413,7 @@ class TacoTable extends React.Component {
    * Renders the rows of the table in a tbody
    *
    * @return {React.Component} `<tbody>`
+   * @private
    */
   renderRows() {
     const { columns, RowComponent, rowClassName, rowHighlighting,
@@ -381,6 +451,10 @@ class TacoTable extends React.Component {
     );
   }
 
+  /**
+   * Main render method
+   * @return {React.Component}
+   */
   render() {
     const { className, containerClassName, fullWidth, striped, sortable } = this.props;
 

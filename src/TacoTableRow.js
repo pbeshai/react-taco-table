@@ -2,45 +2,20 @@ import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
 import TacoTableCell from './TacoTableCell';
+
 const propTypes = {
-  /* The column definitions */
   columns: React.PropTypes.array.isRequired,
-
-  /* How to group columns - an array of
-   * { header:String, columns:[colId1, colId2, ...], className:String} */
   columnGroups: React.PropTypes.array,
-
-  /* An array of summaries, one for each column, matched by index */
   columnSummaries: React.PropTypes.array,
-
-  /* The class name for the row */
   className: React.PropTypes.string,
-
-  /** Whether this row is highlighted or not */
   highlighted: React.PropTypes.bool,
-
-  /** The ID of the highlighted column */
   highlightedColumnId: React.PropTypes.string,
-
-  /* callback for when a column is highlighted / unhighlighted */
   onColumnHighlight: React.PropTypes.func,
-
-  /* callback for when a row is highlighted / unhighlighted */
   onHighlight: React.PropTypes.func,
-
-  /* Collection of plugins to run to compute cell style, cell class name, column summaries */
   plugins: React.PropTypes.array,
-
-  /* The data to render in this row */
   rowData: React.PropTypes.object.isRequired,
-
-  /* The row number in the table */
   rowNumber: React.PropTypes.number,
-
-  /* The table data */
   tableData: React.PropTypes.array,
-
-  /* Allow configuration of what component to use to render cells */
   CellComponent: React.PropTypes.func,
 };
 
@@ -49,8 +24,29 @@ const defaultProps = {
   CellComponent: TacoTableCell,
 };
 
-/** TODO: Add your class def here */
+/**
+ * React component for rendering table rows, uses `<tr>`.
+ *
+ * @prop {Object[]} columns  The column definitions
+ * @prop {Object[]} columnGroups  How to group columns - an array of
+ *   `{ header:String, columns:[colId1, colId2, ...], className:String}`
+ * @prop {Object[]} columnSummaries  An array of summaries, one for each column, matched by index
+ * @prop {String} className  The class name for the row
+ * @prop {Boolean} highlighted Whether this row is highlighted or not
+ * @prop {String} highlightedColumnId   The ID of the highlighted column
+ * @prop {Function} onColumnHighlight  callback for when a column is highlighted / unhighlighted
+ * @prop {Function} onHighlight  callback for when a row is highlighted / unhighlighted
+ * @prop {Object[]} plugins  Collection of plugins to run to compute cell style,
+ *    cell class name, column summaries
+ * @prop {Object} rowData  The data to render in this row
+ * @prop {Number} rowNumber  The row number in the table
+ * @prop {Object[]} tableData  The table data
+ * @prop {Function} CellComponent  Allow configuration of what component to use to render cells
+ */
 class TacoTableRow extends React.Component {
+  /**
+   * @param {Object} props React props
+   */
   constructor(props) {
     super(props);
 
@@ -58,20 +54,39 @@ class TacoTableRow extends React.Component {
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
 
+  /**
+   * Uses `shallowCompare`
+   * @param {Object} nextProps The next props
+   * @param {Object} nextState The next state
+   * @return {Boolean}
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
 
+  /**
+   * Handler for when the mouse enters the `<tr>`. Calls `onHighlight(column.id)`.
+   * @private
+   */
   handleMouseEnter() {
     const { onHighlight, rowData } = this.props;
     onHighlight(rowData);
   }
 
+  /**
+   * Handler for when the mouse enters the `<tr>`. Calls `onHighlight(column.id)`.
+   * @private
+   */
   handleMouseLeave() {
     const { onHighlight } = this.props;
     onHighlight(null);
   }
 
+
+  /**
+   * Main render method
+   * @return {React.Component}
+   */
   render() {
     const { className, columnSummaries, columns, rowData, rowNumber, tableData, CellComponent,
       plugins, onHighlight, onColumnHighlight, highlighted, highlightedColumnId,
