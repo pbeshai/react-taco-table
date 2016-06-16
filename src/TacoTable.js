@@ -47,49 +47,47 @@ const defaultProps = {
  *
  * Columns are defined by objects with the following format:
  *
- * - `id` {String} The id of the column. Typically corresponds to a key in the rowData object.
- * - `[className]` {String} The class name to be applied to both `<td>` and `<th>`
- * - `[firstSortDirection]` {Boolean} The direction which this column gets sorted by on first click
- * - `[header]` {Renderable} What is rendered in the column header. If not provided, uses the columnId.
- * - `[renderer]` {Function} `function (cellData, column, rowData, rowNumber, tableData, columns)`
- *    The function that renders the value in the table. Can return anything React can render.
- * - `[rendererOptions]` {Object} Object of options that can be read by the renderer
- * - `[simpleRenderer]` {Function} `function (cellData, column, rowData, rowNumber, tableData, columns)`
- *    The function that render the cell's value in a simpler format. Must return a String or Number.
- * - `[sortValue]` {Function} `function (cellData, rowData)`
- *    Function to use when sorting instead of `value`.
- * - `[summarize]` {Function} `function (column, tableData, columns)`
- *    Produces an object representing a summary of the column (e.g., min and max) to be used in the
- * - `[tdClassName]` {(Function|String)} `function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)`
- *    A function that returns a class name based on the cell data and column summary or other information. If a string is provided, it is used directly as the class name.
- * - `[tdStyle]` {(Function|Object)} `function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)`
- *    A function that returns the style to be applied to the cell. If an object is provided, it is used directly as the style attribute.
- * - `[thClassName]` {String} The class name to be applied to `<th>` only
- * - `[type]` {String} The `DataType` of the column - number, string, etc
- * - `[value]` {(Function|String)} `function (rowData, rowNumber, tableData, columns)`
- *    Function to produce cellData's value. If a String, reads that as a key into the rowData object. If not provided, columnId is used as a key into the rowData object.
- * - `[width]` {(Number|String)} The value to set for the style `width` property on the column.
+ * | Name | Type     | Description   |
+ * | :----| :------  | :------------ |
+ * | `id` | String | The id of the column. Typically corresponds to a key in the rowData object. |
+ * | `[className]` | String | The class name to be applied to both `<td>` and `<th>` |
+ * | `[firstSortDirection]` | Boolean | The direction which this column gets sorted by on first click |
+ * | `[header]` | Renderable | What is rendered in the column header. If not provided, uses the columnId. |
+ * | `[renderer]` | Function | `function (cellData, column, rowData, rowNumber, tableData, columns)` *    The function that renders the value in the table. Can return anything React can render. |
+ * | `[rendererOptions]` | Object | Object of options that can be read by the renderer |
+ * | `[simpleRenderer]` | Function | `function (cellData, column, rowData, rowNumber, tableData, columns)` *    The function that render the cell's value in a simpler format. Must return a String or Number. |
+ * | `[sortValue]` | Function | `function (cellData, rowData)` *    Function to use when sorting instead of `value`. |
+ * | `[summarize]` | Function | `function (column, tableData, columns)` *    Produces an object representing a summary of the column (e.g., min and max) to be used in the |
+ * | `[tdClassName]` | Function or String | `function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)` *    A function that returns a class name based on the cell data and column summary or other information. If a string is provided, it is used directly as the class name. |
+ * | `[tdStyle]` | Function or Object | `function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)` *    A function that returns the style to be applied to the cell. If an object is provided, it is used directly as the style attribute. |
+ * | `[thClassName]` | String | The class name to be applied to `<th>` only |
+ * | `[type]` | String | The `DataType` of the column - number, string, etc |
+ * | `[value]` | Function or String | `function (rowData, rowNumber, tableData, columns)` *    Function to produce cellData's value. If a String, reads that as a key into the rowData object. If not provided, columnId is used as a key into the rowData object. |
+ * | `[width]` | Number or String | The value to set for the style `width` property on the column. |
  *
  *
  * ### Column Groups
  *
  * Column groups are defined by objects with the following format:
  *
- * - `[className]` {String} The className to apply to cells and headers in this group
- * - `columns` {String[]} The column IDs to render
- * - `[header]` {Renderable} What shows up in the table header if provided
+ * | Name | Type     | Description   |
+ * | :----| :------  | :------------ |
+ * | `[className]` | String | The className to apply to cells and headers in this group |
+ * | `columns` | String[] | The column IDs to render |
+ * | `[header]` | Renderable | What shows up in the table header if provided |
  *
  *
  * ### Plugins
  *
  * Plugins are defined by objects with the following format:
  *
- * - `[columnTest]` {Function} A function that takes a column and returns true or false
- *    if it the plugin should be run on this column. Default is true for everything.
- * - `id` {String} The ID of the plugin
- * - `[summarize]` {Function} A column summarizer function
- * - `[tdStyle]` {(Function|Object)} The TD style function
- * - `[tdClassName]` {(Function|String)} The TD class name function
+ * | Name | Type     | Description   |
+ * | :----| :------  | :------------ |
+ * | `[columnTest]` | Function | A function that takes a column and returns true or false if it the plugin should be run on this column. Default is true for everything. |
+ * | `id` | String | The ID of the plugin |
+ * | `[summarize]` | Function | A column summarizer function |
+ * | `[tdStyle]` | Function or Object | The TD style function |
+ * | `[tdClassName]` | Function or String | The TD class name function |
  *
  *
  * @prop {Object[]} columns   The column definitions
