@@ -71,7 +71,7 @@ const columns = [
     value: (rowData) => rowData.value2,
     plugins: {
       heatmap: {
-        colorScheme: Plugins.HeatmapPlugin.ColorSchemes.Magma,
+        colorScheme: Plugins.HeatmapPlugin.ColorSchemes.Inferno,
       },
     },
   },

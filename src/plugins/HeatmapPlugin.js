@@ -1,6 +1,6 @@
 /**
- * Adds heatmap coloring to cells. By default colors based on min and max in the data and
- * the inferno color scheme via `d3-scale`.
+ * Adds heatmap coloring to cells. By default colors based on min and max
+ * in the data and the magma color scheme via `d3-scale`.
  *
  * This plugin provides the following fields:
  * - id: `heatmap`
@@ -106,9 +106,9 @@ function tdStyle(cellData, summary, column, rowData) {
     color = backgroundScale(shiftedValue);
   }
 
-  // if no background scale and color scale provided, use default - inferno
+  // if no background scale and color scale provided, use default - magma
   if (backgroundScale == null) {
-    colorScheme = colorScheme || ColorSchemes.Inferno;
+    colorScheme = colorScheme || ColorSchemes.Magma;
 
     backgroundColor = d3[`interpolate${colorScheme}`](domainScale(sortValue));
     if (!colorScale) {
