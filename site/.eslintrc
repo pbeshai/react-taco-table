@@ -1,0 +1,6 @@
+{
+  "rules": {
+    // get rid of this to hide warnings due to webpack resolve aliasing
+    "import/no-unresolved": 0
+  }
+}

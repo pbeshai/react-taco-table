@@ -44,8 +44,8 @@
     "karma-mocha": "^1.0.1",
     "karma-sinon-chai": "^1.2.0",
     "karma-webpack": "^1.7.0",
-    "lolex": "^1.5.0",
     "lodash.curry": "^4.0.1",
+    "lolex": "^1.5.0",
     "minami": "^1.1.1",
     "mocha": "^2.5.3",
     "node-sass": "^3.7.0",
@@ -59,6 +59,7 @@
     "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.0"
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
   }
 }

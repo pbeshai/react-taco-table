@@ -5,6 +5,13 @@ module.exports = function gruntInit(grunt) {
     process.env.NODE_ENV = 'production';
   });
 
-  grunt.registerTask('build', ['build-env', 'webpack:build']);
-  grunt.registerTask('default', ['clean', 'build']);
+  // for building the JS files
+  grunt.registerTask('build', ['clean:build', 'build-env', 'webpack:build']);
+
+  // for building the site
+  grunt.registerTask('site', ['webpack-dev-server']);
+  grunt.registerTask('site-build', ['clean:site-build', 'build-env', 'webpack:site-build']);
+
+  // default is to build the js files and the site
+  grunt.registerTask('default', ['build', 'site-build']);
 };

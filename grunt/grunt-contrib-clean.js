@@ -3,5 +3,6 @@ module.exports = function gruntCleanInit(grunt) {
 
   grunt.config.set('clean', {
     build: ['dist'],
+    'site-build': ['site/dist'],
   });
 };
