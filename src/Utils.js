@@ -1,4 +1,8 @@
-/** @module  Utils */
+/**
+ * A collection of utility functions that make it easier to work with
+ * table data.
+ * @module Utils
+ */
 import SortDirection from './SortDirection';
 import DataType from './DataType';
 
@@ -189,7 +193,10 @@ export function sortData(data, columnId, sortDirection, columns) {
   const column = getColumnById(columns, columnId);
 
   if (!column) {
-    console.warn('No column found by ID', columnId, columns);
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('No column found by ID', columnId, columns);
+    }
+
     return data;
   }
 
