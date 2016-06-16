@@ -54,6 +54,8 @@ A react component for creating tables configured by a set of columns.
 - [ ] hiding rows below threshold
 - [ ] hiding cells below threshold
 - [ ] expandable rows?
+- [ ] support external callbacks for cell, column, and row highlighting
+- [ ] support prop for persistent highlighting of cell/column/row
 
 
 # Columns
