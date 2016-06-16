@@ -7,4 +7,5 @@ import './site.scss';
 import 'react-taco-table/style/taco-table.scss';
 
 
-render(<Main />, document.getElementById('root'));
+
+render(<Main />, document.getElementById('react-root'));

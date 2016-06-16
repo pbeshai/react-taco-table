@@ -4,6 +4,8 @@ import { TacoTable, DataType, SortDirection, Formatters,
 import cellLinesData from '../data/cell_lines.json';
 import * as d3 from 'd3-scale';
 
+import './example1.scss';
+
 // add some random values to the data
 cellLinesData.forEach(d => {
   d.value1 = Math.random() * 100;

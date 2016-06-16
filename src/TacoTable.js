@@ -6,6 +6,8 @@ import TacoTableRow from './TacoTableRow';
 import SortDirection from './SortDirection';
 import { sortData, getColumnById } from './Utils';
 
+import './style/taco-table.scss';
+
 const propTypes = {
   columns: React.PropTypes.array.isRequired,
   columnGroups: React.PropTypes.array,

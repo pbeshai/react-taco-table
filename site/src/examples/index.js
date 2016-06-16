@@ -1,5 +1,9 @@
 import React from 'react';
-import SimpleExample from './SimpleExample';
+import { render } from 'react-dom';
+import Example1 from '../components/Example1';
+
+import '../site.scss';
+import 'react-taco-table/style/taco-table.scss';
 
 // add in performance tooling in dev
 if (process.env.NODE_ENV !== 'production') {
@@ -10,10 +14,11 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <SimpleExample />
+        <h3>Example 1</h3>
+        <Example1 />
       </div>
     );
   }
 }
 
-export default Main;
+render(<Main />, document.getElementById('react-root'));

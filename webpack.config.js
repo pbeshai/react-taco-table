@@ -4,10 +4,12 @@ const UglifyJsPlugin = require('webpack').optimize.UglifyJsPlugin;
 
 module.exports = {
   context: __dirname,
-  entry: './src/index.js',
+  entry: {
+    'react-taco-table': './src/index.js',
+  },
   output: {
     path: 'dist',
-    filename: 'react-taco-table.js',
+    filename: '[name].js',
   },
   module: {
     loaders: [

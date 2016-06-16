@@ -3,7 +3,14 @@ const HtmlPlugin = require('html-webpack-plugin');
 
 module.exports = {
   context: __dirname,
-  entry: './src',
+  entry: {
+    'site-main': './src/index.js',
+    'site-examples': './src/examples/index.js',
+  },
+  output: {
+    path: 'dist',
+    filename: '[name].js',
+  },
   devtool: 'eval-cheap-module-source-map',
   module: {
     loaders: [
@@ -35,8 +42,14 @@ module.exports = {
   },
   plugins: [
     new HtmlPlugin({
+      chunks: ['site-main'],
       template: './src/index.html',
       filename: 'index.html',
+    }),
+    new HtmlPlugin({
+      chunks: ['site-examples'],
+      template: './src/examples/index.html',
+      filename: 'examples.html',
     }),
   ],
 };

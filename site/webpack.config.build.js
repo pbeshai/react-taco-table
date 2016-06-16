@@ -4,13 +4,15 @@ const HtmlPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('webpack').optimize.UglifyJsPlugin;
 const path = require('path');
 
-console.log("TEST DIRNAME", __dirname);
 module.exports = {
   context: __dirname,
-  entry: './src',
+  entry: {
+    'site-main': './src/index.js',
+    'site-examples': './src/examples/index.js',
+  },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'main.js',
+    filename: '[name].js',
   },
   module: {
     loaders: [
@@ -46,8 +48,14 @@ module.exports = {
     }),
     new ExtractTextPlugin('main.css'),
     new HtmlPlugin({
+      chunks: ['site-main'],
       template: './src/index.html',
       filename: 'index.html',
+    }),
+    new HtmlPlugin({
+      chunks: ['site-examples'],
+      template: './src/examples/index.html',
+      filename: 'examples.html',
     }),
     new UglifyJsPlugin(),
   ],

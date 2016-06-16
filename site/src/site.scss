@@ -1,19 +1,45 @@
 body {
-  font: 14px/1 sans-serif
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
-.five-row {
-  background-color: #acc;
+.taco-table {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 300;
 }
 
-.highlight-min-max {
-  font-weight: bold;
+.main-footer {
+  border-top: 1px solid #eee;
+  margin-top: 20px;
+  padding: 30px;
+  text-align: center;
 }
 
-.highlight-max {
-  font-size: 1.3em;
+.main-header {
+  background: #333;
+  color: #fff;
+  padding: 30px 0 15px;
 }
 
-.highlight-min {
-  font-size: 0.8em;
+.quick-links {
+  background: #eee;
+  padding: 10px 0;
+
+  ul {
+    margin-bottom: 0;
+  }
+
+  li {
+    margin-right: 20px;
+  }
+}
+
+.data {
+  max-height: 300px;
+  overflow: auto;
+  margin: 8px 0;
+}
+
+h4 {
+  margin-top: 25px;
 }
