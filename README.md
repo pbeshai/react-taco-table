@@ -17,6 +17,9 @@ A react component for creating tables configured by a set of columns.
 ### Building the Site
 1. To build the prod files for the site, run `grunt site-build`
 
+To deploy to github pages, run `npm run gh-pages` -- it will do the `grunt site-build` automatically.
+
+
 ## Testing
 1. To run the tests, run `npm test`
 
