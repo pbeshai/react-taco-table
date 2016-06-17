@@ -15,6 +15,12 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300|Roboto:300,500" rel="stylesheet" type="text/css">
+
+    <!-- syntax highlighting -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/tomorrow.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
     <title>React Taco Table 🌮</title>
   </head>
   <body>
@@ -61,13 +67,8 @@
         <li>Built-in formatters for common formats</li>
         <li>Distinction between a cell's value and it's value used for sorting</li>
         <li>Column grouping and group headers</li>
+        <li>Bundling of cell styling logic through plugins</li>
       </ul>
-
-      <h3>Plugins</h3>
-      <p>
-        Plugins are currently supported for customizing cell styles and class names. React Table Component currently ships with <strong>HeatmapPlugin</strong> for encoding a heatmap using the background color of the cells. It can be combined with the plugin helper <strong>HighlightOnly</strong> to limit how the heatmap to only be encoded when a row or column is highlighted.
-      </p>
-
 
       <h2>Getting Started</h2>
       <p>Use npm to install the component:</p>
@@ -85,8 +86,7 @@
       <div id="react-root"></div>
 
       <h4>Code</h4>
-      <pre>
-import React from 'react';
+      <pre><code class="javascript">import React from 'react';
 import { TacoTable, DataType, SortDirection, Formatters,
   Summarizers, TdClassNames } from 'react-taco-table';
 
@@ -166,12 +166,12 @@ function SimpleExample() {
   );
 }
 
-export default SimpleExample;</pre>
+export default SimpleExample;</code></pre>
 
       <h4>Data</h4>
       This is the data used for this example, stored in spelling.json. It comes from <a href="https://github.com/octonion/spelling">https://github.com/octonion/spelling</a>.
 
-      <pre class="data">
+      <pre class="data"><code class="json">
 [
    {
       "year":2016,
@@ -369,8 +369,7 @@ export default SimpleExample;</pre>
       "error":false,
       "value":21.959
    }
-]
-      </pre>
+]</code></pre>
 
     </div>
     <footer class="main-footer">

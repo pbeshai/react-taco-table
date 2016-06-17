@@ -99,6 +99,10 @@ code {
   border-radius: 0;
 }
 
+pre code.hljs {
+  background: transparent;
+}
+
 pre {
   color: #8D7F6E;
   background-color: rgba(0, 0, 0, 0.025);
