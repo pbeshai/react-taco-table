@@ -77,6 +77,7 @@ Here `Renderable` means anything React can render (e.g., React.Component, String
 | renderer | Function |  | `function (cellData, column, rowData, rowNumber, tableData, columns)`<br>The function that renders the value in the table. Can return anything React can render. |
 | rendererOptions | Object |  | Object of options that can be read by the renderer |
 | simpleRenderer | Function |  | `function (cellData, column, rowData, rowNumber, tableData, columns)`<br>The function that render the cell's value in a simpler format. Must return a String or Number. |
+| sortType| String |  | The `DataType` of the column to be used strictly for sorting, if not provided, uses `type` - number, string, etc |
 | sortValue | Function |  | `function (cellData, rowData)`<br>Function to use when sorting instead of `value`. |
 | summarize | Function |  | `function (column, tableData, columns)`<br>Produces an object representing a summary of the column (e.g., min and max) to be used in the |
 | tdClassName | Function, String |  | `function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)`<br>A function that returns a class name based on the cell data and column summary or other information. If a string is provided, it is used directly as the class name. |

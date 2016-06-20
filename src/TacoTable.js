@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import TacoTableHeader from './TacoTableHeader';
 import TacoTableRow from './TacoTableRow';
 import SortDirection from './SortDirection';
-import { sortData, getColumnById } from './Utils';
+import { sortData, getColumnById, validateColumns } from './Utils';
 
 import './style/taco-table.scss';
 
@@ -56,6 +56,7 @@ const defaultProps = {
  * | `[renderer]` | Function | `function (cellData, column, rowData, rowNumber, tableData, columns)` *    The function that renders the value in the table. Can return anything React can render. |
  * | `[rendererOptions]` | Object | Object of options that can be read by the renderer |
  * | `[simpleRenderer]` | Function | `function (cellData, column, rowData, rowNumber, tableData, columns)` *    The function that render the cell's value in a simpler format. Must return a String or Number. |
+ * | `[sortType]` | String | The `DataType` of the column to be used strictly for sorting, if not provided, uses `type` - number, string, etc |
  * | `[sortValue]` | Function | `function (cellData, rowData)` *    Function to use when sorting instead of `value`. |
  * | `[summarize]` | Function | `function (column, tableData, columns)` *    Produces an object representing a summary of the column (e.g., min and max) to be used in the |
  * | `[tdClassName]` | Function or String | `function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)` *    A function that returns a class name based on the cell data and column summary or other information. If a string is provided, it is used directly as the class name. |
@@ -119,6 +120,11 @@ class TacoTable extends React.Component {
   constructor(props) {
     super(props);
 
+    // check for column warnings
+    if (process.env.NODE_ENV !== 'production') {
+      validateColumns(props.columns);
+    }
+
     // store the data in the state to have a unified interface for sortable and
     // non-sortable tables. Take a slice to ensure we do not modify the original
     this.state = {
@@ -169,6 +175,12 @@ class TacoTable extends React.Component {
    */
   componentWillReceiveProps(nextProps) {
     const { data } = this.props;
+
+    // check for column warnings
+    if (process.env.NODE_ENV !== 'production') {
+      validateColumns(nextProps.columns);
+    }
+
     if (data !== nextProps.data) {
       const newState = Object.assign({}, this.state, { data: nextProps.data.slice() });
 

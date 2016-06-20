@@ -200,7 +200,9 @@ export function sortData(data, columnId, sortDirection, columns) {
     return data;
   }
 
-  const comparator = getSortComparator(column.type);
+  // read the type from `sortType` property if defined, otherwise use `type`
+  const sortType = column.sortType == null ? column.type : column.sortType;
+  const comparator = getSortComparator(sortType);
   const sortedData = data.map((rowData, index) => ({
     rowData,
     index,
@@ -242,3 +244,36 @@ export function renderCell(cellData, column, rowData, rowNumber, tableData, colu
   return cellData;
 }
 
+
+/**
+ * Checks an array of column definitions to see if there are any issues.
+ * Checks if
+ *
+ *  - multiple columns have the same ID
+ *
+ * Typically only used in development.
+ *
+ * @param {Object[]} columns The column definitions for the whole table
+ * @returns {void}
+ */
+export function validateColumns(columns) {
+  if (!columns) {
+    return;
+  }
+
+  // check IDs
+  const ids = {};
+  columns.forEach((column, i) => {
+    const { id } = column;
+    if (!ids[id]) {
+      ids[id] = [i];
+    } else {
+      ids[id].push(i);
+    }
+  });
+  Object.keys(ids).forEach(id => {
+    if (ids[id].length > 1) {
+      console.warn(`Column ID '${id}' used in multiple columns ${ids[id].join(', ')}`, ids[id].map(index => columns[index]));
+    }
+  });
+}

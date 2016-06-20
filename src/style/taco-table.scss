@@ -44,8 +44,7 @@
     }
 
     &.sorted {
-      background-color: #06c;
-      color: #fff;
+      background-color: #f2f7fd;
       position: relative;
     }
   }
@@ -89,7 +88,7 @@
       position: absolute;
       right: 0;
       top: 0;
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.05);
       font-size: 8px;
       padding: 2px;
 

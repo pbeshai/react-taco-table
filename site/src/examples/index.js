@@ -3,6 +3,8 @@ import { render } from 'react-dom';
 import CodeExample from '../components/CodeExample';
 import ExampleFormatters from '../components/ExampleFormatters';
 import exampleFormattersCode from '!raw!../components/ExampleFormatters';
+import ExampleSortConfig from '../components/ExampleSortConfig';
+import exampleSortConfigCode from '!raw!../components/ExampleSortConfig';
 
 import '../site.scss';
 import 'react-taco-table/style/taco-table.scss';
@@ -28,6 +30,8 @@ if (process.env.NODE_ENV !== 'production') {
 - heatmap highlight only via plugin
 */
 
+const githubRoot = 'https://github.com/pbeshai/react-taco-table/blob/master/site/src/components/';
+
 const examples = [
   {
     id: 'example-formatters',
@@ -36,6 +40,16 @@ const examples = [
       that come with React Taco Table.`,
     component: ExampleFormatters,
     code: exampleFormattersCode,
+    github: `${githubRoot}ExampleFormatters.js`,
+  },
+  {
+    id: 'example-sort',
+    label: 'Sorting configuration',
+    description: `This example shows how to configure initial sorts on the
+      table and for the first time a column is sorted on click.`,
+    component: ExampleSortConfig,
+    code: exampleSortConfigCode,
+    github: `${githubRoot}ExampleSortConfig.js`,
   },
 ];
 
@@ -61,8 +75,13 @@ class Main extends React.Component {
         {examples.map((example, i) => (
           <div className="example" key={i}>
             <a name={`${example.id}`} />
-            <h3>{example.label}</h3>
-            <p>{example.description}</p>
+            <h3>
+              {example.label}
+            </h3>
+            <p>
+              {example.description}
+              <a className="example-github-link" href={example.github}>Code on GitHub</a>
+            </p>
             <example.component />
             <CodeExample language="javascript" code={example.code} />
           </div>
