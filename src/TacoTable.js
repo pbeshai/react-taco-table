@@ -165,6 +165,7 @@ class TacoTable extends React.Component {
    * On receiving new props, sort the data and recompute column summaries if the data
    * has changed.
    * @param {Object} nextProps The next props
+   * @returns {void}
    */
   componentWillReceiveProps(nextProps) {
     const { data } = this.props;
@@ -185,7 +186,7 @@ class TacoTable extends React.Component {
    * Uses `shallowCompare`
    * @param {Object} nextProps The next props
    * @param {Object} nextState The next state
-   * @return {Boolean}
+   * @return {Boolean} If the component should update
    */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
@@ -194,7 +195,8 @@ class TacoTable extends React.Component {
   /**
    * Callback when a header is clicked. If a sortable table, sorts the table.
    *
-   * @param {Object} column The column that was clicked.
+   * @param {String} columnId The ID of the column that was clicked.
+   * @returns {void}
    * @private
    */
   handleHeaderClick(columnId) {
@@ -212,6 +214,7 @@ class TacoTable extends React.Component {
    * Callback when a row is highlighted
    *
    * @param {Object} rowData The row data for the row that is highlighted
+   * @returns {void}
    * @private
    */
   handleRowHighlight(rowData) {
@@ -224,6 +227,7 @@ class TacoTable extends React.Component {
    * Callback when a column is highlighted
    *
    * @param {String} columnId The ID of the column being highlighted
+   * @returns {void}
    * @private
    */
   handleColumnHighlight(columnId) {
@@ -237,7 +241,7 @@ class TacoTable extends React.Component {
    *
    * @param {String} columnId the ID of the column to sort by
    * @param {Object} props=this.props
-   * @param {Object} props=this.state
+   * @param {Object} state=this.state
    * @return {Object} Object representing sort state
    *    `{ sortDirection, sortColumnId, data }`.
    * @private
@@ -277,6 +281,7 @@ class TacoTable extends React.Component {
   /**
    * Computes a summary for each column that is configured to have one.
    *
+   * @param {Object} props React component props
    * @return {Array} array of summaries matching the indices for `columns`,
    *   null for those without a `summarize` property.
    * @private
