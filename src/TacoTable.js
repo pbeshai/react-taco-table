@@ -13,7 +13,6 @@ const propTypes = {
   columnGroups: React.PropTypes.array,
   columnHighlighting: React.PropTypes.bool,
   className: React.PropTypes.string,
-  containerClassName: React.PropTypes.string,
   data: React.PropTypes.array,
   fullWidth: React.PropTypes.bool,
   initialSortColumnId: React.PropTypes.string,
@@ -40,7 +39,6 @@ const defaultProps = {
 
 /**
  * React component for rendering a table, uses `<table className="taco-table">`
- * wrapped in a `<div className="taco-table-container">`.
  *
  * Note that `Renderable` means anything React can render (e.g., String, Number,
  * React.Component, etc.).
@@ -98,7 +96,6 @@ const defaultProps = {
  * @prop {Boolean} columnHighlighting=false   Whether or not to turn on mouse listeners
  *    for column highlighting
  * @prop {String} className   The class names to apply to the table
- * @prop {String} containerClassName   The class name to apply to the table container
  * @prop {Object[]} data   The data to be rendered as rows
  * @prop {String} initialSortColumnId   Column ID of the data to sort by initially
  * @prop {Boolean} initialSortDirection=true(Ascending)   Direction by which to sort initially
@@ -453,25 +450,23 @@ class TacoTable extends React.Component {
 
   /**
    * Main render method
-   * @return {React.Component}
+   * @return {React.Component} The table component
    */
   render() {
-    const { className, containerClassName, fullWidth, striped, sortable } = this.props;
+    const { className, fullWidth, striped, sortable } = this.props;
 
     return (
-      <div className={classNames('taco-table-container', containerClassName)}>
-        <table
-          className={classNames('taco-table', className, {
-            'table-full-width': fullWidth,
-            'table-not-full-width': !fullWidth,
-            'table-striped': striped,
-            'table-sortable': sortable,
-          })}
-        >
-          {this.renderHeaders()}
-          {this.renderRows()}
-        </table>
-      </div>
+      <table
+        className={classNames('taco-table', className, {
+          'table-full-width': fullWidth,
+          'table-not-full-width': !fullWidth,
+          'table-striped': striped,
+          'table-sortable': sortable,
+        })}
+      >
+        {this.renderHeaders()}
+        {this.renderRows()}
+      </table>
     );
   }
 }
