@@ -1,0 +1,9 @@
+.code-example {
+  &.collapsed {
+    color: #1D72BB;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

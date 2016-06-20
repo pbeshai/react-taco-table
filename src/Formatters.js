@@ -112,8 +112,8 @@ export const decFormat = curry((numDecimals, value) =>
  * @param {Number} value value to format
  * @return {String} formatted value
  */
-export const decPercentFormat = curry((value) =>
-  safeFormat(value * 100, d3.format('0.1f'))
+export const decPercentFormat = curry((numDecimals, value) =>
+  safeFormat(value * 100, d3.format(`0.${numDecimals}f`))
 );
 
 /**
@@ -146,7 +146,7 @@ export function atMostDecFormat(value) {
  * Formatter (curried) - renders value as a percentage
  *
  * @example
- * pctFormat(1, 0.38523)
+ * percentFormat(1, 0.38523)
  * > '38.5%'
  *
  * @function
@@ -154,7 +154,7 @@ export function atMostDecFormat(value) {
  * @param {Number} value value to format
  * @return {String} formatted value
  */
-export const pctFormat = curry((numDecimals, value) =>
+export const percentFormat = curry((numDecimals, value) =>
   safeFormat(value, d3.format(`0.${numDecimals}%`))
 );
 
@@ -201,6 +201,7 @@ export const seFormat = curry((numDecimals, value) =>
 
 /**
  * Formatter - adds leading zeroes to a value
+ * (adds max of 8 zeros)
  *
  * @example
  * leadingZeroFormat(5, 2)
@@ -210,13 +211,13 @@ export const seFormat = curry((numDecimals, value) =>
  * leadingZeroFormat(12, 2)
  * > '12'
  *
- * @param {Number} value value to format
  * @param {Number} length desired length of string
+ * @param {Number} value value to format
  * @return {String} formatted value
  */
-export function leadingZeroFormat(value, length) {
-  return `00000000${value}`.slice(-length);
-}
+export const leadingZeroFormat = curry((length, value) =>
+  `00000000${value}`.slice(-length)
+);
 
 /**
  * Formatter - renders values formatted as money (prefixed with $, uses commas)
@@ -229,6 +230,6 @@ export function leadingZeroFormat(value, length) {
  * @return {String} formatted value
  */
 export function moneyFormat(value) {
-  return safeFormat(value, d3.format('$,f'));
+  return safeFormat(value, d3.format('$,.2f'));
 }
 

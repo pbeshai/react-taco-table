@@ -86,6 +86,10 @@ a {
     display: inline-block;
     padding: 10px 15px;
 
+    &.active {
+      background: #fff;
+    }
+
     &:hover {
       background: #f6f6f6;
       text-decoration: none;
@@ -119,3 +123,7 @@ pre {
   overflow: auto;
 }
 
+
+.example {
+  margin-bottom: 40px;
+}
