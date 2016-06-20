@@ -5,6 +5,7 @@ import { TacoTable, DataType, SortDirection, Formatters,
 import data from '../data/spelling.json';
 import './simple-example.scss';
 
+
 const columns = [
   {
     id: 'speller',
@@ -65,17 +66,20 @@ const columns = [
   },
 ];
 
-function SimpleExample() {
-  return (
-    <TacoTable
-      className="simple-example"
-      columns={columns}
-      columnHighlighting
-      data={data}
-      striped
-      sortable
-    />
-  );
+/** use a class instead of a function to get hot-reloading */
+class SimpleExample extends React.Component {
+  render() {
+    return (
+      <TacoTable
+        className="simple-example"
+        columns={columns}
+        columnHighlighting
+        data={data}
+        striped
+        sortable
+      />
+    );
+  }
 }
 
 export default SimpleExample;

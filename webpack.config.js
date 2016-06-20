@@ -28,15 +28,6 @@ module.exports = {
     extensions: ['', '.js', '.jsx'],
   },
 
-  // this has been moved here from .babelrc so that our test environment
-  // can run. react-hmre was breaking the loader otherwise. There rest
-  // of the config stays in .babelrc.
-  babel: {
-    env: {
-      presets: ['react-hmre'],
-    },
-  },
-
   plugins: [
     new DefinePlugin({
       'process.env.NODE_ENV': '"production"',

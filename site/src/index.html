@@ -153,17 +153,19 @@ const columns = [
   },
 ];
 
-function SimpleExample() {
-  return (
-    &lt;TacoTable
-      className="simple-example"
-      columns={columns}
-      columnHighlighting
-      data={data}
-      striped
-      sortable
-    /&gt;
-  );
+class SimpleExample extends React.Component {
+  render() {
+    return (
+      &lt;TacoTable
+        className="simple-example"
+        columns={columns}
+        columnHighlighting
+        data={data}
+        striped
+        sortable
+      /&gt;
+    );
+  }
 }
 
 export default SimpleExample;</code></pre>
