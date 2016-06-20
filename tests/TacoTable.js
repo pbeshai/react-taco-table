@@ -73,7 +73,7 @@ describe('TacoTable', function () {
     });
     it('should have a table rendered', function () {
       expect(foundTable).to.be.ok;
-      assert.isOk(domTableNode.querySelector('table'));
+      assert.equal(domTableNode.tagName, 'TABLE');
     });
     it('should have two columns', function () {
       assert.equal(domTableNode.querySelectorAll('thead > tr th').length, 2);
