@@ -3,7 +3,7 @@ import { TacoTable, DataType, SortDirection, Formatters,
   Summarizers, TdClassNames } from 'react-taco-table';
 
 import data from '../data/spelling.json';
-import './simple-example.scss';
+import './SimpleExample.scss';
 
 
 const columns = [
