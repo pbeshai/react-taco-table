@@ -23,6 +23,9 @@ import exampleClassNameCode from '!raw!../components/ExampleClassName';
 import ExampleStyle from '../components/ExampleStyle';
 import exampleStyleCode from '!raw!../components/ExampleStyle';
 
+import ExampleSummarizer from '../components/ExampleSummarizer';
+import exampleSummarizerCode from '!raw!../components/ExampleSummarizer';
+
 
 import '../site.scss';
 import 'react-taco-table/style/taco-table.scss';
@@ -129,6 +132,17 @@ const examples = [
     github: `${githubRoot}/ExampleStyle.js`,
     previewCodeStart: 27,
     previewCodeLength: 13,
+  },
+  {
+    id: 'example-summarizer',
+    label: 'Using column summarizers',
+    description: `This example demonstrates how to use column summarizers for more
+      sophisticated styling of cells.`,
+    component: ExampleSummarizer,
+    code: exampleSummarizerCode,
+    github: `${githubRoot}/ExampleSummarizer.js`,
+    previewCodeStart: 27,
+    previewCodeLength: 11,
   },
 ];
 
