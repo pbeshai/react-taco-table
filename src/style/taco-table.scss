@@ -89,7 +89,11 @@ $column-group-border-color: rgba(0, 0, 0, 0.06);
     &:after {
       position: absolute;
       right: 0;
-      top: 0;
+      // make the triangles less ugly.
+      transform: scale(1, 0.75);
+      // should be 0, but due to scale, -1.5
+      top: -1.5px;
+
       background: rgba(0, 0, 0, 0.05);
       font-size: 8px;
       padding: 2px;
