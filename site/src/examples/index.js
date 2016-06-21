@@ -1,10 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom';
 import CodeExample from '../components/CodeExample';
+
 import ExampleFormatters from '../components/ExampleFormatters';
 import exampleFormattersCode from '!raw!../components/ExampleFormatters';
+
 import ExampleSortConfig from '../components/ExampleSortConfig';
 import exampleSortConfigCode from '!raw!../components/ExampleSortConfig';
+
+import ExampleRowClassName from '../components/ExampleRowClassName';
+import exampleRowClassName from '!raw!../components/ExampleRowClassName';
 
 import '../site.scss';
 import 'react-taco-table/style/taco-table.scss';
@@ -50,6 +55,17 @@ const examples = [
     component: ExampleSortConfig,
     code: exampleSortConfigCode,
     github: `${githubRoot}ExampleSortConfig.js`,
+    previewCodeStart: 36,
+  },
+  {
+    id: 'example-row-class-name',
+    label: 'Row highlighting',
+    description: `This example shows how to add class names to rows based on the data.
+      Here all rows with MLL3 equal to MUT are colored.`,
+    component: ExampleRowClassName,
+    code: exampleRowClassName,
+    github: `${githubRoot}ExampleRowClassName.js`,
+    previewCodeStart: 48,
   },
 ];
 
@@ -83,7 +99,7 @@ class Main extends React.Component {
               <a className="example-github-link" href={example.github}>Code on GitHub</a>
             </p>
             <example.component />
-            <CodeExample language="javascript" code={example.code} />
+            <CodeExample language="javascript" code={example.code} previewStart={example.previewCodeStart} />
           </div>
         ))}
       </div>
