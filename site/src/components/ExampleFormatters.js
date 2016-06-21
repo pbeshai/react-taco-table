@@ -73,6 +73,7 @@ class ExampleFormatters extends React.Component {
         columns={columns}
         data={cellLinesData}
         rowHighlighting={false}
+        columnHighlighting={true}
       />
     );
   }
