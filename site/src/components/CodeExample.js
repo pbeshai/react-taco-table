@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import './code-example.scss';
+import './CodeExample.scss';
 
 const propTypes = {
   language: React.PropTypes.string,
