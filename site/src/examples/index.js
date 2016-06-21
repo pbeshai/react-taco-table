@@ -9,14 +9,16 @@ import ExampleSortConfig from '../components/ExampleSortConfig';
 import exampleSortConfigCode from '!raw!../components/ExampleSortConfig';
 
 import ExampleRowClassName from '../components/ExampleRowClassName';
-import exampleRowClassName from '!raw!../components/ExampleRowClassName';
+import exampleRowClassNameCode from '!raw!../components/ExampleRowClassName';
 
 import ExampleColumnGroups from '../components/ExampleColumnGroups';
-import exampleColumnGroups from '!raw!../components/ExampleColumnGroups';
+import exampleColumnGroupsCode from '!raw!../components/ExampleColumnGroups';
 
 import ExampleColumnGroupsNoHeader from '../components/ExampleColumnGroupsNoHeader';
-import exampleColumnGroupsNoHeader from '!raw!../components/ExampleColumnGroupsNoHeader';
+import exampleColumnGroupsNoHeaderCode from '!raw!../components/ExampleColumnGroupsNoHeader';
 
+import ExampleClassName from '../components/ExampleClassName';
+import exampleClassNameCode from '!raw!../components/ExampleClassName';
 
 
 import '../site.scss';
@@ -43,7 +45,7 @@ if (process.env.NODE_ENV !== 'production') {
 - heatmap highlight only via plugin
 */
 
-const githubRoot = 'https://github.com/pbeshai/react-taco-table/blob/master/site/src/components/';
+const githubRoot = 'https://github.com/pbeshai/react-taco-table/blob/master/site/src/components';
 
 const examples = [
   {
@@ -53,7 +55,7 @@ const examples = [
       that come with React Taco Table.`,
     component: ExampleFormatters,
     code: exampleFormattersCode,
-    github: `${githubRoot}ExampleFormatters.js`,
+    github: `${githubRoot}/ExampleFormatters.js`,
     previewCodeStart: 8,
   },
   {
@@ -63,17 +65,17 @@ const examples = [
       table and for the first time a column is sorted on click.`,
     component: ExampleSortConfig,
     code: exampleSortConfigCode,
-    github: `${githubRoot}ExampleSortConfig.js`,
+    github: `${githubRoot}/ExampleSortConfig.js`,
     previewCodeStart: 36,
   },
   {
     id: 'example-row-class-name',
-    label: 'Row highlighting',
+    label: 'Row class names',
     description: `This example shows how to add class names to rows based on the data.
       Here all rows with MLL3 equal to MUT are colored.`,
     component: ExampleRowClassName,
-    code: exampleRowClassName,
-    github: `${githubRoot}ExampleRowClassName.js`,
+    code: exampleRowClassNameCode,
+    github: `${githubRoot}/ExampleRowClassName.js`,
     previewCodeStart: 48,
     previewCodeLength: 7,
   },
@@ -87,8 +89,8 @@ const examples = [
         <code>my-group</code> added to each <code>&lt;td&gt;</code> and <code>&lt;th&gt;</code>.
       </span>,
     component: ExampleColumnGroups,
-    code: exampleColumnGroups,
-    github: `${githubRoot}ExampleColumnGroups.js`,
+    code: exampleColumnGroupsCode,
+    github: `${githubRoot}/ExampleColumnGroups.js`,
     previewCodeStart: 48,
     previewCodeLength: 4,
   },
@@ -98,10 +100,21 @@ const examples = [
     description: `This example demonstrates how to use column groups without headers,
       which is an easy way to get vertical lines between groups of columns.`,
     component: ExampleColumnGroupsNoHeader,
-    code: exampleColumnGroupsNoHeader,
-    github: `${githubRoot}ExampleColumnGroupsNoHeader.js`,
+    code: exampleColumnGroupsNoHeaderCode,
+    github: `${githubRoot}/ExampleColumnGroupsNoHeader.js`,
     previewCodeStart: 46,
     previewCodeLength: 4,
+  },
+  {
+    id: 'example-class-name',
+    label: 'Cell class names',
+    description: `This example shows how to configure class names for columns,
+      as well as how to have them vary depending on the data in the cells.`,
+    component: ExampleClassName,
+    code: exampleClassNameCode,
+    github: `${githubRoot}/ExampleClassName.js`,
+    previewCodeStart: 27,
+    previewCodeLength: 13,
   },
 ];
 
