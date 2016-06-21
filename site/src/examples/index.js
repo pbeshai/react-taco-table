@@ -29,6 +29,9 @@ import exampleSummarizerCode from '!raw!../components/ExampleSummarizer';
 import ExampleHeatmap from '../components/ExampleHeatmap';
 import exampleHeatmapCode from '!raw!../components/ExampleHeatmap';
 
+import ExampleHeatmapHighlightOnly from '../components/ExampleHeatmapHighlightOnly';
+import exampleHeatmapHighlightOnlyCode from '!raw!../components/ExampleHeatmapHighlightOnly';
+
 
 import '../site.scss';
 import 'react-taco-table/style/taco-table.scss';
@@ -161,6 +164,17 @@ const examples = [
     github: `${githubRoot}/ExampleHeatmap.js`,
     previewCodeStart: 101,
     previewCodeLength: 14,
+  },
+  {
+    id: 'example-heatmap',
+    label: 'Adding heatmap on hover only using the HighlightOnly plugin helper',
+    description: `This example demonstrates how to combine HighlightOnly with the
+      Heatmap plugin to make it so the heatmap only activates on mouse hover.`,
+    component: ExampleHeatmapHighlightOnly,
+    code: exampleHeatmapHighlightOnlyCode,
+    github: `${githubRoot}/ExampleHeatmapHighlightOnly.js`,
+    previewCodeStart: 71,
+    previewCodeLength: 18,
   },
 ];
 
