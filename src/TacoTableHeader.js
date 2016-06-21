@@ -27,6 +27,7 @@ const defaultProps = {
  * @prop {Boolean} sortableTable  Whether the table is sortable or not
  * @prop {Boolean} sortDirection  The current sort direction of this column --
  *   null or undefined if not sorted
+ * @extends React.Component
  */
 class TacoTableHeader extends React.Component {
   /**

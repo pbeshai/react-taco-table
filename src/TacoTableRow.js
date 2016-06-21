@@ -42,6 +42,7 @@ const defaultProps = {
  * @prop {Number} rowNumber  The row number in the table
  * @prop {Object[]} tableData  The table data
  * @prop {Function} CellComponent  Allow configuration of what component to use to render cells
+ * @extends React.Component
  */
 class TacoTableRow extends React.Component {
   /**

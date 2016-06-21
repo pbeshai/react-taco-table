@@ -37,6 +37,7 @@ const defaultProps = {
  * @prop {Object} rowData           The data to render in this row
  * @prop {Number} rowNumber         The row number in the table
  * @prop {Object[]} tableData          The table data
+ * @extends React.Component
  */
 class TacoTableCell extends React.Component {
   /**
