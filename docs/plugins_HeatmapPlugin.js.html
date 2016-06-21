@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>plugins/HeatmapPlugin.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<!-- <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+ -->
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="TacoTable.html">TacoTable</a><ul class='methods'><li data-type='method'><a href="TacoTable.html#componentWillReceiveProps">componentWillReceiveProps</a></li><li data-type='method'><a href="TacoTable.html#handleColumnHighlight">handleColumnHighlight</a></li><li data-type='method'><a href="TacoTable.html#handleHeaderClick">handleHeaderClick</a></li><li data-type='method'><a href="TacoTable.html#handleRowHighlight">handleRowHighlight</a></li><li data-type='method'><a href="TacoTable.html#render">render</a></li><li data-type='method'><a href="TacoTable.html#renderGroupHeaders">renderGroupHeaders</a></li><li data-type='method'><a href="TacoTable.html#renderHeaders">renderHeaders</a></li><li data-type='method'><a href="TacoTable.html#renderRows">renderRows</a></li><li data-type='method'><a href="TacoTable.html#shouldComponentUpdate">shouldComponentUpdate</a></li><li data-type='method'><a href="TacoTable.html#sort">sort</a></li><li data-type='method'><a href="TacoTable.html#summarizeColumns">summarizeColumns</a></li></ul></li><li><a href="TacoTableCell.html">TacoTableCell</a><ul class='methods'><li data-type='method'><a href="TacoTableCell.html#computeTdClassName">computeTdClassName</a></li><li data-type='method'><a href="TacoTableCell.html#computeTdStyle">computeTdStyle</a></li><li data-type='method'><a href="TacoTableCell.html#computeWithPlugins">computeWithPlugins</a></li><li data-type='method'><a href="TacoTableCell.html#handleMouseEnter">handleMouseEnter</a></li><li data-type='method'><a href="TacoTableCell.html#handleMouseLeave">handleMouseLeave</a></li><li data-type='method'><a href="TacoTableCell.html#render">render</a></li><li data-type='method'><a href="TacoTableCell.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li><li><a href="TacoTableHeader.html">TacoTableHeader</a><ul class='methods'><li data-type='method'><a href="TacoTableHeader.html#handleClick">handleClick</a></li><li data-type='method'><a href="TacoTableHeader.html#render">render</a></li><li data-type='method'><a href="TacoTableHeader.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li><li><a href="TacoTableRow.html">TacoTableRow</a><ul class='methods'><li data-type='method'><a href="TacoTableRow.html#handleMouseEnter">handleMouseEnter</a></li><li data-type='method'><a href="TacoTableRow.html#handleMouseLeave">handleMouseLeave</a></li><li data-type='method'><a href="TacoTableRow.html#render">render</a></li><li data-type='method'><a href="TacoTableRow.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-DataType.html">DataType</a></li><li><a href="module-Formatters.html">Formatters</a><ul class='methods'><li data-type='method'><a href="module-Formatters.html#.atMostDecFormat">atMostDecFormat</a></li><li data-type='method'><a href="module-Formatters.html#.decFormat">decFormat</a></li><li data-type='method'><a href="module-Formatters.html#.decPercentFormat">decPercentFormat</a></li><li data-type='method'><a href="module-Formatters.html#.makePercent">makePercent</a></li><li data-type='method'><a href="module-Formatters.html#.makePlusMinus">makePlusMinus</a></li><li data-type='method'><a href="module-Formatters.html#.moneyFormat">moneyFormat</a></li><li data-type='method'><a href="module-Formatters.html#.percentFormat">percentFormat</a></li><li data-type='method'><a href="module-Formatters.html#.plusMinusFormat">plusMinusFormat</a></li><li data-type='method'><a href="module-Formatters.html#.safeFormat">safeFormat</a></li><li data-type='method'><a href="module-Formatters.html#.seFormat">seFormat</a></li><li data-type='method'><a href="module-Formatters.html#.zeroAsNull">zeroAsNull</a></li></ul></li><li><a href="module-plugins_HeatmapPlugin.html">plugins/HeatmapPlugin</a><ul class='methods'><li data-type='method'><a href="module-plugins_HeatmapPlugin.html#~columnTest">columnTest</a></li><li data-type='method'><a href="module-plugins_HeatmapPlugin.html#~tdStyle">tdStyle</a></li></ul></li><li><a href="module-plugins_HighlightOnly.html">plugins/HighlightOnly</a><ul class='methods'><li data-type='method'><a href="module-plugins_HighlightOnly.html#~HighlightOnly">HighlightOnly</a></li></ul></li><li><a href="module-SortDirection.html">SortDirection</a></li><li><a href="module-Summarizers.html">Summarizers</a><ul class='methods'><li data-type='method'><a href="module-Summarizers.html#.frequencySummarizer">frequencySummarizer</a></li><li data-type='method'><a href="module-Summarizers.html#.minMaxSummarizer">minMaxSummarizer</a></li></ul></li><li><a href="module-TdClassNames.html">TdClassNames</a><ul class='methods'><li data-type='method'><a href="module-TdClassNames.html#.maxClassName">maxClassName</a></li><li data-type='method'><a href="module-TdClassNames.html#.minClassName">minClassName</a></li><li data-type='method'><a href="module-TdClassNames.html#.minMaxClassName">minMaxClassName</a></li></ul></li><li><a href="module-Utils.html">Utils</a><ul class='methods'><li data-type='method'><a href="module-Utils.html#.getCellData">getCellData</a></li><li data-type='method'><a href="module-Utils.html#.getColumnById">getColumnById</a></li><li data-type='method'><a href="module-Utils.html#.getSortComparator">getSortComparator</a></li><li data-type='method'><a href="module-Utils.html#.getSortValue">getSortValue</a></li><li data-type='method'><a href="module-Utils.html#.getSortValueFromCellData">getSortValueFromCellData</a></li><li data-type='method'><a href="module-Utils.html#.renderCell">renderCell</a></li><li data-type='method'><a href="module-Utils.html#.sortData">sortData</a></li><li data-type='method'><a href="module-Utils.html#.validateColumns">validateColumns</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">plugins/HeatmapPlugin.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Adds heatmap coloring to cells. By default colors based on min and max
+ * in the data and the magma color scheme via `d3-scale`.
+ *
+ * This plugin provides the following fields:
+ * - id: `heatmap`
+ * - tdClassName: `has-heatmap`
+ * - summarize: minMaxSummarizer
+ * - tdStyle
+ * - columnTest
+ * - ColorSchemes
+ *
+ * ## Plugin Options
+ *
+ * Plugin options found in `column.plugins.heatmap` since the plugin has id `heatmap`.
+ *
+ * - **domain** {Number[]} the domain to use for the color scale, if not provided, uses summary min and max
+ * - **backgroundScale** {Function} the scale to use for the background-color
+ * - **colorScale** {Function} the scale to use for the color
+ * - **colorShift** {Number} if provided, shifts the background color to create the foreground color.
+ *    It is a number between 0 and 1 describing how far to shift.
+ * - **colorScheme** {String} if provided, specifies which d3-scale special scale to use. Options
+ *    are: Viridis, Inferno, Magma, Plasma, Warm, Cool, Rainbow, CubehelixDefault
+ *
+ * @module plugins/HeatmapPlugin
+ */
+import * as Utils from '../Utils';
+import * as Summarizers from '../Summarizers';
+import DataType from '../DataType';
+import * as d3 from 'd3-scale';
+
+/**
+ * Special color schemes available via d3-scale `interpolate${scheme}(t)` functions.
+ * @enum {String}
+ */
+const ColorSchemes = {
+  Viridis: 'Viridis',
+  Inferno: 'Inferno',
+  Magma: 'Magma',
+  Plasma: 'Plasma',
+  Warm: 'Warm',
+  Cool: 'Cool',
+  Rainbow: 'Rainbow',
+  CubehelixDefault: 'CubehelixDefault',
+};
+
+/**
+ * Compute the style for the td elements by setting the background and color
+ * based on the sort value.
+ *
+ * @param {Object} cellData the data for the cell
+ * @param {Object} summary the column summary
+ * @param {Object} column The column definition
+ * @param {Object} rowData the data for the row
+ * @return {Object} the style object
+ */
+function tdStyle(cellData, summary, column, rowData) {
+  let domain;
+  let backgroundScale;
+  let colorScale;
+  let colorShift;
+  let colorScheme;
+
+  // compute the sort value
+  const sortValue = Utils.getSortValueFromCellData(cellData, column, rowData);
+
+  // read in from plugin options
+  if (column.plugins &amp;&amp; column.plugins.heatmap) {
+    domain = column.plugins.heatmap.domain;
+    backgroundScale = column.plugins.heatmap.backgroundScale;
+    colorScale = column.plugins.heatmap.colorScale;
+    colorShift = column.plugins.heatmap.colorShift;
+    colorScheme = column.plugins.heatmap.colorScheme;
+  }
+
+  // default domain if not provided comes from summary
+  if (!domain) {
+    domain = [summary.min, summary.max];
+  }
+
+  const domainScale = d3.scaleLinear().domain(domain)
+    .range([0, 1])
+    .clamp(true);
+
+
+  // if a background scale is provided, use it
+  let backgroundColor;
+  if (backgroundScale) {
+    if (backgroundScale.domain) {
+      backgroundScale.domain(domain);
+    }
+    backgroundColor = backgroundScale(sortValue);
+  }
+
+  // if a color scale is provided, use it
+  let color;
+  if (colorScale) {
+    if (colorScale.domain) {
+      colorScale.domain(domain);
+    }
+    color = colorScale(sortValue);
+
+  // if a color shift is defined, shift the background color by this amount (0, 1)
+  } else if (backgroundScale &amp;&amp; colorShift) {
+    const shiftedValue = domainScale.invert((domainScale(sortValue) + colorShift) % 1);
+    color = backgroundScale(shiftedValue);
+  }
+
+  // if no background scale and color scale provided, use default - magma
+  if (backgroundScale == null) {
+    colorScheme = colorScheme || ColorSchemes.Magma;
+
+    backgroundColor = d3[`interpolate${colorScheme}`](domainScale(sortValue));
+    if (!colorScale) {
+      colorShift = colorShift || 0.5;
+      color = d3[`interpolate${colorScheme}`]((domainScale(sortValue) + colorShift) % 1);
+    }
+  }
+
+  return {
+    backgroundColor,
+    color,
+  };
+}
+
+/**
+ * Apply this plugin if it is a number and plugins.heatmap isn't explicitly set to false
+ * OR if plugins.heatmap is set
+ *
+ * @param {Object} column The column definition
+ * @return {Boolean} true to run the plugin on the column, false to not
+ */
+function columnTest(column) {
+  return (column.type === DataType.Number &amp;&amp;
+           (!column.plugins || (column.plugins &amp;&amp; column.plugins.heatmap !== false))) ||
+         (column.plugins &amp;&amp; column.plugins.heatmap);
+}
+
+const Plugin = {
+  id: 'heatmap',
+  summarize: Summarizers.minMaxSummarizer,
+  tdStyle,
+  tdClassName: 'has-heatmap',
+  columnTest,
+  ColorSchemes,
+};
+
+export default Plugin;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Jun 21 2016 17:10:59 GMT-0400 (EDT) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

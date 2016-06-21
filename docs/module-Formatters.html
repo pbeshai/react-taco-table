@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Formatters - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<!-- <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+ -->
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="TacoTable.html">TacoTable</a><ul class='methods'><li data-type='method'><a href="TacoTable.html#componentWillReceiveProps">componentWillReceiveProps</a></li><li data-type='method'><a href="TacoTable.html#handleColumnHighlight">handleColumnHighlight</a></li><li data-type='method'><a href="TacoTable.html#handleHeaderClick">handleHeaderClick</a></li><li data-type='method'><a href="TacoTable.html#handleRowHighlight">handleRowHighlight</a></li><li data-type='method'><a href="TacoTable.html#render">render</a></li><li data-type='method'><a href="TacoTable.html#renderGroupHeaders">renderGroupHeaders</a></li><li data-type='method'><a href="TacoTable.html#renderHeaders">renderHeaders</a></li><li data-type='method'><a href="TacoTable.html#renderRows">renderRows</a></li><li data-type='method'><a href="TacoTable.html#shouldComponentUpdate">shouldComponentUpdate</a></li><li data-type='method'><a href="TacoTable.html#sort">sort</a></li><li data-type='method'><a href="TacoTable.html#summarizeColumns">summarizeColumns</a></li></ul></li><li><a href="TacoTableCell.html">TacoTableCell</a><ul class='methods'><li data-type='method'><a href="TacoTableCell.html#computeTdClassName">computeTdClassName</a></li><li data-type='method'><a href="TacoTableCell.html#computeTdStyle">computeTdStyle</a></li><li data-type='method'><a href="TacoTableCell.html#computeWithPlugins">computeWithPlugins</a></li><li data-type='method'><a href="TacoTableCell.html#handleMouseEnter">handleMouseEnter</a></li><li data-type='method'><a href="TacoTableCell.html#handleMouseLeave">handleMouseLeave</a></li><li data-type='method'><a href="TacoTableCell.html#render">render</a></li><li data-type='method'><a href="TacoTableCell.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li><li><a href="TacoTableHeader.html">TacoTableHeader</a><ul class='methods'><li data-type='method'><a href="TacoTableHeader.html#handleClick">handleClick</a></li><li data-type='method'><a href="TacoTableHeader.html#render">render</a></li><li data-type='method'><a href="TacoTableHeader.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li><li><a href="TacoTableRow.html">TacoTableRow</a><ul class='methods'><li data-type='method'><a href="TacoTableRow.html#handleMouseEnter">handleMouseEnter</a></li><li data-type='method'><a href="TacoTableRow.html#handleMouseLeave">handleMouseLeave</a></li><li data-type='method'><a href="TacoTableRow.html#render">render</a></li><li data-type='method'><a href="TacoTableRow.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-DataType.html">DataType</a></li><li><a href="module-Formatters.html">Formatters</a><ul class='methods'><li data-type='method'><a href="module-Formatters.html#.atMostDecFormat">atMostDecFormat</a></li><li data-type='method'><a href="module-Formatters.html#.decFormat">decFormat</a></li><li data-type='method'><a href="module-Formatters.html#.decPercentFormat">decPercentFormat</a></li><li data-type='method'><a href="module-Formatters.html#.makePercent">makePercent</a></li><li data-type='method'><a href="module-Formatters.html#.makePlusMinus">makePlusMinus</a></li><li data-type='method'><a href="module-Formatters.html#.moneyFormat">moneyFormat</a></li><li data-type='method'><a href="module-Formatters.html#.percentFormat">percentFormat</a></li><li data-type='method'><a href="module-Formatters.html#.plusMinusFormat">plusMinusFormat</a></li><li data-type='method'><a href="module-Formatters.html#.safeFormat">safeFormat</a></li><li data-type='method'><a href="module-Formatters.html#.seFormat">seFormat</a></li><li data-type='method'><a href="module-Formatters.html#.zeroAsNull">zeroAsNull</a></li></ul></li><li><a href="module-plugins_HeatmapPlugin.html">plugins/HeatmapPlugin</a><ul class='methods'><li data-type='method'><a href="module-plugins_HeatmapPlugin.html#~columnTest">columnTest</a></li><li data-type='method'><a href="module-plugins_HeatmapPlugin.html#~tdStyle">tdStyle</a></li></ul></li><li><a href="module-plugins_HighlightOnly.html">plugins/HighlightOnly</a><ul class='methods'><li data-type='method'><a href="module-plugins_HighlightOnly.html#~HighlightOnly">HighlightOnly</a></li></ul></li><li><a href="module-SortDirection.html">SortDirection</a></li><li><a href="module-Summarizers.html">Summarizers</a><ul class='methods'><li data-type='method'><a href="module-Summarizers.html#.frequencySummarizer">frequencySummarizer</a></li><li data-type='method'><a href="module-Summarizers.html#.minMaxSummarizer">minMaxSummarizer</a></li></ul></li><li><a href="module-TdClassNames.html">TdClassNames</a><ul class='methods'><li data-type='method'><a href="module-TdClassNames.html#.maxClassName">maxClassName</a></li><li data-type='method'><a href="module-TdClassNames.html#.minClassName">minClassName</a></li><li data-type='method'><a href="module-TdClassNames.html#.minMaxClassName">minMaxClassName</a></li></ul></li><li><a href="module-Utils.html">Utils</a><ul class='methods'><li data-type='method'><a href="module-Utils.html#.getCellData">getCellData</a></li><li data-type='method'><a href="module-Utils.html#.getColumnById">getColumnById</a></li><li data-type='method'><a href="module-Utils.html#.getSortComparator">getSortComparator</a></li><li data-type='method'><a href="module-Utils.html#.getSortValue">getSortValue</a></li><li data-type='method'><a href="module-Utils.html#.getSortValueFromCellData">getSortValueFromCellData</a></li><li data-type='method'><a href="module-Utils.html#.renderCell">renderCell</a></li><li data-type='method'><a href="module-Utils.html#.sortData">sortData</a></li><li data-type='method'><a href="module-Utils.html#.validateColumns">validateColumns</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Formatters</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".leadingZeroFormat"><span class="type-signature">(static, constant) </span>leadingZeroFormat<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Formatter - adds leading zeroes to a value
+(adds max of 8 zeros)</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Formatters.js.html">Formatters.js</a>, <a href="Formatters.js.html#line218">line 218</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>leadingZeroFormat(5, 2)
+> '05'</code></pre>
+
+    <pre class="prettyprint"><code>leadingZeroFormat(12, 2)
+> '12'</code></pre>
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".atMostDecFormat"><span class="type-signature">(static) </span>atMostDecFormat<span class="signature">(value)</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Formatter - renders value with at most one decimal point</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>value to format</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Formatters.js.html">Formatters.js</a>, <a href="Formatters.js.html#line137">line 137</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>formatted value</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>atMostDecFormat(10.89321)
+> '10.9'</code></pre>
+
+    <pre class="prettyprint"><code>atMostDecFormat(15)
+> '15'</code></pre>
+
+    <pre class="prettyprint"><code>atMostDecFormat(15.001)
+> '15.0'</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".decFormat"><span class="type-signature">(static) </span>decFormat<span class="signature">(numDecimals, value)</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Formatter (curried) - renders to <code>numDecimals</code> decimal places</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>numDecimals</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>number of decimals to use</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>value to format</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Formatters.js.html">Formatters.js</a>, <a href="Formatters.js.html#line97">line 97</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>formatted value</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>decFormat(1, 10.89321)
+> '10.9'</code></pre>
+
+    <pre class="prettyprint"><code>decFormat(2, 10.89321)
+> '10.89'</code></pre>
+
+    <pre class="prettyprint"><code>decFormat(1)(10.89321)
+> '10.9'</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".decPercentFormat"><span class="type-signature">(static) </span>decPercentFormat<span class="signature">(numDecimals, value)</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Formatter (curried) - renders value multiplied by 100
+with <code>numDecimal</code> decimal points.
+Commonly used for percentages without the %.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>numDecimals</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>number of decimals to use</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>value to format</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Formatters.js.html">Formatters.js</a>, <a href="Formatters.js.html#line115">line 115</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>formatted value</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>decPercentFormat(1, 0.8132)
+> '81.3'</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".makePercent"><span class="type-signature">(static) </span>makePercent<span class="signature">(formatter)</span><span class="type-signature"> &rarr; {function}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Wraps a formatting function by multiplying the value by 100 and
+adds a % to the end.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>formatter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>formatter function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Formatters.js.html">Formatters.js</a>, <a href="Formatters.js.html#line62">line 62</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a formatter function</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".makePlusMinus"><span class="type-signature">(static) </span>makePlusMinus<span class="signature">(formatter)</span><span class="type-signature"> &rarr; {function}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Wraps a formatting function and puts a + in front of formatted value
+if it is positive.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>formatter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>formatter function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Formatters.js.html">Formatters.js</a>, <a href="Formatters.js.html#line45">line 45</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a formatter function</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".moneyFormat"><span class="type-signature">(static) </span>moneyFormat<span class="signature">(value)</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Formatter - renders values formatted as money (prefixed with $, uses commas)</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>value to format</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Formatters.js.html">Formatters.js</a>, <a href="Formatters.js.html#line232">line 232</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>formatted value</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>moneyFormat(9.132)
+> '$9.13'</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".percentFormat"><span class="type-signature">(static) </span>percentFormat<span class="signature">(numDecimals, value)</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Formatter (curried) - renders value as a percentage</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>numDecimals</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>number of decimals to use</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>value to format</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Formatters.js.html">Formatters.js</a>, <a href="Formatters.js.html#line157">line 157</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>formatted value</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>percentFormat(1, 0.38523)
+> '38.5%'</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".plusMinusFormat"><span class="type-signature">(static) </span>plusMinusFormat<span class="signature">(numDecimals, value)</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Formatter (curried) - renders positive values with a +
+and negative with a -.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>numDecimals</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>number of decimals to use</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>value to format</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Formatters.js.html">Formatters.js</a>, <a href="Formatters.js.html#line178">line 178</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>formatted value</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>plusMinusFormat(1, 0.38523)
+> '+0.4'</code></pre>
+
+    <pre class="prettyprint"><code>plusMinusFormat(1, -15)
+> '-15.0'</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".safeFormat"><span class="type-signature">(static) </span>safeFormat<span class="signature">(value, formatter)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Returns null/undefined for null/undefined values,
+otherwise it returns the result of a passed in formatter</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>value to format</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>formatter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>formatter function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Formatters.js.html">Formatters.js</a>, <a href="Formatters.js.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Formatted value or null/undefined</p>
+</div>
+
+
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".seFormat"><span class="type-signature">(static) </span>seFormat<span class="signature">(numDecimals, value)</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Formatter (curried) - renders values prefixed with a ±</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>numDecimals</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>number of decimals to use</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>value to format</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Formatters.js.html">Formatters.js</a>, <a href="Formatters.js.html#line198">line 198</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>formatted value</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>seFormat(1, 0.38523)
+> '±0.4'</code></pre>
+
+    <pre class="prettyprint"><code>seFormat(2, -15)
+> '±15.00'</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".zeroAsNull"><span class="type-signature">(static) </span>zeroAsNull<span class="signature">(formatter)</span><span class="type-signature"> &rarr; {function}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Wraps a formatter function that replaces the value with null
+when it is 0. Useful for not rendering zeroes in tables.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>formatter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>formatter function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Formatters.js.html">Formatters.js</a>, <a href="Formatters.js.html#line32">line 32</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a formatter function</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Jun 21 2016 17:10:59 GMT-0400 (EDT) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

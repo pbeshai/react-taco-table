@@ -1,0 +1,2413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>TacoTable - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<!-- <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+ -->
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="TacoTable.html">TacoTable</a><ul class='methods'><li data-type='method'><a href="TacoTable.html#componentWillReceiveProps">componentWillReceiveProps</a></li><li data-type='method'><a href="TacoTable.html#handleColumnHighlight">handleColumnHighlight</a></li><li data-type='method'><a href="TacoTable.html#handleHeaderClick">handleHeaderClick</a></li><li data-type='method'><a href="TacoTable.html#handleRowHighlight">handleRowHighlight</a></li><li data-type='method'><a href="TacoTable.html#render">render</a></li><li data-type='method'><a href="TacoTable.html#renderGroupHeaders">renderGroupHeaders</a></li><li data-type='method'><a href="TacoTable.html#renderHeaders">renderHeaders</a></li><li data-type='method'><a href="TacoTable.html#renderRows">renderRows</a></li><li data-type='method'><a href="TacoTable.html#shouldComponentUpdate">shouldComponentUpdate</a></li><li data-type='method'><a href="TacoTable.html#sort">sort</a></li><li data-type='method'><a href="TacoTable.html#summarizeColumns">summarizeColumns</a></li></ul></li><li><a href="TacoTableCell.html">TacoTableCell</a><ul class='methods'><li data-type='method'><a href="TacoTableCell.html#computeTdClassName">computeTdClassName</a></li><li data-type='method'><a href="TacoTableCell.html#computeTdStyle">computeTdStyle</a></li><li data-type='method'><a href="TacoTableCell.html#computeWithPlugins">computeWithPlugins</a></li><li data-type='method'><a href="TacoTableCell.html#handleMouseEnter">handleMouseEnter</a></li><li data-type='method'><a href="TacoTableCell.html#handleMouseLeave">handleMouseLeave</a></li><li data-type='method'><a href="TacoTableCell.html#render">render</a></li><li data-type='method'><a href="TacoTableCell.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li><li><a href="TacoTableHeader.html">TacoTableHeader</a><ul class='methods'><li data-type='method'><a href="TacoTableHeader.html#handleClick">handleClick</a></li><li data-type='method'><a href="TacoTableHeader.html#render">render</a></li><li data-type='method'><a href="TacoTableHeader.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li><li><a href="TacoTableRow.html">TacoTableRow</a><ul class='methods'><li data-type='method'><a href="TacoTableRow.html#handleMouseEnter">handleMouseEnter</a></li><li data-type='method'><a href="TacoTableRow.html#handleMouseLeave">handleMouseLeave</a></li><li data-type='method'><a href="TacoTableRow.html#render">render</a></li><li data-type='method'><a href="TacoTableRow.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-DataType.html">DataType</a></li><li><a href="module-Formatters.html">Formatters</a><ul class='methods'><li data-type='method'><a href="module-Formatters.html#.atMostDecFormat">atMostDecFormat</a></li><li data-type='method'><a href="module-Formatters.html#.decFormat">decFormat</a></li><li data-type='method'><a href="module-Formatters.html#.decPercentFormat">decPercentFormat</a></li><li data-type='method'><a href="module-Formatters.html#.makePercent">makePercent</a></li><li data-type='method'><a href="module-Formatters.html#.makePlusMinus">makePlusMinus</a></li><li data-type='method'><a href="module-Formatters.html#.moneyFormat">moneyFormat</a></li><li data-type='method'><a href="module-Formatters.html#.percentFormat">percentFormat</a></li><li data-type='method'><a href="module-Formatters.html#.plusMinusFormat">plusMinusFormat</a></li><li data-type='method'><a href="module-Formatters.html#.safeFormat">safeFormat</a></li><li data-type='method'><a href="module-Formatters.html#.seFormat">seFormat</a></li><li data-type='method'><a href="module-Formatters.html#.zeroAsNull">zeroAsNull</a></li></ul></li><li><a href="module-plugins_HeatmapPlugin.html">plugins/HeatmapPlugin</a><ul class='methods'><li data-type='method'><a href="module-plugins_HeatmapPlugin.html#~columnTest">columnTest</a></li><li data-type='method'><a href="module-plugins_HeatmapPlugin.html#~tdStyle">tdStyle</a></li></ul></li><li><a href="module-plugins_HighlightOnly.html">plugins/HighlightOnly</a><ul class='methods'><li data-type='method'><a href="module-plugins_HighlightOnly.html#~HighlightOnly">HighlightOnly</a></li></ul></li><li><a href="module-SortDirection.html">SortDirection</a></li><li><a href="module-Summarizers.html">Summarizers</a><ul class='methods'><li data-type='method'><a href="module-Summarizers.html#.frequencySummarizer">frequencySummarizer</a></li><li data-type='method'><a href="module-Summarizers.html#.minMaxSummarizer">minMaxSummarizer</a></li></ul></li><li><a href="module-TdClassNames.html">TdClassNames</a><ul class='methods'><li data-type='method'><a href="module-TdClassNames.html#.maxClassName">maxClassName</a></li><li data-type='method'><a href="module-TdClassNames.html#.minClassName">minClassName</a></li><li data-type='method'><a href="module-TdClassNames.html#.minMaxClassName">minMaxClassName</a></li></ul></li><li><a href="module-Utils.html">Utils</a><ul class='methods'><li data-type='method'><a href="module-Utils.html#.getCellData">getCellData</a></li><li data-type='method'><a href="module-Utils.html#.getColumnById">getColumnById</a></li><li data-type='method'><a href="module-Utils.html#.getSortComparator">getSortComparator</a></li><li data-type='method'><a href="module-Utils.html#.getSortValue">getSortValue</a></li><li data-type='method'><a href="module-Utils.html#.getSortValueFromCellData">getSortValueFromCellData</a></li><li data-type='method'><a href="module-Utils.html#.renderCell">renderCell</a></li><li data-type='method'><a href="module-Utils.html#.sortData">sortData</a></li><li data-type='method'><a href="module-Utils.html#.validateColumns">validateColumns</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">TacoTable</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        TacoTable
+        </h2>
+        
+            <div class="class-description"><p>React component for rendering a table, uses <code>&lt;table className=&quot;taco-table&quot;&gt;</code></p>
+<p>Note that <code>Renderable</code> means anything React can render (e.g., String, Number,
+React.Component, etc.).</p>
+<h3>Column Definition</h3><p>Columns are defined by objects with the following format:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>id</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The id of the column. Typically corresponds to a key in the rowData object.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[className]</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The class name to be applied to both <code>&lt;td&gt;</code> and <code>&lt;th&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[firstSortDirection]</code></td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">The direction which this column gets sorted by on first click</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[header]</code></td>
+<td style="text-align:left">Renderable</td>
+<td style="text-align:left">What is rendered in the column header. If not provided, uses the columnId.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[renderer]</code></td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left"><code>function (cellData, column, rowData, rowNumber, tableData, columns)</code><br>The function that renders the value in the table. Can return anything React can render.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[rendererOptions]</code></td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">Object of options that can be read by the renderer</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[simpleRenderer]</code></td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left"><code>function (cellData, column, rowData, rowNumber, tableData, columns)</code><br>The function that render the cell's value in a simpler format. Must return a String or Number.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[sortType]</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The <code>DataType</code> of the column to be used strictly for sorting, if not provided, uses <code>type</code> - number, string, etc</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[sortValue]</code></td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left"><code>function (cellData, rowData)</code><br>Function to use when sorting instead of <code>value</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[summarize]</code></td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left"><code>function (column, tableData, columns)</code><br>Produces an object representing a summary of the column (e.g., min and max) to be used in the</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[tdClassName]</code></td>
+<td style="text-align:left">Function or String</td>
+<td style="text-align:left"><code>function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)</code><br>A function that returns a class name based on the cell data and column summary or other information. If a string is provided, it is used directly as the class name.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[tdStyle]</code></td>
+<td style="text-align:left">Function or Object</td>
+<td style="text-align:left"><code>function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)</code><br>A function that returns the style to be applied to the cell. If an object is provided, it is used directly as the style attribute.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[thClassName]</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The class name to be applied to <code>&lt;th&gt;</code> only</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[type]</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The <code>DataType</code> of the column - number, string, etc</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[value]</code></td>
+<td style="text-align:left">Function or String</td>
+<td style="text-align:left"><code>function (rowData, rowNumber, tableData, columns)</code><br>Function to produce cellData's value. If a String, reads that as a key into the rowData object. If not provided, columnId is used as a key into the rowData object.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[width]</code></td>
+<td style="text-align:left">Number or String</td>
+<td style="text-align:left">The value to set for the style <code>width</code> property on the column.</td>
+</tr>
+</tbody>
+</table>
+<h3>Column Groups</h3><p>Column groups are defined by objects with the following format:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>[className]</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The className to apply to cells and headers in this group</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>columns</code></td>
+<td style="text-align:left">String[]</td>
+<td style="text-align:left">The column IDs to render</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[header]</code></td>
+<td style="text-align:left">Renderable</td>
+<td style="text-align:left">What shows up in the table header if provided</td>
+</tr>
+</tbody>
+</table>
+<h3>Plugins</h3><p>Plugins are defined by objects with the following format:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>[columnTest]</code></td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left">A function that takes a column and returns true or false if it the plugin should be run on this column. Default is true for everything.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>id</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The ID of the plugin</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[summarize]</code></td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left">A column summarizer function</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[tdStyle]</code></td>
+<td style="text-align:left">Function or Object</td>
+<td style="text-align:left">The TD style function</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[tdClassName]</code></td>
+<td style="text-align:left">Function or String</td>
+<td style="text-align:left">The TD class name function</td>
+</tr>
+</tbody>
+</table></div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="TacoTable"><span class="type-signature"></span>new TacoTable<span class="signature">(props)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>props</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>React props</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>columns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The column definitions</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>columnGroups</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>How to group columns - an array of
+  <code>{ header:String, columns:[colId1, colId2, ...], className:String}</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>columnHighlighting</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Whether or not to turn on mouse listeners
+   for column highlighting</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>className</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The class names to apply to the table</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The data to be rendered as rows</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>initialSortColumnId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Column ID of the data to sort by initially</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>initialSortDirection</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    true(Ascending)
+                
+                </td>
+            
+
+            <td class="description last"><p>Direction by which to sort initially</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>plugins</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Collection of plugins to run to compute cell style,
+   cell class name, column summaries</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sortable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>Whether the table can be sorted or not</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>striped</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Whether the table is striped</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fullWidth</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>Whether the table takes up full width or not</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowClassName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Function that maps (rowData, rowNumber) to a class name</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowHighlighting</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>Whether or not to turn on mouse
+   listeners for row highlighting</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>HeaderComponent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    TacoTableHeader
+                
+                </td>
+            
+
+            <td class="description last"><p>allow configuration of which
+    component to use for headers</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>RowComponent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    TacoTableRow
+                
+                </td>
+            
+
+            <td class="description last"><p>allow configuration of which
+    component to use for rows</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TacoTable.js.html">TacoTable.js</a>, <a href="TacoTable.js.html#line117">line 117</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li>React.Component</li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="componentWillReceiveProps"><span class="type-signature"></span>componentWillReceiveProps<span class="signature">(nextProps)</span><span class="type-signature"> &rarr; {void}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>On receiving new props, sort the data and recompute column summaries if the data
+has changed.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>nextProps</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The next props</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TacoTable.js.html">TacoTable.js</a>, <a href="TacoTable.js.html#line177">line 177</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="handleColumnHighlight"><span class="type-signature">(private) </span>handleColumnHighlight<span class="signature">(columnId)</span><span class="type-signature"> &rarr; {void}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Callback when a column is highlighted</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>columnId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The ID of the column being highlighted</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TacoTable.js.html">TacoTable.js</a>, <a href="TacoTable.js.html#line246">line 246</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="handleHeaderClick"><span class="type-signature">(private) </span>handleHeaderClick<span class="signature">(columnId)</span><span class="type-signature"> &rarr; {void}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Callback when a header is clicked. If a sortable table, sorts the table.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>columnId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The ID of the column that was clicked.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TacoTable.js.html">TacoTable.js</a>, <a href="TacoTable.js.html#line215">line 215</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="handleRowHighlight"><span class="type-signature">(private) </span>handleRowHighlight<span class="signature">(rowData)</span><span class="type-signature"> &rarr; {void}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Callback when a row is highlighted</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>rowData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The row data for the row that is highlighted</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TacoTable.js.html">TacoTable.js</a>, <a href="TacoTable.js.html#line233">line 233</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="render"><span class="type-signature"></span>render<span class="signature">()</span><span class="type-signature"> &rarr; {React.Component}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Main render method</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TacoTable.js.html">TacoTable.js</a>, <a href="TacoTable.js.html#line473">line 473</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The table component</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">React.Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="renderGroupHeaders"><span class="type-signature">(private) </span>renderGroupHeaders<span class="signature">()</span><span class="type-signature"> &rarr; {React.Component}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Renders the group headers above column headers</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TacoTable.js.html">TacoTable.js</a>, <a href="TacoTable.js.html#line347">line 347</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p><code>&lt;tr&gt;</code></p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">React.Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="renderHeaders"><span class="type-signature">(private) </span>renderHeaders<span class="signature">()</span><span class="type-signature"> &rarr; {React.Component}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Renders the headers of the table in a thead</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TacoTable.js.html">TacoTable.js</a>, <a href="TacoTable.js.html#line394">line 394</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p><code>&lt;thead&gt;</code></p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">React.Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="renderRows"><span class="type-signature">(private) </span>renderRows<span class="signature">()</span><span class="type-signature"> &rarr; {React.Component}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Renders the rows of the table in a tbody</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TacoTable.js.html">TacoTable.js</a>, <a href="TacoTable.js.html#line433">line 433</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p><code>&lt;tbody&gt;</code></p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">React.Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="shouldComponentUpdate"><span class="type-signature"></span>shouldComponentUpdate<span class="signature">(nextProps, nextState)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Uses <code>shallowCompare</code></p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>nextProps</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The next props</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>nextState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The next state</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TacoTable.js.html">TacoTable.js</a>, <a href="TacoTable.js.html#line204">line 204</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>If the component should update</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="sort"><span class="type-signature">(private) </span>sort<span class="signature">(columnId, props, state)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Sort the table based on a column</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>columnId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the ID of the column to sort by</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>props</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    this.props
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    this.state
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TacoTable.js.html">TacoTable.js</a>, <a href="TacoTable.js.html#line262">line 262</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Object representing sort state
+   <code>{ sortDirection, sortColumnId, data }</code>.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="summarizeColumns"><span class="type-signature">(private) </span>summarizeColumns<span class="signature">(props)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Computes a summary for each column that is configured to have one.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>props</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>React component props</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TacoTable.js.html">TacoTable.js</a>, <a href="TacoTable.js.html#line302">line 302</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>array of summaries matching the indices for <code>columns</code>,
+  null for those without a <code>summarize</code> property.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Jun 21 2016 17:10:59 GMT-0400 (EDT) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

@@ -1,0 +1,1849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Utils - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<!-- <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+ -->
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="TacoTable.html">TacoTable</a><ul class='methods'><li data-type='method'><a href="TacoTable.html#componentWillReceiveProps">componentWillReceiveProps</a></li><li data-type='method'><a href="TacoTable.html#handleColumnHighlight">handleColumnHighlight</a></li><li data-type='method'><a href="TacoTable.html#handleHeaderClick">handleHeaderClick</a></li><li data-type='method'><a href="TacoTable.html#handleRowHighlight">handleRowHighlight</a></li><li data-type='method'><a href="TacoTable.html#render">render</a></li><li data-type='method'><a href="TacoTable.html#renderGroupHeaders">renderGroupHeaders</a></li><li data-type='method'><a href="TacoTable.html#renderHeaders">renderHeaders</a></li><li data-type='method'><a href="TacoTable.html#renderRows">renderRows</a></li><li data-type='method'><a href="TacoTable.html#shouldComponentUpdate">shouldComponentUpdate</a></li><li data-type='method'><a href="TacoTable.html#sort">sort</a></li><li data-type='method'><a href="TacoTable.html#summarizeColumns">summarizeColumns</a></li></ul></li><li><a href="TacoTableCell.html">TacoTableCell</a><ul class='methods'><li data-type='method'><a href="TacoTableCell.html#computeTdClassName">computeTdClassName</a></li><li data-type='method'><a href="TacoTableCell.html#computeTdStyle">computeTdStyle</a></li><li data-type='method'><a href="TacoTableCell.html#computeWithPlugins">computeWithPlugins</a></li><li data-type='method'><a href="TacoTableCell.html#handleMouseEnter">handleMouseEnter</a></li><li data-type='method'><a href="TacoTableCell.html#handleMouseLeave">handleMouseLeave</a></li><li data-type='method'><a href="TacoTableCell.html#render">render</a></li><li data-type='method'><a href="TacoTableCell.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li><li><a href="TacoTableHeader.html">TacoTableHeader</a><ul class='methods'><li data-type='method'><a href="TacoTableHeader.html#handleClick">handleClick</a></li><li data-type='method'><a href="TacoTableHeader.html#render">render</a></li><li data-type='method'><a href="TacoTableHeader.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li><li><a href="TacoTableRow.html">TacoTableRow</a><ul class='methods'><li data-type='method'><a href="TacoTableRow.html#handleMouseEnter">handleMouseEnter</a></li><li data-type='method'><a href="TacoTableRow.html#handleMouseLeave">handleMouseLeave</a></li><li data-type='method'><a href="TacoTableRow.html#render">render</a></li><li data-type='method'><a href="TacoTableRow.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-DataType.html">DataType</a></li><li><a href="module-Formatters.html">Formatters</a><ul class='methods'><li data-type='method'><a href="module-Formatters.html#.atMostDecFormat">atMostDecFormat</a></li><li data-type='method'><a href="module-Formatters.html#.decFormat">decFormat</a></li><li data-type='method'><a href="module-Formatters.html#.decPercentFormat">decPercentFormat</a></li><li data-type='method'><a href="module-Formatters.html#.makePercent">makePercent</a></li><li data-type='method'><a href="module-Formatters.html#.makePlusMinus">makePlusMinus</a></li><li data-type='method'><a href="module-Formatters.html#.moneyFormat">moneyFormat</a></li><li data-type='method'><a href="module-Formatters.html#.percentFormat">percentFormat</a></li><li data-type='method'><a href="module-Formatters.html#.plusMinusFormat">plusMinusFormat</a></li><li data-type='method'><a href="module-Formatters.html#.safeFormat">safeFormat</a></li><li data-type='method'><a href="module-Formatters.html#.seFormat">seFormat</a></li><li data-type='method'><a href="module-Formatters.html#.zeroAsNull">zeroAsNull</a></li></ul></li><li><a href="module-plugins_HeatmapPlugin.html">plugins/HeatmapPlugin</a><ul class='methods'><li data-type='method'><a href="module-plugins_HeatmapPlugin.html#~columnTest">columnTest</a></li><li data-type='method'><a href="module-plugins_HeatmapPlugin.html#~tdStyle">tdStyle</a></li></ul></li><li><a href="module-plugins_HighlightOnly.html">plugins/HighlightOnly</a><ul class='methods'><li data-type='method'><a href="module-plugins_HighlightOnly.html#~HighlightOnly">HighlightOnly</a></li></ul></li><li><a href="module-SortDirection.html">SortDirection</a></li><li><a href="module-Summarizers.html">Summarizers</a><ul class='methods'><li data-type='method'><a href="module-Summarizers.html#.frequencySummarizer">frequencySummarizer</a></li><li data-type='method'><a href="module-Summarizers.html#.minMaxSummarizer">minMaxSummarizer</a></li></ul></li><li><a href="module-TdClassNames.html">TdClassNames</a><ul class='methods'><li data-type='method'><a href="module-TdClassNames.html#.maxClassName">maxClassName</a></li><li data-type='method'><a href="module-TdClassNames.html#.minClassName">minClassName</a></li><li data-type='method'><a href="module-TdClassNames.html#.minMaxClassName">minMaxClassName</a></li></ul></li><li><a href="module-Utils.html">Utils</a><ul class='methods'><li data-type='method'><a href="module-Utils.html#.getCellData">getCellData</a></li><li data-type='method'><a href="module-Utils.html#.getColumnById">getColumnById</a></li><li data-type='method'><a href="module-Utils.html#.getSortComparator">getSortComparator</a></li><li data-type='method'><a href="module-Utils.html#.getSortValue">getSortValue</a></li><li data-type='method'><a href="module-Utils.html#.getSortValueFromCellData">getSortValueFromCellData</a></li><li data-type='method'><a href="module-Utils.html#.renderCell">renderCell</a></li><li data-type='method'><a href="module-Utils.html#.sortData">sortData</a></li><li data-type='method'><a href="module-Utils.html#.validateColumns">validateColumns</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Utils</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>A collection of utility functions that make it easier to work with
+table data.</p></div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Utils.js.html">Utils.js</a>, <a href="Utils.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getCellData"><span class="type-signature">(static) </span>getCellData<span class="signature">(column, rowData, rowNumber, tableData, columns)</span><span class="type-signature"> &rarr; {Any}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Gets the value of a cell given the row data. If column.value is
+a function, it gets called, otherwise it is interpreted as a
+key to rowData. If column.value is not defined, column.id is
+used as a key to rowData.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>column</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The column definition</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data for the row</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowNumber</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The number of the row</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tableData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The array of data for the whole table</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>columns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The column definitions for the whole table</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Utils.js.html">Utils.js</a>, <a href="Utils.js.html#line22">line 22</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The value for this cell</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Any</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getColumnById"><span class="type-signature">(static) </span>getColumnById<span class="signature">(columns, columnId)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Gets a column from the column definitions based on its ID</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>columns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The column definitions for the whole table</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>columnId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the <code>id</code> of the column</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Utils.js.html">Utils.js</a>, <a href="Utils.js.html#line84">line 84</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The column definition</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getSortComparator"><span class="type-signature">(static) </span>getSortComparator<span class="signature">(type)</span><span class="type-signature"> &rarr; {function}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Gets the comparator function to use based on the type of data
+the column represents. These comparator functions expect the
+data to be presented as { index, sortValue }. sortValue is used
+to determine the order and index is used to break ties to maintain
+a stable sort.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the DataType the column represents</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Utils.js.html">Utils.js</a>, <a href="Utils.js.html#line99">line 99</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the comparator for stable sort</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getSortValue"><span class="type-signature">(static) </span>getSortValue<span class="signature">(column, rowData, rowNumber, tableData, columns)</span><span class="type-signature"> &rarr; {Any}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Gets the sort value for a cell by first computing the cell data. If
+no sortValue function is provided on the column, the cellData is
+returned.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>column</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The column definition</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data for the row</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowNumber</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The number of the row</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tableData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The array of data for the whole table</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>columns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The column definitions for the whole table</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Utils.js.html">Utils.js</a>, <a href="Utils.js.html#line70">line 70</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The sort value for this cell</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Any</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getSortValueFromCellData"><span class="type-signature">(static) </span>getSortValueFromCellData<span class="signature">(cellData, column, rowData)</span><span class="type-signature"> &rarr; {Any}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Gets the sort value of a cell given the cell data and row data. If
+no sortValue function is provided on the column, the cellData is
+returned.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cellData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The cell data</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>column</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The column definition</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data for the row</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Utils.js.html">Utils.js</a>, <a href="Utils.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The sort value for this cell</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Any</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".renderCell"><span class="type-signature">(static) </span>renderCell<span class="signature">(cellData, column, rowData, rowNumber, tableData, columns)</span><span class="type-signature"> &rarr; {Renderable}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Renders a cell's contents based on the renderer function. If no
+renderer is provided, it just returns the raw cell data. In such
+cases, the user should take care that cellData can be rendered
+directly.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cellData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data for the cell</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>column</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The column definition</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data for the row</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowNumber</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The number of the row</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tableData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The array of data for the whole table</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>columns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The column definitions for the whole table</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Utils.js.html">Utils.js</a>, <a href="Utils.js.html#line235">line 235</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The contents of the cell</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Renderable</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".sortData"><span class="type-signature">(static) </span>sortData<span class="signature">(data, columnId, sortDirection, columns)</span><span class="type-signature"> &rarr; {Array.&lt;Object>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Sorts the data based on sort value and column type. Uses a stable sort
+by keeping track of the original position to break ties.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the array of data for the whole table</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>columnId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the column ID of the column to sort by</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sortDirection</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The direction to sort in</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>columns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The column definitions for the whole table</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Utils.js.html">Utils.js</a>, <a href="Utils.js.html#line192">line 192</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The sorted data</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".validateColumns"><span class="type-signature">(static) </span>validateColumns<span class="signature">(columns)</span><span class="type-signature"> &rarr; {void}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Checks an array of column definitions to see if there are any issues.
+Checks if</p>
+<ul>
+<li>multiple columns have the same ID</li>
+</ul>
+<p>Typically only used in development.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>columns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The column definitions for the whole table</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Utils.js.html">Utils.js</a>, <a href="Utils.js.html#line259">line 259</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Jun 21 2016 17:10:59 GMT-0400 (EDT) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

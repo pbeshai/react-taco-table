@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>TacoTableCell.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<!-- <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+ -->
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="TacoTable.html">TacoTable</a><ul class='methods'><li data-type='method'><a href="TacoTable.html#componentWillReceiveProps">componentWillReceiveProps</a></li><li data-type='method'><a href="TacoTable.html#handleColumnHighlight">handleColumnHighlight</a></li><li data-type='method'><a href="TacoTable.html#handleHeaderClick">handleHeaderClick</a></li><li data-type='method'><a href="TacoTable.html#handleRowHighlight">handleRowHighlight</a></li><li data-type='method'><a href="TacoTable.html#render">render</a></li><li data-type='method'><a href="TacoTable.html#renderGroupHeaders">renderGroupHeaders</a></li><li data-type='method'><a href="TacoTable.html#renderHeaders">renderHeaders</a></li><li data-type='method'><a href="TacoTable.html#renderRows">renderRows</a></li><li data-type='method'><a href="TacoTable.html#shouldComponentUpdate">shouldComponentUpdate</a></li><li data-type='method'><a href="TacoTable.html#sort">sort</a></li><li data-type='method'><a href="TacoTable.html#summarizeColumns">summarizeColumns</a></li></ul></li><li><a href="TacoTableCell.html">TacoTableCell</a><ul class='methods'><li data-type='method'><a href="TacoTableCell.html#computeTdClassName">computeTdClassName</a></li><li data-type='method'><a href="TacoTableCell.html#computeTdStyle">computeTdStyle</a></li><li data-type='method'><a href="TacoTableCell.html#computeWithPlugins">computeWithPlugins</a></li><li data-type='method'><a href="TacoTableCell.html#handleMouseEnter">handleMouseEnter</a></li><li data-type='method'><a href="TacoTableCell.html#handleMouseLeave">handleMouseLeave</a></li><li data-type='method'><a href="TacoTableCell.html#render">render</a></li><li data-type='method'><a href="TacoTableCell.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li><li><a href="TacoTableHeader.html">TacoTableHeader</a><ul class='methods'><li data-type='method'><a href="TacoTableHeader.html#handleClick">handleClick</a></li><li data-type='method'><a href="TacoTableHeader.html#render">render</a></li><li data-type='method'><a href="TacoTableHeader.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li><li><a href="TacoTableRow.html">TacoTableRow</a><ul class='methods'><li data-type='method'><a href="TacoTableRow.html#handleMouseEnter">handleMouseEnter</a></li><li data-type='method'><a href="TacoTableRow.html#handleMouseLeave">handleMouseLeave</a></li><li data-type='method'><a href="TacoTableRow.html#render">render</a></li><li data-type='method'><a href="TacoTableRow.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-DataType.html">DataType</a></li><li><a href="module-Formatters.html">Formatters</a><ul class='methods'><li data-type='method'><a href="module-Formatters.html#.atMostDecFormat">atMostDecFormat</a></li><li data-type='method'><a href="module-Formatters.html#.decFormat">decFormat</a></li><li data-type='method'><a href="module-Formatters.html#.decPercentFormat">decPercentFormat</a></li><li data-type='method'><a href="module-Formatters.html#.makePercent">makePercent</a></li><li data-type='method'><a href="module-Formatters.html#.makePlusMinus">makePlusMinus</a></li><li data-type='method'><a href="module-Formatters.html#.moneyFormat">moneyFormat</a></li><li data-type='method'><a href="module-Formatters.html#.percentFormat">percentFormat</a></li><li data-type='method'><a href="module-Formatters.html#.plusMinusFormat">plusMinusFormat</a></li><li data-type='method'><a href="module-Formatters.html#.safeFormat">safeFormat</a></li><li data-type='method'><a href="module-Formatters.html#.seFormat">seFormat</a></li><li data-type='method'><a href="module-Formatters.html#.zeroAsNull">zeroAsNull</a></li></ul></li><li><a href="module-plugins_HeatmapPlugin.html">plugins/HeatmapPlugin</a><ul class='methods'><li data-type='method'><a href="module-plugins_HeatmapPlugin.html#~columnTest">columnTest</a></li><li data-type='method'><a href="module-plugins_HeatmapPlugin.html#~tdStyle">tdStyle</a></li></ul></li><li><a href="module-plugins_HighlightOnly.html">plugins/HighlightOnly</a><ul class='methods'><li data-type='method'><a href="module-plugins_HighlightOnly.html#~HighlightOnly">HighlightOnly</a></li></ul></li><li><a href="module-SortDirection.html">SortDirection</a></li><li><a href="module-Summarizers.html">Summarizers</a><ul class='methods'><li data-type='method'><a href="module-Summarizers.html#.frequencySummarizer">frequencySummarizer</a></li><li data-type='method'><a href="module-Summarizers.html#.minMaxSummarizer">minMaxSummarizer</a></li></ul></li><li><a href="module-TdClassNames.html">TdClassNames</a><ul class='methods'><li data-type='method'><a href="module-TdClassNames.html#.maxClassName">maxClassName</a></li><li data-type='method'><a href="module-TdClassNames.html#.minClassName">minClassName</a></li><li data-type='method'><a href="module-TdClassNames.html#.minMaxClassName">minMaxClassName</a></li></ul></li><li><a href="module-Utils.html">Utils</a><ul class='methods'><li data-type='method'><a href="module-Utils.html#.getCellData">getCellData</a></li><li data-type='method'><a href="module-Utils.html#.getColumnById">getColumnById</a></li><li data-type='method'><a href="module-Utils.html#.getSortComparator">getSortComparator</a></li><li data-type='method'><a href="module-Utils.html#.getSortValue">getSortValue</a></li><li data-type='method'><a href="module-Utils.html#.getSortValueFromCellData">getSortValueFromCellData</a></li><li data-type='method'><a href="module-Utils.html#.renderCell">renderCell</a></li><li data-type='method'><a href="module-Utils.html#.sortData">sortData</a></li><li data-type='method'><a href="module-Utils.html#.validateColumns">validateColumns</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">TacoTableCell.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import shallowCompare from 'react-addons-shallow-compare';
+import classNames from 'classnames';
+import { getCellData, renderCell } from './Utils';
+
+const propTypes = {
+  column: React.PropTypes.object.isRequired,
+  columnGroup: React.PropTypes.object,
+  columnSummary: React.PropTypes.object,
+  columns: React.PropTypes.array,
+  highlightedColumn: React.PropTypes.bool,
+  highlightedRow: React.PropTypes.bool,
+  onHighlight: React.PropTypes.func,
+  plugins: React.PropTypes.array,
+  rowData: React.PropTypes.object.isRequired,
+  rowNumber: React.PropTypes.number,
+  tableData: React.PropTypes.array,
+};
+
+const defaultProps = {
+
+};
+
+/**
+ * React component for rendering table cells, uses `&lt;td>`.
+ *
+ * @prop {Object} column            The column definition
+ * @prop {Object} columnGroup       Column group definition
+ *   `{ header:String, columns:[colId1, colId2, ...], className:String} `
+ * @prop {Object} columnSummary     summary information for the column
+ * @prop {Object[]} columns            The column definitions
+ * @prop {Boolean} highlightedColumn   Whether this column is highlighted or not
+ * @prop {Boolean} highlightedRow      Whether this row is highlighted or not
+ * @prop {Function} onHighlight         callback for when a column is highlighted / unhighlighted
+ * @prop {Object[]} plugins            Collection of plugins to run to compute cell style,
+ *   cell class name, column summaries
+ * @prop {Object} rowData           The data to render in this row
+ * @prop {Number} rowNumber         The row number in the table
+ * @prop {Object[]} tableData          The table data
+ * @extends React.Component
+ */
+class TacoTableCell extends React.Component {
+  /**
+   * @param {Object} props React props
+   */
+  constructor(props) {
+    super(props);
+
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+  }
+
+  /**
+   * Uses `shallowCompare`
+   * @param {Object} nextProps The next props
+   * @param {Object} nextState The next state
+   * @return {Boolean}
+   */
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  }
+
+  /**
+   * Handler for when the mouse enters the `&lt;td>`. Calls `onHighlight(column.id)`.
+   * @private
+   */
+  handleMouseEnter() {
+    const { onHighlight, column } = this.props;
+    onHighlight(column.id);
+  }
+
+  /**
+   * Handler for when the mouse leaves the `&lt;td>`. Calls `onHighlight(null)`.
+   * @private
+   */
+  handleMouseLeave() {
+    const { onHighlight } = this.props;
+    onHighlight(null);
+  }
+
+  /**
+   * Computes the value of a property such as tdClassName or tdStyle
+   * by also considering plugins
+   * @private
+   */
+  computeWithPlugins(property, cellData) {
+    const { column, rowData, rowNumber, tableData, columns,
+      highlightedColumn, highlightedRow, columnSummary, plugins } = this.props;
+
+    let result;
+
+    /** evaluates `maybeFunction` as a function if it is one, otherwise returns it as a value */
+    function getValue(maybeFunction) {
+      if (typeof maybeFunction === 'function') {
+        return maybeFunction(cellData, columnSummary, column, rowData,
+          highlightedColumn, highlightedRow, rowNumber, tableData, columns);
+      }
+
+      return maybeFunction;
+    }
+
+    // interpret plugins
+    // run the td class name from each plugin
+    if (plugins) {
+      plugins.forEach(plugin => {
+        // if the plugin has property and this column matches the column test (if provided)
+        if (plugin[property] &amp;&amp; (!plugin.columnTest || plugin.columnTest(column))) {
+          const pluginResult = getValue(plugin[property]);
+
+          if (pluginResult) {
+            if (!result) {
+              result = [pluginResult];
+            } else {
+              result.push(pluginResult);
+            }
+          }
+        }
+      });
+    }
+
+    // compute the column result
+    const columnResult = getValue(column[property]);
+
+    // combine column result and plugin results
+    if (!result) {
+      result = columnResult;
+    } else if (columnResult) {
+      result.push(columnResult);
+    }
+
+    return result;
+  }
+
+  /**
+   * Computes the tdClassName value based on the prop and plugins.
+   * @private
+   */
+  computeTdClassName(cellData) {
+    return this.computeWithPlugins('tdClassName', cellData);
+  }
+
+  /**
+   * Computes the tdStyle value based on the prop and plugins.
+   * @private
+   */
+  computeTdStyle(cellData) {
+    const tdStyle = this.computeWithPlugins('tdStyle', cellData);
+    // combine the array into a single object if it is an array
+    if (Array.isArray(tdStyle)) {
+      return tdStyle.reduce((merged, style) => {
+        Object.assign(merged, style);
+        return merged;
+      }, {});
+    }
+
+    return tdStyle;
+  }
+
+  /**
+   * Main render method
+   * @return {React.Component}
+   */
+  render() {
+    const { column, rowData, rowNumber, tableData, columns,
+      onHighlight, highlightedColumn, columnGroup } = this.props;
+    const { className, type } = column;
+
+    const cellData = getCellData(column, rowData, rowNumber, tableData, columns);
+    const rendered = renderCell(cellData, column, rowData, rowNumber, tableData, columns);
+
+    // attach mouse listeners for highlighting
+    let onMouseEnter;
+    let onMouseLeave;
+    if (onHighlight) {
+      onMouseEnter = this.handleMouseEnter;
+      onMouseLeave = this.handleMouseLeave;
+    }
+
+    // compute class name and style
+    const computedTdClassName = this.computeTdClassName(cellData);
+    const computedTdStyle = this.computeTdStyle(cellData);
+
+    // get classes based on column group
+    let columnGroupClass;
+    if (columnGroup) {
+      columnGroupClass = [columnGroup.className];
+      const columnGroupIndex = columnGroup.columns.indexOf(column.id);
+
+      // first column in group
+      if (columnGroupIndex === 0) {
+        columnGroupClass.push('group-first');
+      }
+
+      // last column in group
+      if (columnGroupIndex === columnGroup.columns.length - 1) {
+        columnGroupClass.push('group-last');
+      }
+    }
+
+    return (
+      &lt;td
+        className={classNames(className, columnGroupClass, computedTdClassName,
+          `data-type-${type}`, { 'column-highlight': highlightedColumn })}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        style={computedTdStyle}
+      >
+        {rendered}
+      &lt;/td>
+    );
+  }
+}
+
+TacoTableCell.propTypes = propTypes;
+TacoTableCell.defaultProps = defaultProps;
+
+export default TacoTableCell;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Jun 21 2016 17:10:59 GMT-0400 (EDT) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

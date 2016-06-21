@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>TacoTable.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<!-- <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+ -->
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="TacoTable.html">TacoTable</a><ul class='methods'><li data-type='method'><a href="TacoTable.html#componentWillReceiveProps">componentWillReceiveProps</a></li><li data-type='method'><a href="TacoTable.html#handleColumnHighlight">handleColumnHighlight</a></li><li data-type='method'><a href="TacoTable.html#handleHeaderClick">handleHeaderClick</a></li><li data-type='method'><a href="TacoTable.html#handleRowHighlight">handleRowHighlight</a></li><li data-type='method'><a href="TacoTable.html#render">render</a></li><li data-type='method'><a href="TacoTable.html#renderGroupHeaders">renderGroupHeaders</a></li><li data-type='method'><a href="TacoTable.html#renderHeaders">renderHeaders</a></li><li data-type='method'><a href="TacoTable.html#renderRows">renderRows</a></li><li data-type='method'><a href="TacoTable.html#shouldComponentUpdate">shouldComponentUpdate</a></li><li data-type='method'><a href="TacoTable.html#sort">sort</a></li><li data-type='method'><a href="TacoTable.html#summarizeColumns">summarizeColumns</a></li></ul></li><li><a href="TacoTableCell.html">TacoTableCell</a><ul class='methods'><li data-type='method'><a href="TacoTableCell.html#computeTdClassName">computeTdClassName</a></li><li data-type='method'><a href="TacoTableCell.html#computeTdStyle">computeTdStyle</a></li><li data-type='method'><a href="TacoTableCell.html#computeWithPlugins">computeWithPlugins</a></li><li data-type='method'><a href="TacoTableCell.html#handleMouseEnter">handleMouseEnter</a></li><li data-type='method'><a href="TacoTableCell.html#handleMouseLeave">handleMouseLeave</a></li><li data-type='method'><a href="TacoTableCell.html#render">render</a></li><li data-type='method'><a href="TacoTableCell.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li><li><a href="TacoTableHeader.html">TacoTableHeader</a><ul class='methods'><li data-type='method'><a href="TacoTableHeader.html#handleClick">handleClick</a></li><li data-type='method'><a href="TacoTableHeader.html#render">render</a></li><li data-type='method'><a href="TacoTableHeader.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li><li><a href="TacoTableRow.html">TacoTableRow</a><ul class='methods'><li data-type='method'><a href="TacoTableRow.html#handleMouseEnter">handleMouseEnter</a></li><li data-type='method'><a href="TacoTableRow.html#handleMouseLeave">handleMouseLeave</a></li><li data-type='method'><a href="TacoTableRow.html#render">render</a></li><li data-type='method'><a href="TacoTableRow.html#shouldComponentUpdate">shouldComponentUpdate</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-DataType.html">DataType</a></li><li><a href="module-Formatters.html">Formatters</a><ul class='methods'><li data-type='method'><a href="module-Formatters.html#.atMostDecFormat">atMostDecFormat</a></li><li data-type='method'><a href="module-Formatters.html#.decFormat">decFormat</a></li><li data-type='method'><a href="module-Formatters.html#.decPercentFormat">decPercentFormat</a></li><li data-type='method'><a href="module-Formatters.html#.makePercent">makePercent</a></li><li data-type='method'><a href="module-Formatters.html#.makePlusMinus">makePlusMinus</a></li><li data-type='method'><a href="module-Formatters.html#.moneyFormat">moneyFormat</a></li><li data-type='method'><a href="module-Formatters.html#.percentFormat">percentFormat</a></li><li data-type='method'><a href="module-Formatters.html#.plusMinusFormat">plusMinusFormat</a></li><li data-type='method'><a href="module-Formatters.html#.safeFormat">safeFormat</a></li><li data-type='method'><a href="module-Formatters.html#.seFormat">seFormat</a></li><li data-type='method'><a href="module-Formatters.html#.zeroAsNull">zeroAsNull</a></li></ul></li><li><a href="module-plugins_HeatmapPlugin.html">plugins/HeatmapPlugin</a><ul class='methods'><li data-type='method'><a href="module-plugins_HeatmapPlugin.html#~columnTest">columnTest</a></li><li data-type='method'><a href="module-plugins_HeatmapPlugin.html#~tdStyle">tdStyle</a></li></ul></li><li><a href="module-plugins_HighlightOnly.html">plugins/HighlightOnly</a><ul class='methods'><li data-type='method'><a href="module-plugins_HighlightOnly.html#~HighlightOnly">HighlightOnly</a></li></ul></li><li><a href="module-SortDirection.html">SortDirection</a></li><li><a href="module-Summarizers.html">Summarizers</a><ul class='methods'><li data-type='method'><a href="module-Summarizers.html#.frequencySummarizer">frequencySummarizer</a></li><li data-type='method'><a href="module-Summarizers.html#.minMaxSummarizer">minMaxSummarizer</a></li></ul></li><li><a href="module-TdClassNames.html">TdClassNames</a><ul class='methods'><li data-type='method'><a href="module-TdClassNames.html#.maxClassName">maxClassName</a></li><li data-type='method'><a href="module-TdClassNames.html#.minClassName">minClassName</a></li><li data-type='method'><a href="module-TdClassNames.html#.minMaxClassName">minMaxClassName</a></li></ul></li><li><a href="module-Utils.html">Utils</a><ul class='methods'><li data-type='method'><a href="module-Utils.html#.getCellData">getCellData</a></li><li data-type='method'><a href="module-Utils.html#.getColumnById">getColumnById</a></li><li data-type='method'><a href="module-Utils.html#.getSortComparator">getSortComparator</a></li><li data-type='method'><a href="module-Utils.html#.getSortValue">getSortValue</a></li><li data-type='method'><a href="module-Utils.html#.getSortValueFromCellData">getSortValueFromCellData</a></li><li data-type='method'><a href="module-Utils.html#.renderCell">renderCell</a></li><li data-type='method'><a href="module-Utils.html#.sortData">sortData</a></li><li data-type='method'><a href="module-Utils.html#.validateColumns">validateColumns</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">TacoTable.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import shallowCompare from 'react-addons-shallow-compare';
+import classNames from 'classnames';
+import TacoTableHeader from './TacoTableHeader';
+import TacoTableRow from './TacoTableRow';
+import SortDirection from './SortDirection';
+import { sortData, getColumnById, validateColumns } from './Utils';
+
+import './style/taco-table.scss';
+
+const propTypes = {
+  columns: React.PropTypes.array.isRequired,
+  columnGroups: React.PropTypes.array,
+  columnHighlighting: React.PropTypes.bool,
+  className: React.PropTypes.string,
+  data: React.PropTypes.array,
+  fullWidth: React.PropTypes.bool,
+  initialSortColumnId: React.PropTypes.string,
+  initialSortDirection: React.PropTypes.bool,
+  plugins: React.PropTypes.array,
+  rowClassName: React.PropTypes.func,
+  rowHighlighting: React.PropTypes.bool,
+  sortable: React.PropTypes.bool,
+  striped: React.PropTypes.bool,
+  HeaderComponent: React.PropTypes.func,
+  RowComponent: React.PropTypes.func,
+};
+
+const defaultProps = {
+  columnHighlighting: false,
+  initialSortDirection: SortDirection.Ascending,
+  striped: false,
+  sortable: true,
+  fullWidth: true,
+  rowHighlighting: true,
+  HeaderComponent: TacoTableHeader,
+  RowComponent: TacoTableRow,
+};
+
+/**
+ * React component for rendering a table, uses `&lt;table className="taco-table">`
+ *
+ * Note that `Renderable` means anything React can render (e.g., String, Number,
+ * React.Component, etc.).
+ *
+ * ### Column Definition
+ *
+ * Columns are defined by objects with the following format:
+ *
+ * | Name | Type     | Description   |
+ * | :----| :------  | :------------ |
+ * | `id` | String | The id of the column. Typically corresponds to a key in the rowData object. |
+ * | `[className]` | String | The class name to be applied to both `&lt;td>` and `&lt;th>` |
+ * | `[firstSortDirection]` | Boolean | The direction which this column gets sorted by on first click |
+ * | `[header]` | Renderable | What is rendered in the column header. If not provided, uses the columnId. |
+ * | `[renderer]` | Function | `function (cellData, column, rowData, rowNumber, tableData, columns)`&lt;br>The function that renders the value in the table. Can return anything React can render. |
+ * | `[rendererOptions]` | Object | Object of options that can be read by the renderer |
+ * | `[simpleRenderer]` | Function | `function (cellData, column, rowData, rowNumber, tableData, columns)`&lt;br>The function that render the cell's value in a simpler format. Must return a String or Number. |
+ * | `[sortType]` | String | The `DataType` of the column to be used strictly for sorting, if not provided, uses `type` - number, string, etc |
+ * | `[sortValue]` | Function | `function (cellData, rowData)`&lt;br>Function to use when sorting instead of `value`. |
+ * | `[summarize]` | Function | `function (column, tableData, columns)`&lt;br>Produces an object representing a summary of the column (e.g., min and max) to be used in the |
+ * | `[tdClassName]` | Function or String | `function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)`&lt;br>A function that returns a class name based on the cell data and column summary or other information. If a string is provided, it is used directly as the class name. |
+ * | `[tdStyle]` | Function or Object | `function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)`&lt;br>A function that returns the style to be applied to the cell. If an object is provided, it is used directly as the style attribute. |
+ * | `[thClassName]` | String | The class name to be applied to `&lt;th>` only |
+ * | `[type]` | String | The `DataType` of the column - number, string, etc |
+ * | `[value]` | Function or String | `function (rowData, rowNumber, tableData, columns)`&lt;br>Function to produce cellData's value. If a String, reads that as a key into the rowData object. If not provided, columnId is used as a key into the rowData object. |
+ * | `[width]` | Number or String | The value to set for the style `width` property on the column. |
+ *
+ *
+ * ### Column Groups
+ *
+ * Column groups are defined by objects with the following format:
+ *
+ * | Name | Type     | Description   |
+ * | :----| :------  | :------------ |
+ * | `[className]` | String | The className to apply to cells and headers in this group |
+ * | `columns` | String[] | The column IDs to render |
+ * | `[header]` | Renderable | What shows up in the table header if provided |
+ *
+ *
+ * ### Plugins
+ *
+ * Plugins are defined by objects with the following format:
+ *
+ * | Name | Type     | Description   |
+ * | :----| :------  | :------------ |
+ * | `[columnTest]` | Function | A function that takes a column and returns true or false if it the plugin should be run on this column. Default is true for everything. |
+ * | `id` | String | The ID of the plugin |
+ * | `[summarize]` | Function | A column summarizer function |
+ * | `[tdStyle]` | Function or Object | The TD style function |
+ * | `[tdClassName]` | Function or String | The TD class name function |
+ *
+ *
+ * @prop {Object[]} columns   The column definitions
+ * @prop {Object[]} columnGroups   How to group columns - an array of
+ *   `{ header:String, columns:[colId1, colId2, ...], className:String}`
+ * @prop {Boolean} columnHighlighting=false   Whether or not to turn on mouse listeners
+ *    for column highlighting
+ * @prop {String} className   The class names to apply to the table
+ * @prop {Object[]} data   The data to be rendered as rows
+ * @prop {String} initialSortColumnId   Column ID of the data to sort by initially
+ * @prop {Boolean} initialSortDirection=true(Ascending)   Direction by which to sort initially
+ * @prop {Object[]} plugins   Collection of plugins to run to compute cell style,
+ *    cell class name, column summaries
+ * @prop {Boolean} sortable=true   Whether the table can be sorted or not
+ * @prop {Boolean} striped=false   Whether the table is striped
+ * @prop {Boolean} fullWidth=true   Whether the table takes up full width or not
+ * @prop {Function} rowClassName   Function that maps (rowData, rowNumber) to a class name
+ * @prop {Boolean} rowHighlighting=true   Whether or not to turn on mouse
+ *    listeners for row highlighting
+ * @prop {Function} HeaderComponent=TacoTableHeader   allow configuration of which
+ *     component to use for headers
+ * @prop {Function} RowComponent=TacoTableRow   allow configuration of which
+ *     component to use for rows
+ * @extends React.Component
+ */
+class TacoTable extends React.Component {
+  /**
+   * @param {Object} props React props
+   */
+  constructor(props) {
+    super(props);
+
+    // check for column warnings
+    if (process.env.NODE_ENV !== 'production') {
+      validateColumns(props.columns);
+    }
+
+    // store the data in the state to have a unified interface for sortable and
+    // non-sortable tables. Take a slice to ensure we do not modify the original
+    this.state = {
+      data: props.data.slice(),
+      columnSummaries: this.summarizeColumns(props),
+    };
+
+    // if sortable, do the initial sort
+    if (props.sortable) {
+      const sortColumn = getColumnById(props.columns, props.initialSortColumnId);
+      const sortColumnId = props.initialSortColumnId;
+
+      if (sortColumn) {
+        // get the sort direction by interpreting initialSortDir then firstSortDir then default Asc
+        let sortDirection;
+        if (props.initialSortDirection == null) {
+          if (sortColumn.firstSortDirection == null) {
+            sortDirection = SortDirection.Ascending;
+          } else {
+            sortDirection = sortColumn.firstSortDirection;
+          }
+        } else {
+          sortDirection = props.initialSortDirection;
+        }
+
+        Object.assign(this.state, {
+          sortColumnId,
+          sortDirection,
+          data: sortData(this.state.data, props.initialSortColumnId,
+            props.initialSortDirection, props.columns),
+        });
+      }
+    }
+
+
+    // bind handlers
+    this.handleHeaderClick = this.handleHeaderClick.bind(this);
+    this.handleRowHighlight = this.handleRowHighlight.bind(this);
+    this.handleColumnHighlight = this.handleColumnHighlight.bind(this);
+    this.sort = this.sort.bind(this);
+  }
+
+  /**
+   * On receiving new props, sort the data and recompute column summaries if the data
+   * has changed.
+   * @param {Object} nextProps The next props
+   * @returns {void}
+   */
+  componentWillReceiveProps(nextProps) {
+    const { data } = this.props;
+
+    // check for column warnings
+    if (process.env.NODE_ENV !== 'production') {
+      validateColumns(nextProps.columns);
+    }
+
+    if (data !== nextProps.data) {
+      const newState = Object.assign({}, this.state, { data: nextProps.data.slice() });
+
+      // re-sort the data
+      Object.assign(newState, this.sort(newState.sortColumnId, nextProps, newState));
+
+      // recompute column summaries
+      newState.columnSummaries = this.summarizeColumns(nextProps);
+
+      this.setState(newState);
+    }
+  }
+
+  /**
+   * Uses `shallowCompare`
+   * @param {Object} nextProps The next props
+   * @param {Object} nextState The next state
+   * @return {Boolean} If the component should update
+   */
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  }
+
+  /**
+   * Callback when a header is clicked. If a sortable table, sorts the table.
+   *
+   * @param {String} columnId The ID of the column that was clicked.
+   * @returns {void}
+   * @private
+   */
+  handleHeaderClick(columnId) {
+    const { sortable } = this.props;
+
+    if (sortable) {
+      const sortResults = this.sort(columnId);
+      if (sortResults) {
+        this.setState(sortResults);
+      }
+    }
+  }
+
+  /**
+   * Callback when a row is highlighted
+   *
+   * @param {Object} rowData The row data for the row that is highlighted
+   * @returns {void}
+   * @private
+   */
+  handleRowHighlight(rowData) {
+    this.setState({
+      highlightedRowData: rowData,
+    });
+  }
+
+  /**
+   * Callback when a column is highlighted
+   *
+   * @param {String} columnId The ID of the column being highlighted
+   * @returns {void}
+   * @private
+   */
+  handleColumnHighlight(columnId) {
+    this.setState({
+      highlightedColumnId: columnId,
+    });
+  }
+
+  /**
+   * Sort the table based on a column
+   *
+   * @param {String} columnId the ID of the column to sort by
+   * @param {Object} props=this.props
+   * @param {Object} state=this.state
+   * @return {Object} Object representing sort state
+   *    `{ sortDirection, sortColumnId, data }`.
+   * @private
+   */
+  sort(columnId, props = this.props, state = this.state) {
+    const { columns } = props;
+    const { sortColumnId, data } = state;
+    let { sortDirection } = state;
+    const column = getColumnById(columns, columnId);
+
+    if (!column) {
+      return undefined;
+    }
+
+    // if there was no sort direction before or the column ID changed, use the firstSort
+    if (sortDirection == null || columnId !== sortColumnId) {
+      sortDirection = column.firstSortDirection;
+
+    // if it is the same column, invert direction
+    } else if (columnId === sortColumnId) {
+      sortDirection = !sortDirection;
+
+    // otherwise just default to ascending
+    } else {
+      sortDirection = SortDirection.Ascending;
+    }
+
+    const newState = {
+      sortDirection: sortDirection == null ? SortDirection.Ascending : sortDirection,
+      sortColumnId: columnId,
+    };
+
+    newState.data = sortData(data, newState.sortColumnId, newState.sortDirection, columns);
+    return newState;
+  }
+
+  /**
+   * Computes a summary for each column that is configured to have one.
+   *
+   * @param {Object} props React component props
+   * @return {Array} array of summaries matching the indices for `columns`,
+   *   null for those without a `summarize` property.
+   * @private
+   */
+  summarizeColumns(props = this.props) {
+    const { columns, data, plugins } = props;
+
+    const summaries = columns.map(column => {
+      let result;
+
+      // run the summarize from each plugin
+      if (plugins) {
+        plugins.forEach(plugin => {
+          // if the plugin has summarize and this column matches the column test (if provided)
+          if (plugin.summarize &amp;&amp; (!plugin.columnTest || plugin.columnTest(column))) {
+            const pluginResult = plugin.summarize(column, data, columns);
+            if (pluginResult) {
+              if (!result) {
+                result = pluginResult;
+              } else {
+                Object.assign(result, pluginResult);
+              }
+            }
+          }
+        });
+      }
+
+      // run the column summarize last to potentially override plugins
+      if (column.summarize) {
+        const columnResult = column.summarize(column, data, columns);
+        if (!result) {
+          result = columnResult;
+        } else {
+          Object.assign(result, columnResult);
+        }
+      }
+
+      return result;
+    });
+
+    return summaries;
+  }
+
+  /**
+   * Renders the group headers above column headers
+   *
+   * @return {React.Component} `&lt;tr>`
+   * @private
+   */
+  renderGroupHeaders() {
+    const { columns, columnGroups } = this.props;
+
+    // only render if we have labels
+    if (!columnGroups || !columnGroups.some(columnGroup => columnGroup.header)) {
+      return null;
+    }
+
+    // note we iterate over columns instead of columnGroups since not all columns
+    // may be in a defined group
+    return (
+      &lt;tr className="group-headers">
+        {columns.map((column, i) => {
+          const columnGroup = columnGroups.find(group =>
+            group.columns.includes(column.id));
+
+          // if not in a group, render an empty th
+          if (!columnGroup) {
+            return &lt;th key={i} className="group-header-no-group" />;
+          }
+
+          // if first item in the group, render a multiple column spanning header
+          if (columnGroup.columns.indexOf(column.id) === 0) {
+            return (
+              &lt;th
+                key={i}
+                colSpan={columnGroup.columns.length}
+                className={classNames('group-header', `group-header-${i}`, columnGroup.className)}
+              >
+                {columnGroup.header}
+              &lt;/th>
+            );
+          }
+
+          // if not the first item in the group, do not render it since colSpan handles it
+          return null;
+        })}
+      &lt;/tr>
+    );
+  }
+
+  /**
+   * Renders the headers of the table in a thead
+   *
+   * @return {React.Component} `&lt;thead>`
+   * @private
+   */
+  renderHeaders() {
+    const { columns, columnGroups, HeaderComponent, sortable } = this.props;
+    const { highlightedColumnId, sortColumnId, sortDirection } = this.state;
+
+    return (
+      &lt;thead>
+        {this.renderGroupHeaders()}
+        &lt;tr>
+          {columns.map((column, i) => {
+            // find the associated column group
+            let columnGroup;
+            if (columnGroups) {
+              columnGroup = columnGroups.find(group =>
+                group.columns.includes(column.id));
+            }
+
+            return (
+              &lt;HeaderComponent
+                key={i}
+                column={column}
+                columnGroup={columnGroup}
+                highlightedColumn={column.id === highlightedColumnId}
+                sortableTable={sortable}
+                onClick={this.handleHeaderClick}
+                sortDirection={sortColumnId === column.id ? sortDirection : undefined}
+              />
+            );
+          })}
+        &lt;/tr>
+      &lt;/thead>
+    );
+  }
+
+  /**
+   * Renders the rows of the table in a tbody
+   *
+   * @return {React.Component} `&lt;tbody>`
+   * @private
+   */
+  renderRows() {
+    const { columns, RowComponent, rowClassName, rowHighlighting,
+      columnHighlighting, plugins, columnGroups } = this.props;
+    const { data, highlightedRowData, highlightedColumnId, columnSummaries } = this.state;
+
+    return (
+      &lt;tbody>
+        {data.map((rowData, i) => {
+          // compute the class name if a row class name function is provided
+          let className;
+          if (rowClassName) {
+            className = rowClassName(rowData, i);
+          }
+
+          return (
+            &lt;RowComponent
+              key={i}
+              rowNumber={i}
+              rowData={rowData}
+              columns={columns}
+              columnGroups={columnGroups}
+              columnSummaries={columnSummaries}
+              tableData={data}
+              plugins={plugins}
+              className={className}
+              highlighted={highlightedRowData === rowData}
+              onHighlight={rowHighlighting ? this.handleRowHighlight : undefined}
+              highlightedColumnId={highlightedColumnId}
+              onColumnHighlight={columnHighlighting ? this.handleColumnHighlight : undefined}
+            />
+          );
+        })}
+      &lt;/tbody>
+    );
+  }
+
+  /**
+   * Main render method
+   * @return {React.Component} The table component
+   */
+  render() {
+    const { className, fullWidth, striped, sortable } = this.props;
+
+    return (
+      &lt;table
+        className={classNames('taco-table', className, {
+          'table-full-width': fullWidth,
+          'table-not-full-width': !fullWidth,
+          'table-striped': striped,
+          'table-sortable': sortable,
+        })}
+      >
+        {this.renderHeaders()}
+        {this.renderRows()}
+      &lt;/table>
+    );
+  }
+}
+
+TacoTable.propTypes = propTypes;
+TacoTable.defaultProps = defaultProps;
+
+export default TacoTable;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Jun 21 2016 17:10:59 GMT-0400 (EDT) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
