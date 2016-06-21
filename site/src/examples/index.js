@@ -26,6 +26,9 @@ import exampleStyleCode from '!raw!../components/ExampleStyle';
 import ExampleSummarizer from '../components/ExampleSummarizer';
 import exampleSummarizerCode from '!raw!../components/ExampleSummarizer';
 
+import ExampleHeatmap from '../components/ExampleHeatmap';
+import exampleHeatmapCode from '!raw!../components/ExampleHeatmap';
+
 
 import '../site.scss';
 import 'react-taco-table/style/taco-table.scss';
@@ -63,6 +66,7 @@ const examples = [
     code: exampleFormattersCode,
     github: `${githubRoot}/ExampleFormatters.js`,
     previewCodeStart: 8,
+    previewCodeLength: 8,
   },
   {
     id: 'example-sort',
@@ -73,6 +77,7 @@ const examples = [
     code: exampleSortConfigCode,
     github: `${githubRoot}/ExampleSortConfig.js`,
     previewCodeStart: 36,
+    previewCodeLength: 8,
   },
   {
     id: 'example-row-class-name',
@@ -142,7 +147,20 @@ const examples = [
     code: exampleSummarizerCode,
     github: `${githubRoot}/ExampleSummarizer.js`,
     previewCodeStart: 27,
-    previewCodeLength: 11,
+    previewCodeLength: 21,
+  },
+  {
+    id: 'example-heatmap',
+    label: 'Adding heatmap coloring to cells with the Heatmap plugin',
+    description: `This example demonstrates how to make use of the Heatmap plugin
+      to add heatmapping to numeric columns. The default configuration is to use
+      the Magma color scheme on number columns. This example shows the options
+      available for overriding the defaults as necessary.`,
+    component: ExampleHeatmap,
+    code: exampleHeatmapCode,
+    github: `${githubRoot}/ExampleHeatmap.js`,
+    previewCodeStart: 101,
+    previewCodeLength: 14,
   },
 ];
 
