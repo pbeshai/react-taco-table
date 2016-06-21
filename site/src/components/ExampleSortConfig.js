@@ -3,7 +3,7 @@ import { TacoTable, DataType, SortDirection, Formatters } from 'react-taco-table
 import cellLinesData from '../data/cell_lines.json';
 
 /**
- * An example demonstrating various formatters
+ * An example demonstrating sort configurations
  */
 
 const columns = [
