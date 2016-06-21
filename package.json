@@ -13,7 +13,8 @@
   "gh-pages-deploy": {
     "staticpath": "site/dist",
     "prep": [
-      "site-build"
+      "site-build",
+      "docs"
     ]
   },
   "author": {
