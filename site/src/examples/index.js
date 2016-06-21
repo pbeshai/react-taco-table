@@ -14,6 +14,10 @@ import exampleRowClassName from '!raw!../components/ExampleRowClassName';
 import ExampleColumnGroups from '../components/ExampleColumnGroups';
 import exampleColumnGroups from '!raw!../components/ExampleColumnGroups';
 
+import ExampleColumnGroupsNoHeader from '../components/ExampleColumnGroupsNoHeader';
+import exampleColumnGroupsNoHeader from '!raw!../components/ExampleColumnGroupsNoHeader';
+
+
 
 import '../site.scss';
 import 'react-taco-table/style/taco-table.scss';
@@ -86,6 +90,17 @@ const examples = [
     code: exampleColumnGroups,
     github: `${githubRoot}ExampleColumnGroups.js`,
     previewCodeStart: 48,
+    previewCodeLength: 4,
+  },
+  {
+    id: 'example-column-groups-no-header',
+    label: 'Column groups without headers',
+    description: `This example demonstrates how to use column groups without headers,
+      which is an easy way to get vertical lines between groups of columns.`,
+    component: ExampleColumnGroupsNoHeader,
+    code: exampleColumnGroupsNoHeader,
+    github: `${githubRoot}ExampleColumnGroupsNoHeader.js`,
+    previewCodeStart: 46,
     previewCodeLength: 4,
   },
 ];
