@@ -1,9 +1,40 @@
 .code-example {
-  &.collapsed {
-    color: #1D72BB;
-    cursor: pointer;
-    &:hover {
-      text-decoration: underline;
+  .expanded-block, .preview-block {
+    display: none;
+  }
+
+  &.expanded {
+    .expanded-block {
+      display: block;
     }
+  }
+
+  &.collapsed {
+    .preview-block {
+      display: block;
+    }
+  }
+
+  .preview-code, .expanded-code {
+    margin-bottom: 0;
+  }
+
+  .expanded-code {
+    padding-bottom: 16px;
+  }
+
+  .code-toggle-control {
+    cursor: pointer;
+    padding: 8px 18px 8px 16px;
+    background: #f6f6f6;
+    font-size: 0.9em;
+    border-left: 2px solid #eee;
+    display: inline-block;
+
+    &:hover {
+      background: #fafafa;
+      color: #1D72BB;
+    }
+
   }
 }
