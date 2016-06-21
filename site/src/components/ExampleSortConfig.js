@@ -42,6 +42,19 @@ const columns = [
     sortValue: cellData => cellData.length,
     header: 'String as number',
   },
+  {
+    id: 'not-sortable-none',
+    type: DataType.None,
+    value: rowData => rowData.cellLine.label,
+    header: 'Not sortable (type: None)',
+  },
+  {
+    id: 'not-sortable-null',
+    type: DataType.String,
+    value: rowData => rowData.cellLine.label,
+    sortValue: null,
+    header: 'Not sortable (sortValue: null)',
+  },
 ];
 
 
