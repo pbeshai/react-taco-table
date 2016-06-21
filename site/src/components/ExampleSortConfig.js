@@ -65,7 +65,7 @@ class ExampleFormatters extends React.Component {
         columns={columns}
         data={cellLinesData}
         initialSortDirection={SortDirection.Ascending}
-        initialSortColumnId={'name'}
+        initialSortColumnId="name"
       />
     );
   }

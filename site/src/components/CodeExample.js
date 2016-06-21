@@ -12,7 +12,7 @@ const propTypes = {
 
 const defaultProps = {
   language: 'javascript',
-  previewStart: 8,
+  previewStart: 0,
   previewLength: 8,
 };
 

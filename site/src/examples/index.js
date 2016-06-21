@@ -11,6 +11,10 @@ import exampleSortConfigCode from '!raw!../components/ExampleSortConfig';
 import ExampleRowClassName from '../components/ExampleRowClassName';
 import exampleRowClassName from '!raw!../components/ExampleRowClassName';
 
+import ExampleColumnGroups from '../components/ExampleColumnGroups';
+import exampleColumnGroups from '!raw!../components/ExampleColumnGroups';
+
+
 import '../site.scss';
 import 'react-taco-table/style/taco-table.scss';
 
@@ -46,6 +50,7 @@ const examples = [
     component: ExampleFormatters,
     code: exampleFormattersCode,
     github: `${githubRoot}ExampleFormatters.js`,
+    previewCodeStart: 8,
   },
   {
     id: 'example-sort',
@@ -66,6 +71,17 @@ const examples = [
     code: exampleRowClassName,
     github: `${githubRoot}ExampleRowClassName.js`,
     previewCodeStart: 48,
+    previewCodeLength: 7,
+  },
+  {
+    id: 'example-column-groups',
+    label: 'Column groups',
+    description: 'This example demonstrates how to use column groups with headers.',
+    component: ExampleColumnGroups,
+    code: exampleColumnGroups,
+    github: `${githubRoot}ExampleColumnGroups.js`,
+    previewCodeStart: 48,
+    previewCodeLength: 4,
   },
 ];
 
@@ -96,10 +112,17 @@ class Main extends React.Component {
             </h3>
             <p>
               {example.description}
-              <a className="example-github-link" href={example.github}>Code on GitHub</a>
+              <a className="example-github-link" href={example.github}>
+                Code on GitHub
+              </a>
             </p>
             <example.component />
-            <CodeExample language="javascript" code={example.code} previewStart={example.previewCodeStart} />
+            <CodeExample
+              language="javascript"
+              code={example.code}
+              previewStart={example.previewCodeStart}
+              previewLength={example.previewCodeLength}
+            />
           </div>
         ))}
       </div>

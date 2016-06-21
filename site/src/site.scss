@@ -103,8 +103,13 @@ code {
   border-radius: 0;
 }
 
+
+.hljs {
+  padding: 0;
+}
 pre code.hljs {
   background: transparent;
+  padding: 0.5em 1em;
 }
 
 pre {

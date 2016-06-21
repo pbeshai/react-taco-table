@@ -2,10 +2,10 @@ import React from 'react';
 import { TacoTable, DataType, SortDirection, Formatters } from 'react-taco-table';
 import cellLinesData from '../data/cell_lines.json';
 
-import './ExampleRowClassName.scss';
+import './ExampleColumnGroups.scss';
 
 /**
- * An example demonstrating how to use rowClassName
+ * An example demonstrating how to use column groups
  */
 
 const columns = [
@@ -46,23 +46,19 @@ const columns = [
   },
 ];
 
-function rowClassName(rowData, rowNumber) {
-  if (rowData.MLL3 === 'MUT') {
-    return 'special-row';
-  }
+const columnGroups = [
+  { columns: ['name', 'receptorStatus'], className: 'my-group', header: 'My Group' },
+  { columns: ['value', 'rating', 'level'], className: 'some-numbers', header: 'Some Numbers' },
+];
 
-  return undefined;
-}
-
-
-class ExampleRowClassName extends React.Component {
+class ExampleColumnGroups extends React.Component {
   render() {
     return (
       <TacoTable
-        className="example-row-class-name"
+        className='example-column-groups'
         columns={columns}
+        columnGroups={columnGroups}
         data={cellLinesData}
-        rowClassName={rowClassName}
         striped
         sortable
       />
@@ -70,4 +66,4 @@ class ExampleRowClassName extends React.Component {
   }
 }
 
-export default ExampleRowClassName;
+export default ExampleColumnGroups;
