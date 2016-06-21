@@ -10,7 +10,7 @@ module.exports = function gruntInit(grunt) {
 
   // for building the site
   grunt.registerTask('site', ['webpack-dev-server']);
-  grunt.registerTask('site-build', ['clean:site-build', 'build-env', 'webpack:site-build']);
+  grunt.registerTask('site-build', ['clean:site-build', 'build-env', 'webpack:site-build', 'copy:docs']);
 
   // default is to build the js files and the site
   grunt.registerTask('default', ['build', 'site-build']);

@@ -46,7 +46,7 @@ module.exports = {
     new DefinePlugin({
       'process.env.NODE_ENV': '"production"',
     }),
-    new ExtractTextPlugin('main.css'),
+    new ExtractTextPlugin('[name].css'),//, { allChunks: true }),
     new HtmlPlugin({
       chunks: ['site-main'],
       template: './src/index.html',
