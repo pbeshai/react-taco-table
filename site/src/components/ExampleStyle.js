@@ -34,9 +34,9 @@ const columns = [
       const opacity = (cellData + 3) / 4.5;
       return {
         backgroundColor: `rgba(100, 0, 100, ${opacity})`,
-        color: cellData > 0 ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'
+        color: cellData > 0 ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)',
       };
-    }
+    },
   },
   {
     id: 'rating',
@@ -53,7 +53,6 @@ class ExampleStyle extends React.Component {
   render() {
     return (
       <TacoTable
-        className='example-class-name'
         columns={columns}
         data={cellLinesData}
         sortable

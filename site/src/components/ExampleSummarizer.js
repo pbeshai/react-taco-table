@@ -4,8 +4,7 @@ import { TacoTable, DataType, Formatters, Summarizers,
 import cellLinesData from '../data/cell_lines.json';
 
 /**
- * An example demonstrating how to use style in columns
- * and have them vary for each cell.
+ * An example demonstrating how to use column summarizers.
  */
 
 const columns = [
