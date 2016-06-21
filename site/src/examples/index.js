@@ -20,6 +20,9 @@ import exampleColumnGroupsNoHeaderCode from '!raw!../components/ExampleColumnGro
 import ExampleClassName from '../components/ExampleClassName';
 import exampleClassNameCode from '!raw!../components/ExampleClassName';
 
+import ExampleStyle from '../components/ExampleStyle';
+import exampleStyleCode from '!raw!../components/ExampleStyle';
+
 
 import '../site.scss';
 import 'react-taco-table/style/taco-table.scss';
@@ -113,6 +116,17 @@ const examples = [
     component: ExampleClassName,
     code: exampleClassNameCode,
     github: `${githubRoot}/ExampleClassName.js`,
+    previewCodeStart: 27,
+    previewCodeLength: 14,
+  },
+  {
+    id: 'example-style',
+    label: 'Cell style',
+    description: `This example shows how to configure style for cells directly
+      with an object, as well as based on the data in the cells.`,
+    component: ExampleStyle,
+    code: exampleStyleCode,
+    github: `${githubRoot}/ExampleStyle.js`,
     previewCodeStart: 27,
     previewCodeLength: 13,
   },
