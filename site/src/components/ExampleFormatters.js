@@ -1,8 +1,6 @@
 import React from 'react';
-import { TacoTable, DataType, SortDirection, Formatters,
-  Utils, Summarizers, TdClassNames, Plugins } from 'react-taco-table';
+import { TacoTable, DataType, Formatters } from 'react-taco-table';
 import cellLinesData from '../data/cell_lines.json';
-import * as d3 from 'd3-scale';
 
 /**
  * An example demonstrating various formatters
