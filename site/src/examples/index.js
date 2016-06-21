@@ -76,7 +76,12 @@ const examples = [
   {
     id: 'example-column-groups',
     label: 'Column groups',
-    description: 'This example demonstrates how to use column groups with headers.',
+    description:
+      <span>
+        This example demonstrates how to use column groups with headers. The default styling
+        adds in vertical lines between column groups. Here, the first group also gets the class
+        <code>my-group</code> added to each <code>&lt;td&gt;</code> and <code>&lt;th&gt;</code>.
+      </span>,
     component: ExampleColumnGroups,
     code: exampleColumnGroups,
     github: `${githubRoot}ExampleColumnGroups.js`,

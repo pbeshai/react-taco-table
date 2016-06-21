@@ -48,7 +48,7 @@ const columns = [
 
 const columnGroups = [
   { columns: ['name', 'receptorStatus'], className: 'my-group', header: 'My Group' },
-  { columns: ['value', 'rating', 'level'], className: 'some-numbers', header: 'Some Numbers' },
+  { columns: ['value', 'rating', 'level'], header: 'Some Numbers' },
 ];
 
 class ExampleColumnGroups extends React.Component {
