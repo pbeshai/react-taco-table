@@ -1,29 +1,31 @@
 # react-taco-table
 
-A react component for creating tables configured by a set of columns.
+A [React](https://facebook.github.io/react/) component for creating tables configured by a set of columns.
 
-## Set up
-1. Install dependencies with `npm install`
+Examples with live demos are available here: http://pbeshai.github.io/react-taco-table/examples.html
 
-## Building
-1. To build files for production, run `grunt build`
+# Installation
 
-## Documentation
-1. To generate the documentation, run `npm run docs`. They will appear in `/docs`.
+TODO - some time soon this will be available via NPM and will be installed by running
 
-## Site Dev
-1. To run the webpack-dev-server for the site, run `grunt site`
+```
+npm install react-taco-table --save-dev
+```
 
-### Building the Site
-1. To build the prod files for the site, run `grunt site-build`
+Then including in your application as:
 
-To deploy to github pages, run `npm run gh-pages` -- it will do the `grunt site-build` automatically.
+```js
+import { TacoTable } from 'react-taco-table';
 
+// Include CSS with webpack or equivalent -- or use your own
+import 'react-taco-table/dist/react-taco-table.css';
+```
 
-## Testing
-1. To run the tests, run `npm test`
+# Usage
 
-# Features Roadmap
+TODO - add in usage.
+
+# Features
 
 - [x] sort
 - [x] th classes
@@ -40,8 +42,9 @@ To deploy to github pages, run `npm run gh-pages` -- it will do the `grunt site-
 - [x] column grouping
 - [x] group headers
 - [x] sort indicators
+- [x] heatmap
 
-## Stretch features
+## Feature Roadmap
 - [ ] search within table to filter rows?
 - [ ] auxiliary data section at bottom of table
 - [ ] loading view
@@ -50,7 +53,6 @@ To deploy to github pages, run `npm run gh-pages` -- it will do the `grunt site-
 - [ ] fixed columns
 - [ ] repeat headers every N
 - [ ] CSV export
-- [x] heatmap
 - [ ] paging
 - [ ] showing row numbers on hover
 - [ ] ImmutableJS support?
@@ -89,3 +91,24 @@ Here `Renderable` means anything React can render (e.g., React.Component, String
 
 
 
+# Developing
+## Set up
+Install dependencies with `npm install`
+
+## Building
+To build files for production, run `grunt build`
+
+## Documentation
+To generate the documentation, run `npm run docs`. They will appear in `/docs`.
+
+## Site Dev
+To run the webpack-dev-server for the site, run `grunt site`
+
+### Building the Site
+To build the prod files for the site, run `grunt site-build`
+
+To deploy to github pages, run `npm run gh-pages` -- it will do the `grunt site-build` automatically.
+
+
+## Testing
+To run the tests, run `npm test`
