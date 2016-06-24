@@ -23,7 +23,46 @@ import 'react-taco-table/dist/react-taco-table.css';
 
 # Usage
 
-TODO - add in usage.
+An *almost minimal* example is as follows:
+
+```js
+import React from 'react';
+import { TacoTable, DataType, Formatters } from 'react-taco-table';
+
+const data = [
+  { label: 'The first item', value: 12, rating: 5.3216 },
+  { label: 'Another item', value: 8, rating: 4.9173 },
+  { label: 'The end of the road', value: 94, rating: 2.6139 },
+];
+
+const columns = [
+  {
+    id: 'label',
+    type: DataType.String,
+    header: 'Label',
+  },
+  {
+    id: 'value',
+    type: DataType.Number,
+    header: 'Value',
+  },
+  {
+    id: 'rating',
+    type: DataType.Number,
+    header: 'Rating',
+    renderer: Formatters.decFormat(2),
+  },
+];
+
+class ExampleAlmostMinimal extends React.Component {
+  render() {
+    return <TacoTable columns={columns} data={data} />;
+  }
+}
+
+export default ExampleAlmostMinimal;
+```
+
 
 # Features
 
