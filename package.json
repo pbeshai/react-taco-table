@@ -2,7 +2,7 @@
   "name": "react-taco-table",
   "version": "0.1.0",
   "description": "A react component for creating tables configured by a set of columns.",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "build": "grunt build",
     "docs": "jsdoc --configure .jsdoc.json --readme README.md",
@@ -20,6 +20,10 @@
   "author": {
     "name": "Peter Beshai",
     "uri": "https://github.com/pbeshai"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pbeshai/react-taco-table.git"
   },
   "license": "MIT",
   "devDependencies": {
@@ -42,9 +46,11 @@
     "eslint-plugin-react": "^5.1.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "grunt": "^1.0.1",
+    "grunt-babel": "^6.0.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-compress": "^1.2.0",
     "grunt-contrib-copy": "^1.0.0",
+    "grunt-sass": "^1.2.0",
     "grunt-shell": "^1.3.0",
     "grunt-webpack": "^1.0.11",
     "html-webpack-plugin": "^2.16.0",
@@ -75,5 +81,18 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
-  }
+  },
+  "peerDependencies": {
+    "react": "^15.0",
+    "react-dom": "^15.0"
+  },
+  "keywords": [
+    "table",
+    "component",
+    "react",
+    "react-component",
+    "ui",
+    "data table",
+    "heatmap"
+  ]
 }

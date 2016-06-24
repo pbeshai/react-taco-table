@@ -6,7 +6,7 @@ Examples with live demos are available here: http://pbeshai.github.io/react-taco
 
 # Installation
 
-TODO - some time soon this will be available via NPM and will be installed by running
+Install via NPM by running
 
 ```
 npm install react-taco-table --save-dev
@@ -65,7 +65,7 @@ export default ExampleAlmostMinimal;
 
 Outputs a table equivalent to:
 
-| Label | Value | Rating | 
+| Label | Value | Rating |
 | --- | --- | --- |
 | The first item | 12 | 5.32 |
 | Another item | 8 | 4.92 |

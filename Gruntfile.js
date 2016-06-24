@@ -6,7 +6,7 @@ module.exports = function gruntInit(grunt) {
   });
 
   // for building the JS files
-  grunt.registerTask('build', ['clean:build', 'build-env', 'webpack:build']);
+  grunt.registerTask('build', ['clean:build', 'build-env', 'webpack:build', 'sass', 'babel']);
 
   // for building the site
   grunt.registerTask('site', ['webpack-dev-server']);
