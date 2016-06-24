@@ -26,6 +26,13 @@
     "url": "git+https://github.com/pbeshai/react-taco-table.git"
   },
   "license": "MIT",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "d3-format": "^0.6.0",
+    "d3-scale": "^0.9.2",
+    "react-addons-shallow-compare": "^15.1.0",
+    "lodash.curry": "^4.0.1"
+  },
   "devDependencies": {
     "babel": "^6.5.2",
     "babel-core": "^6.7.7",
@@ -35,10 +42,7 @@
     "babel-preset-react-hmre": "^1.1.1",
     "baggage-loader": "^0.2.4",
     "chai": "^3.5.0",
-    "classnames": "^2.2.5",
     "css-loader": "^0.23.1",
-    "d3-format": "^0.6.0",
-    "d3-scale": "^0.9.2",
     "eslint": "^2.10.2",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.8.1",
@@ -62,13 +66,11 @@
     "karma-mocha": "^1.0.1",
     "karma-sinon-chai": "^1.2.0",
     "karma-webpack": "^1.7.0",
-    "lodash.curry": "^4.0.1",
     "lolex": "^1.5.0",
     "minami": "^1.1.1",
     "mocha": "^2.5.3",
     "node-sass": "^3.7.0",
     "null-loader": "^0.1.1",
-    "promise": "^7.1.1",
     "raw-loader": "^0.5.1",
     "react": "^15.1.0",
     "react-addons-perf": "^15.1.0",
