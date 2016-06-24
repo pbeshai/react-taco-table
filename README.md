@@ -63,6 +63,66 @@ class ExampleAlmostMinimal extends React.Component {
 export default ExampleAlmostMinimal;
 ```
 
+Outputs a table equivalent to:
+
+| Label | Value | Rating | 
+| --- | --- | --- |
+| The first item | 12 | 5.32 |
+| Another item | 8 | 4.92 |
+| The end of the road | 94 | 2.61 |
+
+
+For full configuration options for columns, see **Column Definition** below or the docs.
+
+### Column Definition
+
+Columns are defined by objects with the following format:
+
+| Name | Type     | Description   |
+| :----| :------  | :------------ |
+| `id` | String | The id of the column. Typically corresponds to a key in the rowData object. |
+| `[className]` | String | The class name to be applied to both `<td>` and `<th>` |
+| `[firstSortDirection]` | Boolean | The direction which this column gets sorted by on first click |
+| `[header]` | Renderable | What is rendered in the column header. If not provided, uses the columnId. |
+| `[renderer]` | Function | `function (cellData, column, rowData, rowNumber, tableData, columns)`<br>The function that renders the value in the table. Can return anything React can render. |
+| `[rendererOptions]` | Object | Object of options that can be read by the renderer |
+| `[simpleRenderer]` | Function | `function (cellData, column, rowData, rowNumber, tableData, columns)`<br>The function that render the cell's value in a simpler format. Must return a String or Number. |
+| `[sortType]` | String | The `DataType` of the column to be used strictly for sorting, if not provided, uses `type` - number, string, etc |
+| `[sortValue]` | Function | `function (cellData, rowData)`<br>Function to use when sorting instead of `value`. |
+| `[summarize]` | Function | `function (column, tableData, columns)`<br>Produces an object representing a summary of the column (e.g., min and max) to be used in the |
+| `[tdClassName]` | Function or String | `function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)`<br>A function that returns a class name based on the cell data and column summary or other information. If a string is provided, it is used directly as the class name. |
+| `[tdStyle]` | Function or Object | `function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)`<br>A function that returns the style to be applied to the cell. If an object is provided, it is used directly as the style attribute. |
+| `[thClassName]` | String | The class name to be applied to `<th>` only |
+| `[type]` | String | The `DataType` of the column - number, string, etc |
+| `[value]` | Function or String | `function (rowData, rowNumber, tableData, columns)`<br>Function to produce cellData's value. If a String, reads that as a key into the rowData object. If not provided, columnId is used as a key into the rowData object. |
+| `[width]` | Number or String | The value to set for the style `width` property on the column. |
+
+
+### Column Groups
+
+Column groups are defined by objects with the following format:
+
+| Name | Type     | Description   |
+| :----| :------  | :------------ |
+| `[className]` | String | The className to apply to cells and headers in this group |
+| `columns` | String[] | The column IDs to render |
+| `[header]` | Renderable | What shows up in the table header if provided |
+
+
+### Plugins
+
+Plugins are defined by objects with the following format:
+
+| Name | Type     | Description   |
+| :----| :------  | :------------ |
+| `[columnTest]` | Function | A function that takes a column and returns true or false if it the plugin should be run on this column. Default is true for everything. |
+| `id` | String | The ID of the plugin |
+| `[summarize]` | Function | A column summarizer function |
+| `[tdStyle]` | Function or Object | The TD style function |
+| `[tdClassName]` | Function or String | The TD class name function |
+
+
+
 
 # Features
 
@@ -83,7 +143,7 @@ export default ExampleAlmostMinimal;
 - [x] sort indicators
 - [x] heatmap
 
-## Feature Roadmap
+#### Feature Roadmap
 - [ ] search within table to filter rows?
 - [ ] auxiliary data section at bottom of table
 - [ ] loading view
@@ -100,34 +160,6 @@ export default ExampleAlmostMinimal;
 - [ ] expandable rows?
 - [ ] support external callbacks for cell, column, and row highlighting
 - [ ] support prop for persistent highlighting of cell/column/row
-
-
-# Columns
-
-Columns should support the following properties.
-
-Here `Renderable` means anything React can render (e.g., React.Component, String, etc.).
-
-
-| Property | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| id | String | Yes | The id of the column. Typically corresponds to a key in the rowData object. |
-| className | String |  | The class name to be applied to both `<td>` and `<th>` |
-| firstSortDirection | Boolean |  | The direction which this column gets sorted by on first click |
-| header | Renderable |  | What is rendered in the column header. If not provided, uses the columnId. |
-| renderer | Function |  | `function (cellData, column, rowData, rowNumber, tableData, columns)`<br>The function that renders the value in the table. Can return anything React can render. |
-| rendererOptions | Object |  | Object of options that can be read by the renderer |
-| simpleRenderer | Function |  | `function (cellData, column, rowData, rowNumber, tableData, columns)`<br>The function that render the cell's value in a simpler format. Must return a String or Number. |
-| sortType| String |  | The `DataType` of the column to be used strictly for sorting, if not provided, uses `type` - number, string, etc |
-| sortValue | Function |  | `function (cellData, rowData)`<br>Function to use when sorting instead of `value`. |
-| summarize | Function |  | `function (column, tableData, columns)`<br>Produces an object representing a summary of the column (e.g., min and max) to be used in the |
-| tdClassName | Function, String |  | `function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)`<br>A function that returns a class name based on the cell data and column summary or other information. If a string is provided, it is used directly as the class name. |
-| tdStyle | Function, Object |  | `function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)`<br>A function that returns the style to be applied to the cell. If an object is provided, it is used directly as the style attribute. |
-| thClassName | String |  | The class name to be applied to `<th>` only |
-| type | String |  | The `DataType` of the column - number, string, etc |
-| value | String, Function |  | `function (rowData, rowNumber, tableData, columns)`<br>Function to produce cellData's value. If a String, reads that as a key into the rowData object. If not provided, columnId is used as a key into the rowData object. |
-| width | String, Number |  | The value to set for the style `width` property on the column. |
-
 
 
 # Developing
