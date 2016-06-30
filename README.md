@@ -1,5 +1,7 @@
 # react-taco-table
 
+[![npm version](https://badge.fury.io/js/react-taco-table.svg)](https://badge.fury.io/js/react-taco-table)
+
 A [React](https://facebook.github.io/react/) component for creating tables configured by a set of columns.
 
 Examples with live demos are available here: http://pbeshai.github.io/react-taco-table/examples.html
