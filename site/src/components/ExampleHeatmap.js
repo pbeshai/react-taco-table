@@ -59,7 +59,7 @@ const columns = [
     renderer: Formatters.plusMinusFormat(2),
     plugins: {
       heatmap: {
-        colorScheme: Plugins.HeatmapPlugin.ColorSchemes.Rainbow,
+        colorScheme: Plugins.HeatmapPlugin.ColorSchemes.YlOrRd,
         // specify an color scale -> always black
         colorScale: () => '#000',
       },

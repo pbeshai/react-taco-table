@@ -27,13 +27,23 @@
 import * as Utils from '../Utils';
 import * as Summarizers from '../Summarizers';
 import DataType from '../DataType';
-import * as d3 from 'd3-scale';
+import * as d3Scale from 'd3-scale';
+import * as d3ScaleChromatic from 'd3-scale-chromatic';
+
+// combine the modules into one big d3 module
+const d3 = Object.assign({}, d3Scale, d3ScaleChromatic);
 
 /**
- * Special color schemes available via d3-scale `interpolate${scheme}(t)` functions.
+ * Special color schemes available via d3-scale and d3-scale-chromatic
+ * `interpolate${scheme}(t)` functions.
+ *
+ * See https://github.com/d3/d3-scale-chromatic
+ * and https://github.com/d3/d3-scale#interpolateViridis
+ *
  * @enum {String}
  */
 const ColorSchemes = {
+  // from d3-scale
   Viridis: 'Viridis',
   Inferno: 'Inferno',
   Magma: 'Magma',
@@ -42,7 +52,38 @@ const ColorSchemes = {
   Cool: 'Cool',
   Rainbow: 'Rainbow',
   CubehelixDefault: 'CubehelixDefault',
+
+  // from d3-scale-chromatic
+  BrBG: 'BrBG',
+  PRGn: 'PRGn',
+  PiYG: 'PiYG',
+  PuOr: 'PuOr',
+  RdBu: 'RdBu',
+  RdGy: 'RdGy',
+  RdYlBu: 'RdYlBu',
+  RdYlGn: 'RdYlGn',
+  Spectral: 'Spectral',
+  Blues: 'Blues',
+  Greens: 'Greens',
+  Greys: 'Greys',
+  Oranges: 'Oranges',
+  Purples: 'Purples',
+  Reds: 'Reds',
+  BuGn: 'BuGn',
+  BuPu: 'BuPu',
+  GnBu: 'GnBu',
+  OrRd: 'OrRd',
+  PuBuGn: 'PuBuGn',
+  PuBu: 'PuBu',
+  PuRd: 'PuRd',
+  RdPu: 'RdPu',
+  YlGnBu: 'YlGnBu',
+  YlGn: 'YlGn',
+  YlOrBr: 'YlOrBr',
+  YlOrRd: 'YlOrRd',
 };
+
+const defaultColorScheme = ColorSchemes.Blues;
 
 /**
  * Compute the style for the td elements by setting the background and color
@@ -108,7 +149,7 @@ function tdStyle(cellData, summary, column, rowData) {
 
   // if no background scale and color scale provided, use default - magma
   if (backgroundScale == null) {
-    colorScheme = colorScheme || ColorSchemes.Magma;
+    colorScheme = colorScheme || defaultColorScheme;
 
     backgroundColor = d3[`interpolate${colorScheme}`](domainScale(sortValue));
     if (!colorScale) {
