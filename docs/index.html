@@ -47,27 +47,234 @@
 
 
     <section class="readme">
-        <article><h1>react-taco-table</h1><p>A react component for creating tables configured by a set of columns.</p>
-<h2>Set up</h2><ol>
-<li>Install dependencies with <code>npm install</code></li>
-</ol>
-<h2>Building</h2><ol>
-<li>To build files for production, run <code>grunt build</code></li>
-</ol>
-<h2>Documentation</h2><ol>
-<li>To generate the documentation, run <code>npm run docs</code>. They will appear in <code>/docs</code>.</li>
-</ol>
-<h2>Site Dev</h2><ol>
-<li>To run the webpack-dev-server for the site, run <code>grunt site</code></li>
-</ol>
-<h3>Building the Site</h3><ol>
-<li>To build the prod files for the site, run <code>grunt site-build</code></li>
-</ol>
-<p>To deploy to github pages, run <code>npm run gh-pages</code> -- it will do the <code>grunt site-build</code> automatically.</p>
-<h2>Testing</h2><ol>
-<li>To run the tests, run <code>npm test</code></li>
-</ol>
-<h1>Features Roadmap</h1><ul>
+        <article><h1>react-taco-table</h1><p><a href="https://badge.fury.io/js/react-taco-table"><img src="https://badge.fury.io/js/react-taco-table.svg" alt="npm version"></a></p>
+<p>A <a href="https://facebook.github.io/react/">React</a> component for creating tables configured by a set of columns.</p>
+<p>Examples with live demos are available here: http://pbeshai.github.io/react-taco-table/examples.html</p>
+<h1>Installation</h1><p>Install via NPM by running</p>
+<pre class="prettyprint source"><code>npm install react-taco-table --save-dev</code></pre><p>Then including in your application as:</p>
+<pre class="prettyprint source lang-js"><code>import { TacoTable } from 'react-taco-table';
+
+// Include CSS with webpack or equivalent -- or use your own
+import 'react-taco-table/dist/react-taco-table.css';</code></pre><h1>Usage</h1><p>An <em>almost minimal</em> example is as follows:</p>
+<pre class="prettyprint source lang-js"><code>import React from 'react';
+import { TacoTable, DataType, Formatters } from 'react-taco-table';
+
+const data = [
+  { label: 'The first item', value: 12, rating: 5.3216 },
+  { label: 'Another item', value: 8, rating: 4.9173 },
+  { label: 'The end of the road', value: 94, rating: 2.6139 },
+];
+
+const columns = [
+  {
+    id: 'label',
+    type: DataType.String,
+    header: 'Label',
+  },
+  {
+    id: 'value',
+    type: DataType.Number,
+    header: 'Value',
+  },
+  {
+    id: 'rating',
+    type: DataType.Number,
+    header: 'Rating',
+    renderer: Formatters.decFormat(2),
+  },
+];
+
+class ExampleAlmostMinimal extends React.Component {
+  render() {
+    return &lt;TacoTable columns={columns} data={data} />;
+  }
+}
+
+export default ExampleAlmostMinimal;</code></pre><p>Outputs a table equivalent to:</p>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Value</th>
+<th>Rating</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The first item</td>
+<td>12</td>
+<td>5.32</td>
+</tr>
+<tr>
+<td>Another item</td>
+<td>8</td>
+<td>4.92</td>
+</tr>
+<tr>
+<td>The end of the road</td>
+<td>94</td>
+<td>2.61</td>
+</tr>
+</tbody>
+</table>
+<p>For full configuration options for columns, see <strong>Column Definition</strong> below or the docs.</p>
+<h3>Column Definition</h3><p>Columns are defined by objects with the following format:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>id</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The id of the column. Typically corresponds to a key in the rowData object.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[className]</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The class name to be applied to both <code>&lt;td&gt;</code> and <code>&lt;th&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[firstSortDirection]</code></td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">The direction which this column gets sorted by on first click</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[header]</code></td>
+<td style="text-align:left">Renderable</td>
+<td style="text-align:left">What is rendered in the column header. If not provided, uses the columnId.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[renderer]</code></td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left"><code>function (cellData, column, rowData, rowNumber, tableData, columns)</code><br>The function that renders the value in the table. Can return anything React can render.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[rendererOptions]</code></td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">Object of options that can be read by the renderer</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[simpleRenderer]</code></td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left"><code>function (cellData, column, rowData, rowNumber, tableData, columns)</code><br>The function that render the cell's value in a simpler format. Must return a String or Number.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[sortType]</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The <code>DataType</code> of the column to be used strictly for sorting, if not provided, uses <code>type</code> - number, string, etc</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[sortValue]</code></td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left"><code>function (cellData, rowData)</code><br>Function to use when sorting instead of <code>value</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[summarize]</code></td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left"><code>function (column, tableData, columns)</code><br>Produces an object representing a summary of the column (e.g., min and max) to be used in the</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[tdClassName]</code></td>
+<td style="text-align:left">Function or String</td>
+<td style="text-align:left"><code>function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)</code><br>A function that returns a class name based on the cell data and column summary or other information. If a string is provided, it is used directly as the class name.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[tdStyle]</code></td>
+<td style="text-align:left">Function or Object</td>
+<td style="text-align:left"><code>function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)</code><br>A function that returns the style to be applied to the cell. If an object is provided, it is used directly as the style attribute.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[thClassName]</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The class name to be applied to <code>&lt;th&gt;</code> only</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[type]</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The <code>DataType</code> of the column - number, string, etc</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[value]</code></td>
+<td style="text-align:left">Function or String</td>
+<td style="text-align:left"><code>function (rowData, rowNumber, tableData, columns)</code><br>Function to produce cellData's value. If a String, reads that as a key into the rowData object. If not provided, columnId is used as a key into the rowData object.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[width]</code></td>
+<td style="text-align:left">Number or String</td>
+<td style="text-align:left">The value to set for the style <code>width</code> property on the column.</td>
+</tr>
+</tbody>
+</table>
+<h3>Column Groups</h3><p>Column groups are defined by objects with the following format:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>[className]</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The className to apply to cells and headers in this group</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>columns</code></td>
+<td style="text-align:left">String[]</td>
+<td style="text-align:left">The column IDs to render</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[header]</code></td>
+<td style="text-align:left">Renderable</td>
+<td style="text-align:left">What shows up in the table header if provided</td>
+</tr>
+</tbody>
+</table>
+<h3>Plugins</h3><p>Plugins are defined by objects with the following format:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>[columnTest]</code></td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left">A function that takes a column and returns true or false if it the plugin should be run on this column. Default is true for everything.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>id</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The ID of the plugin</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[summarize]</code></td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left">A column summarizer function</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[tdStyle]</code></td>
+<td style="text-align:left">Function or Object</td>
+<td style="text-align:left">The TD style function</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[tdClassName]</code></td>
+<td style="text-align:left">Function or String</td>
+<td style="text-align:left">The TD class name function</td>
+</tr>
+</tbody>
+</table>
+<h1>Features</h1><ul>
 <li>[x] sort</li>
 <li>[x] th classes</li>
 <li>[x] td classes</li>
@@ -83,8 +290,9 @@
 <li>[x] column grouping</li>
 <li>[x] group headers</li>
 <li>[x] sort indicators</li>
+<li>[x] heatmap</li>
 </ul>
-<h2>Stretch features</h2><ul>
+<h4>Feature Roadmap</h4><ul>
 <li>[ ] search within table to filter rows?</li>
 <li>[ ] auxiliary data section at bottom of table</li>
 <li>[ ] loading view</li>
@@ -93,7 +301,6 @@
 <li>[ ] fixed columns</li>
 <li>[ ] repeat headers every N</li>
 <li>[ ] CSV export</li>
-<li>[x] heatmap</li>
 <li>[ ] paging</li>
 <li>[ ] showing row numbers on hover</li>
 <li>[ ] ImmutableJS support?</li>
@@ -103,116 +310,13 @@
 <li>[ ] support external callbacks for cell, column, and row highlighting</li>
 <li>[ ] support prop for persistent highlighting of cell/column/row</li>
 </ul>
-<h1>Columns</h1><p>Columns should support the following properties.</p>
-<p>Here <code>Renderable</code> means anything React can render (e.g., React.Component, String, etc.).</p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>String</td>
-<td>Yes</td>
-<td>The id of the column. Typically corresponds to a key in the rowData object.</td>
-</tr>
-<tr>
-<td>className</td>
-<td>String</td>
-<td></td>
-<td>The class name to be applied to both <code>&lt;td&gt;</code> and <code>&lt;th&gt;</code></td>
-</tr>
-<tr>
-<td>firstSortDirection</td>
-<td>Boolean</td>
-<td></td>
-<td>The direction which this column gets sorted by on first click</td>
-</tr>
-<tr>
-<td>header</td>
-<td>Renderable</td>
-<td></td>
-<td>What is rendered in the column header. If not provided, uses the columnId.</td>
-</tr>
-<tr>
-<td>renderer</td>
-<td>Function</td>
-<td></td>
-<td><code>function (cellData, column, rowData, rowNumber, tableData, columns)</code><br>The function that renders the value in the table. Can return anything React can render.</td>
-</tr>
-<tr>
-<td>rendererOptions</td>
-<td>Object</td>
-<td></td>
-<td>Object of options that can be read by the renderer</td>
-</tr>
-<tr>
-<td>simpleRenderer</td>
-<td>Function</td>
-<td></td>
-<td><code>function (cellData, column, rowData, rowNumber, tableData, columns)</code><br>The function that render the cell's value in a simpler format. Must return a String or Number.</td>
-</tr>
-<tr>
-<td>sortType</td>
-<td>String</td>
-<td></td>
-<td>The <code>DataType</code> of the column to be used strictly for sorting, if not provided, uses <code>type</code> - number, string, etc</td>
-</tr>
-<tr>
-<td>sortValue</td>
-<td>Function</td>
-<td></td>
-<td><code>function (cellData, rowData)</code><br>Function to use when sorting instead of <code>value</code>.</td>
-</tr>
-<tr>
-<td>summarize</td>
-<td>Function</td>
-<td></td>
-<td><code>function (column, tableData, columns)</code><br>Produces an object representing a summary of the column (e.g., min and max) to be used in the</td>
-</tr>
-<tr>
-<td>tdClassName</td>
-<td>Function, String</td>
-<td></td>
-<td><code>function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)</code><br>A function that returns a class name based on the cell data and column summary or other information. If a string is provided, it is used directly as the class name.</td>
-</tr>
-<tr>
-<td>tdStyle</td>
-<td>Function, Object</td>
-<td></td>
-<td><code>function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)</code><br>A function that returns the style to be applied to the cell. If an object is provided, it is used directly as the style attribute.</td>
-</tr>
-<tr>
-<td>thClassName</td>
-<td>String</td>
-<td></td>
-<td>The class name to be applied to <code>&lt;th&gt;</code> only</td>
-</tr>
-<tr>
-<td>type</td>
-<td>String</td>
-<td></td>
-<td>The <code>DataType</code> of the column - number, string, etc</td>
-</tr>
-<tr>
-<td>value</td>
-<td>String, Function</td>
-<td></td>
-<td><code>function (rowData, rowNumber, tableData, columns)</code><br>Function to produce cellData's value. If a String, reads that as a key into the rowData object. If not provided, columnId is used as a key into the rowData object.</td>
-</tr>
-<tr>
-<td>width</td>
-<td>String, Number</td>
-<td></td>
-<td>The value to set for the style <code>width</code> property on the column.</td>
-</tr>
-</tbody>
-</table></article>
+<h1>Developing</h1><h2>Set up</h2><p>Install dependencies with <code>npm install</code></p>
+<h2>Building</h2><p>To build files for production, run <code>grunt build</code></p>
+<h2>Documentation</h2><p>To generate the documentation, run <code>npm run docs</code>. They will appear in <code>/docs</code>.</p>
+<h2>Site Dev</h2><p>To run the webpack-dev-server for the site, run <code>grunt site</code></p>
+<h3>Building the Site</h3><p>To build the prod files for the site, run <code>grunt site-build</code></p>
+<p>To deploy to github pages, run <code>npm run gh-pages</code> -- it will do the <code>grunt site-build</code> automatically.</p>
+<h2>Testing</h2><p>To run the tests, run <code>npm test</code></p></article>
     </section>
 
 
@@ -225,7 +329,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Jun 21 2016 17:10:59 GMT-0400 (EDT) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Jul 01 2016 10:57:11 GMT-0400 (EDT) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

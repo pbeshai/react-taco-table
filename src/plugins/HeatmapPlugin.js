@@ -19,8 +19,11 @@
  * - **colorScale** {Function} the scale to use for the color
  * - **colorShift** {Number} if provided, shifts the background color to create the foreground color.
  *    It is a number between 0 and 1 describing how far to shift.
- * - **colorScheme** {String} if provided, specifies which d3-scale special scale to use. Options
- *    are: Viridis, Inferno, Magma, Plasma, Warm, Cool, Rainbow, CubehelixDefault
+ * - **colorScheme** {String} if provided, specifies which d3-scale/d3-scale-chromatic special
+ *    scale to use. Options are: Viridis, Inferno, Magma, Plasma, Warm, Cool, Rainbow, CubehelixDefault,
+ *    BrBG, PRGn, PiYG, PuOr, RdBu, RdGy, RdYlBu, RdYlGn, Spectral, Blues, Greens, Greys,
+ *    Oranges, Purples, Reds, BuGn, BuPu, GnBu, OrRd, PuBuGn, PuBu, PuRd, RdPu, YlGnBu,
+ *    YlGn, YlOrBr, YlOrRd
  *
  * @module plugins/HeatmapPlugin
  */
