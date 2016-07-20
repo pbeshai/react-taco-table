@@ -109,6 +109,7 @@ class ExampleHeatmap extends React.Component {
         columns={columns}
         data={cellLinesData}
         plugins={plugins}
+        initialSortColumnId="value"
         sortable
       />
     );
