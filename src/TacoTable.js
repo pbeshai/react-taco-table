@@ -16,6 +16,7 @@ const propTypes = {
   fullWidth: React.PropTypes.bool,
   initialSortColumnId: React.PropTypes.string,
   initialSortDirection: React.PropTypes.bool,
+  onRowClick: React.PropTypes.func,
   plugins: React.PropTypes.array,
   rowClassName: React.PropTypes.func,
   rowHighlighting: React.PropTypes.bool,
@@ -97,16 +98,17 @@ const defaultProps = {
  *    for column highlighting
  * @prop {String} className   The class names to apply to the table
  * @prop {Object[]} data   The data to be rendered as rows
+ * @prop {Boolean} fullWidth=true   Whether the table takes up full width or not
  * @prop {String} initialSortColumnId   Column ID of the data to sort by initially
  * @prop {Boolean} initialSortDirection=true(Ascending)   Direction by which to sort initially
+ * @prop {Function} onRowClick Callback for when a row is clicked.
  * @prop {Object[]} plugins   Collection of plugins to run to compute cell style,
  *    cell class name, column summaries
- * @prop {Boolean} sortable=true   Whether the table can be sorted or not
- * @prop {Boolean} striped=false   Whether the table is striped
- * @prop {Boolean} fullWidth=true   Whether the table takes up full width or not
  * @prop {Function} rowClassName   Function that maps (rowData, rowNumber) to a class name
  * @prop {Boolean} rowHighlighting=true   Whether or not to turn on mouse
  *    listeners for row highlighting
+ * @prop {Boolean} sortable=true   Whether the table can be sorted or not
+ * @prop {Boolean} striped=false   Whether the table is striped
  * @prop {Function} HeaderComponent=TacoTableHeader   allow configuration of which
  *     component to use for headers
  * @prop {Function} RowComponent=TacoTableRow   allow configuration of which
@@ -431,7 +433,7 @@ class TacoTable extends React.Component {
    */
   renderRows() {
     const { columns, RowComponent, rowClassName, rowHighlighting,
-      columnHighlighting, plugins, columnGroups } = this.props;
+      columnHighlighting, plugins, columnGroups, onRowClick } = this.props;
     const { data, highlightedRowData, highlightedColumnId, columnSummaries } = this.state;
 
     return (
@@ -455,6 +457,7 @@ class TacoTable extends React.Component {
               plugins={plugins}
               className={className}
               highlighted={highlightedRowData === rowData}
+              onClick={onRowClick}
               onHighlight={rowHighlighting ? this.handleRowHighlight : undefined}
               highlightedColumnId={highlightedColumnId}
               onColumnHighlight={columnHighlighting ? this.handleColumnHighlight : undefined}

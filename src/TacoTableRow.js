@@ -10,6 +10,7 @@ const propTypes = {
   className: React.PropTypes.string,
   highlighted: React.PropTypes.bool,
   highlightedColumnId: React.PropTypes.string,
+  onClick: React.PropTypes.func,
   onColumnHighlight: React.PropTypes.func,
   onHighlight: React.PropTypes.func,
   plugins: React.PropTypes.array,
@@ -34,6 +35,7 @@ const defaultProps = {
  * @prop {String} className  The class name for the row
  * @prop {Boolean} highlighted Whether this row is highlighted or not
  * @prop {String} highlightedColumnId   The ID of the highlighted column
+ * @prop {Function} onClick  callback for when a row is clicked
  * @prop {Function} onColumnHighlight  callback for when a column is highlighted / unhighlighted
  * @prop {Function} onHighlight  callback for when a row is highlighted / unhighlighted
  * @prop {Object[]} plugins  Collection of plugins to run to compute cell style,
@@ -53,6 +55,7 @@ class TacoTableRow extends React.Component {
 
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   /**
@@ -66,7 +69,7 @@ class TacoTableRow extends React.Component {
   }
 
   /**
-   * Handler for when the mouse enters the `<tr>`. Calls `onHighlight(column.id)`.
+   * Handler for when the mouse enters the `<tr>`. Calls `onHighlight(rowData)`.
    * @private
    */
   handleMouseEnter() {
@@ -75,7 +78,7 @@ class TacoTableRow extends React.Component {
   }
 
   /**
-   * Handler for when the mouse enters the `<tr>`. Calls `onHighlight(column.id)`.
+   * Handler for when the mouse enters the `<tr>`. Calls `onHighlight(null)`.
    * @private
    */
   handleMouseLeave() {
@@ -83,6 +86,14 @@ class TacoTableRow extends React.Component {
     onHighlight(null);
   }
 
+  /**
+   * Handler for when a row is clicked. Calls `onClick(rowData)`.
+   * @private
+   */
+  handleClick() {
+    const { onClick, rowData } = this.props;
+    onClick(rowData);
+  }
 
   /**
    * Main render method
@@ -90,7 +101,7 @@ class TacoTableRow extends React.Component {
    */
   render() {
     const { className, columnSummaries, columns, rowData, rowNumber, tableData, CellComponent,
-      plugins, onHighlight, onColumnHighlight, highlighted, highlightedColumnId,
+      plugins, onHighlight, onClick, onColumnHighlight, highlighted, highlightedColumnId,
       columnGroups } = this.props;
 
     // attach mouse listeners for highlighting
@@ -101,11 +112,18 @@ class TacoTableRow extends React.Component {
       onMouseLeave = this.handleMouseLeave;
     }
 
+    // attach click handler
+    let onClickHandler;
+    if (onClick) {
+      onClickHandler = this.handleClick;
+    }
+
     return (
       <tr
         className={classNames(className, { 'row-highlight': highlighted })}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
+        onClick={onClickHandler}
       >
         {columns.map((column, i) => {
           // find the associated column group if configured
