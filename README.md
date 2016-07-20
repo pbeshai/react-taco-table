@@ -11,7 +11,7 @@ Examples with live demos are available here: http://pbeshai.github.io/react-taco
 Install via NPM by running
 
 ```
-npm install react-taco-table --save-dev
+npm install react-taco-table --save
 ```
 
 Then including in your application as:
