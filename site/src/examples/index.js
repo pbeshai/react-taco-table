@@ -162,8 +162,8 @@ const examples = [
     component: ExampleHeatmap,
     code: exampleHeatmapCode,
     github: `${githubRoot}/ExampleHeatmap.js`,
-    previewCodeStart: 101,
-    previewCodeLength: 14,
+    previewCodeStart: 114,
+    previewCodeLength: 15,
   },
   {
     id: 'example-heatmap',
