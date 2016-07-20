@@ -40,6 +40,18 @@ const columns = [
     type: DataType.Number,
     renderer: Formatters.plusMinusFormat(1),
   },
+  // this column reverses the color scheme
+  {
+    id: 'value-reverse',
+    type: DataType.Number,
+    value: rowData => rowData.value,
+    renderer: Formatters.plusMinusFormat(1),
+    plugins: {
+      heatmap: {
+        reverseColors: true,
+      },
+    },
+  },
   {
     id: 'value-inferno',
     type: DataType.Number,

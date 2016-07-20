@@ -24,6 +24,7 @@
  *    BrBG, PRGn, PiYG, PuOr, RdBu, RdGy, RdYlBu, RdYlGn, Spectral, Blues, Greens, Greys,
  *    Oranges, Purples, Reds, BuGn, BuPu, GnBu, OrRd, PuBuGn, PuBu, PuRd, RdPu, YlGnBu,
  *    YlGn, YlOrBr, YlOrRd
+ * - **reverseColors** {Boolean} If true, the colors in the scheme will be applied in reverse order
  *
  * @module plugins/HeatmapPlugin
  */
@@ -104,6 +105,7 @@ function tdStyle(cellData, summary, column, rowData) {
   let colorScale;
   let colorShift;
   let colorScheme;
+  let reverseColors;
 
   // compute the sort value
   const sortValue = Utils.getSortValueFromCellData(cellData, column, rowData);
@@ -115,11 +117,17 @@ function tdStyle(cellData, summary, column, rowData) {
     colorScale = column.plugins.heatmap.colorScale;
     colorShift = column.plugins.heatmap.colorShift;
     colorScheme = column.plugins.heatmap.colorScheme;
+    reverseColors = column.plugins.heatmap.reverseColors;
   }
 
   // default domain if not provided comes from summary
   if (!domain) {
     domain = [summary.min, summary.max];
+  }
+
+  // reverse the domain if specified to get the color scheme inverted
+  if (reverseColors) {
+    domain = domain.slice().reverse();
   }
 
   const domainScale = d3.scaleLinear().domain(domain)
