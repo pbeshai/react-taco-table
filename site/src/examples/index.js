@@ -32,6 +32,10 @@ import exampleHeatmapCode from '!raw!../components/ExampleHeatmap';
 import ExampleHeatmapHighlightOnly from '../components/ExampleHeatmapHighlightOnly';
 import exampleHeatmapHighlightOnlyCode from '!raw!../components/ExampleHeatmapHighlightOnly';
 
+import ExampleBottomData from '../components/ExampleBottomData';
+import exampleBottomDataCode from '!raw!../components/ExampleBottomData';
+
+
 
 import '../site.scss';
 import 'react-taco-table/style/taco-table.scss';
@@ -173,6 +177,17 @@ const examples = [
     component: ExampleHeatmapHighlightOnly,
     code: exampleHeatmapHighlightOnlyCode,
     github: `${githubRoot}/ExampleHeatmapHighlightOnly.js`,
+    previewCodeStart: 71,
+    previewCodeLength: 18,
+  },
+  {
+    id: 'example-bottom-data',
+    label: 'Add a single row to the bottom of the table',
+    description: `This example shows how to add a single row to the bottom of the table
+      using strings and functions in the column definition.`,
+    component: ExampleBottomData,
+    code: exampleBottomDataCode,
+    github: `${githubRoot}/ExampleBottomData.js`,
     previewCodeStart: 71,
     previewCodeLength: 18,
   },

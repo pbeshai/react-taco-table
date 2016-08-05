@@ -12,7 +12,7 @@
  *
  * @module Summarizers
  */
-
+import curry from 'lodash.curry';
 import * as Utils from './Utils';
 
 /**
@@ -41,6 +41,82 @@ export function minMaxSummarizer(column, tableData, columns) {
     return minMax;
   }, {});
 }
+
+
+/**
+ * Computes the mean, sum, and count in a column as `mean, sum, count`.
+ * Does the computation based on the sortValue.
+ *
+ * @param {Object} column The column definition
+ * @param {Object[]} tableData the data for the whole table
+ * @param {Object[]} columns The definitions of columns for the whole table
+ *
+ * @return {Object} The mean of values as `{ mean, sum, count }`
+ */
+export function meanSummarizer(column, tableData, columns) {
+  const stats = tableData.reduce((stats, rowData, rowNumber) => {
+    const sortValue = Utils.getSortValue(column, rowData, rowNumber, tableData, columns);
+
+    if (sortValue) {
+      if (stats.sum === null) {
+        stats.sum = sortValue;
+      } else {
+        stats.sum += sortValue;
+      }
+    }
+
+    return stats;
+  }, { sum: null, count: tableData.length, mean: null });
+
+  if (stats.sum !== null) {
+    stats.mean = stats.sum / stats.count;
+  }
+
+  return stats;
+}
+
+
+/**
+ * Computes the a weighted average based on another column's value as the weight.
+ * Available as `weightedAverage`.
+ * Does the computation based on the sortValue.
+ *
+ * Expected use in a column definition:
+ * ```
+ * {
+ *   ...
+ *   summarize: weightedAverageSummarizer('myWeightColumnId'),
+ * },
+ * ```
+ *
+ * @param {String} weightColumnId The ID of the column to use for weights
+ * @param {Object} column The column definition
+ * @param {Object[]} tableData the data for the whole table
+ * @param {Object[]} columns The definitions of columns for the whole table
+ *
+ * @return {Object} The weightedAverage as `{ weightedAverage, numerator, denominator }`
+ */
+export const weightedAverageSummarizer = curry((weightColumnId, column, tableData, columns) => {
+  const weightColumn = columns.find(col => col.id === weightColumnId);
+  const stats = tableData.reduce((stats, rowData, rowNumber) => {
+    const sortValue = Utils.getSortValue(column, rowData, rowNumber, tableData, columns);
+    const weightSortValue = Utils.getSortValue(weightColumn, rowData, rowNumber, tableData, columns);
+
+    if (weightSortValue !== null && sortValue !== null) {
+      stats.numerator = (stats.numerator || 0) + weightSortValue * sortValue;
+      stats.denominator = (stats.denominator || 0) + weightSortValue;
+    }
+
+    return stats;
+  }, { weightedAverage: null, numerator: null, denominator: null });
+
+  if (stats.numerator !== null && stats.denominator !== null && stats.denominator !== 0) {
+    stats.weightedAverage = stats.numerator / stats.denominator;
+  }
+
+  return stats;
+});
+
 
 /**
  * Computes the frequency for each value in the dataset and computes the most frequent.

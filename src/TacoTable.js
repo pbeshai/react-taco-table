@@ -8,6 +8,7 @@ import { sortData, getColumnById, validateColumns } from './Utils';
 
 
 const propTypes = {
+  bottomData: React.PropTypes.oneOfType([React.PropTypes.array, React.PropTypes.bool]),
   columns: React.PropTypes.array.isRequired,
   columnGroups: React.PropTypes.array,
   columnHighlighting: React.PropTypes.bool,
@@ -50,11 +51,13 @@ const defaultProps = {
  * | Name | Type     | Description   |
  * | :----| :------  | :------------ |
  * | `id` | String | The id of the column. Typically corresponds to a key in the rowData object. |
+ * | `[bottomData]` | Function or Function[] or String or String[] | `function(columnSummary, column, rowData, tableData, columns)`<br>A function that specifies how to render the bottom data (if enabled on the table). Use an array for multiple rows. The `rowData` is only populated if `bottomData` of the TacoTable is an array. If a string is provided, it is rendered directly. |
  * | `[className]` | String | The class name to be applied to both `<td>` and `<th>` |
  * | `[firstSortDirection]` | Boolean | The direction which this column gets sorted by on first click |
  * | `[header]` | Renderable | What is rendered in the column header. If not provided, uses the columnId. |
  * | `[renderer]` | Function | `function (cellData, column, rowData, rowNumber, tableData, columns)`<br>The function that renders the value in the table. Can return anything React can render. |
  * | `[rendererOptions]` | Object | Object of options that can be read by the renderer |
+ * | `[renderOnNull]` | Boolean | Whether the `renderer` function should be called if the cellData is null. (default: true) |
  * | `[simpleRenderer]` | Function | `function (cellData, column, rowData, rowNumber, tableData, columns)`<br>The function that render the cell's value in a simpler format. Must return a String or Number. |
  * | `[sortType]` | String | The `DataType` of the column to be used strictly for sorting, if not provided, uses `type` - number, string, etc |
  * | `[sortValue]` | Function | `function (cellData, rowData)`<br>Function to use when sorting instead of `value`. |
@@ -91,6 +94,10 @@ const defaultProps = {
  * | `[tdClassName]` | Function or String | The TD class name function |
  *
  *
+ * @prop {Object[]|Boolean} bottomData Special rows to place at the bottom of the table,
+ *    unaffected by sorting. If true, populates values based on the `bottomData` property of
+ *    the column definition or the column summarizer. If an array, that data is used to render
+ *    the row.
  * @prop {Object[]} columns   The column definitions
  * @prop {Object[]} columnGroups   How to group columns - an array of
  *   `{ header:String, columns:[colId1, colId2, ...], className:String}`
@@ -469,6 +476,81 @@ class TacoTable extends React.Component {
   }
 
   /**
+   * Renders the bottom data of the table in a separate tbody.
+   * This data is configured by the `bottomData` table prop and the
+   * `bottomData` field in column definitions. It is not affected by
+   * sorting.
+   *
+   * @return {React.Component} `<tbody>`
+   * @private
+   */
+  renderBottomData() {
+    const { bottomData, columns, RowComponent, rowClassName, rowHighlighting,
+      columnHighlighting, plugins, columnGroups, onRowClick } = this.props;
+    const { data, highlightedRowData, highlightedColumnId, columnSummaries } = this.state;
+
+    // only render if we have it explicitly configured
+    if (!bottomData) {
+      return null;
+    }
+
+
+    let bottomDataRows;
+    if (Array.isArray(bottomDataRows)) {
+      // TODO: handle explicitly passed in bottom data rows.
+      bottomDataRows = null;
+    } else {
+      // passed in a truthy value, render based on column definition only.
+
+      // TODO calculate the number of rows to render
+      const bottomRowIndex = 0;
+      const rowData = columns.reduce((rowData, column, columnIndex) => {
+        if (column.bottomData) {
+          // run if function, otherwise render directly
+          if (typeof column.bottomData === 'function') {
+            const columnSummary = columnSummaries[columnIndex];
+            rowData[column.id] = column.bottomData(columnSummary, column, rowData, data, columns);
+          } else {
+            rowData[column.id] = column.bottomData;
+          }
+        }
+        return rowData;
+      }, {});
+
+      // compute the class name if a row class name function is provided
+      let className;
+      if (rowClassName) {
+        className = rowClassName(rowData, `bottom-${bottomRowIndex}`);
+      }
+
+      bottomDataRows = (
+        <RowComponent
+          key={bottomRowIndex}
+          rowNumber={`bottom-${bottomRowIndex}`}
+          rowData={rowData}
+          columns={columns}
+          columnGroups={columnGroups}
+          columnSummaries={columnSummaries}
+          tableData={data}
+          plugins={plugins}
+          className={className}
+          highlighted={highlightedRowData === rowData}
+          onClick={onRowClick}
+          onHighlight={rowHighlighting ? this.handleRowHighlight : undefined}
+          highlightedColumnId={highlightedColumnId}
+          onColumnHighlight={columnHighlighting ? this.handleColumnHighlight : undefined}
+        />
+      );
+    }
+
+    return (
+      <tbody className="bottom-data">
+        {bottomDataRows}
+      </tbody>
+    );
+  }
+
+  /**
    * Main render method
    * @return {React.Component} The table component
    */
@@ -486,6 +568,7 @@ class TacoTable extends React.Component {
       >
         {this.renderHeaders()}
         {this.renderRows()}
+        {this.renderBottomData()}
       </table>
     );
   }

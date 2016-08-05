@@ -15,7 +15,7 @@ const propTypes = {
   onHighlight: React.PropTypes.func,
   plugins: React.PropTypes.array,
   rowData: React.PropTypes.object.isRequired,
-  rowNumber: React.PropTypes.number,
+  rowNumber: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
   tableData: React.PropTypes.array,
   CellComponent: React.PropTypes.func,
 };
@@ -41,7 +41,7 @@ const defaultProps = {
  * @prop {Object[]} plugins  Collection of plugins to run to compute cell style,
  *    cell class name, column summaries
  * @prop {Object} rowData  The data to render in this row
- * @prop {Number} rowNumber  The row number in the table
+ * @prop {Number} rowNumber  The row number in the table (bottom-${i} for bottom data)
  * @prop {Object[]} tableData  The table data
  * @prop {Function} CellComponent  Allow configuration of what component to use to render cells
  * @extends React.Component

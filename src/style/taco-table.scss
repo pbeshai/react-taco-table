@@ -105,4 +105,9 @@ $column-group-border-color: rgba(0, 0, 0, 0.06);
   .highlight-min {
     font-weight: bold;
   }
+
+  > tbody.bottom-data {
+    background-color: #f4f4f4;
+    border-top: 1px solid #ccc;
+  }
 }

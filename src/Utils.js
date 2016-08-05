@@ -6,6 +6,16 @@
 import SortDirection from './SortDirection';
 import DataType from './DataType';
 
+
+/**
+ * Test if a row is in bottom data based on row number.
+ * @param {Number or String} The row number
+ * @return {Boolean} True if the row is bottom data, false otherwise
+ */
+function isBottomData(rowNumber) {
+  return /bottom/.test(rowNumber);
+}
+
 /**
  * Gets the value of a cell given the row data. If column.value is
  * a function, it gets called, otherwise it is interpreted as a
@@ -21,6 +31,12 @@ import DataType from './DataType';
  */
 export function getCellData(column, rowData, rowNumber, tableData, columns) {
   const { value, id } = column;
+
+  // if it is bottom data, just use the value directly.
+  if (isBottomData(rowNumber)) {
+    return rowData[id];
+  }
+
   // call value as a function
   if (typeof value === 'function') {
     return value(rowData, rowNumber, tableData, columns);
@@ -233,11 +249,19 @@ export function sortData(data, columnId, sortDirection, columns) {
  * @return {Renderable} The contents of the cell
  */
 export function renderCell(cellData, column, rowData, rowNumber, tableData, columns) {
-  const { renderer } = column;
+  const { renderer, renderOnNull } = column;
 
-  // if renderer is provided, call it
-  if (renderer != null) {
-    return renderer(cellData, column, rowData, rowNumber, tableData, columns);
+
+  // render if not bottom data-- bottomData's cellData is already rendered.
+  if (!isBottomData(rowNumber)) {
+    // do not render if value is null and `renderOnNull` is set explicitly to false
+    if (cellData == null && renderOnNull === false) {
+      return null;
+
+    // render normally if a renderer is provided
+    } else if (renderer != null) {
+      return renderer(cellData, column, rowData, rowNumber, tableData, columns);
+    }
   }
 
   // otherwise, render the raw cell data
