@@ -9,7 +9,7 @@ import DataType from './DataType';
 
 /**
  * Test if a row is in bottom data based on row number.
- * @param {Number or String} The row number
+ * @param {Number|String} The row number
  * @return {Boolean} True if the row is bottom data, false otherwise
  */
 function isBottomData(rowNumber) {

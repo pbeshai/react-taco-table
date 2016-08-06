@@ -57,3 +57,6 @@
   .taco-table .highlight-max,
   .taco-table .highlight-min {
     font-weight: bold; }
+  .taco-table > tbody.bottom-data {
+    background-color: #f4f4f4;
+    border-top: 1px solid #ccc; }
