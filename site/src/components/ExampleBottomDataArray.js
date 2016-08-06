@@ -1,5 +1,5 @@
 import React from 'react';
-import { TacoTable, DataType, SortDirection, Formatters, Summarizers } from 'react-taco-table';
+import { TacoTable, DataType, SortDirection, Formatters } from 'react-taco-table';
 import cellLinesData from '../data/cell_lines.json';
 
 /**
@@ -15,7 +15,7 @@ const columns = [
     renderer: cellData => <b>{cellData.label}</b>,
     sortValue: cellData => cellData.label,
     type: DataType.String,
-    width: 250
+    width: 250,
   },
   {
     id: 'receptorStatus',
@@ -33,25 +33,25 @@ const columns = [
     type: DataType.Number,
     renderer: Formatters.plusMinusFormat(1),
     firstSortDirection: SortDirection.Ascending,
-    bottomData: (columnSummary, column, rowData, tableData, columns) => {
+    bottomDataRender: (columnSummary, column, rowData, tableData, columns) => {
       return column.renderer(rowData[column.id]);
-    }
+    },
   },
   {
     id: 'rating',
     type: DataType.Number,
     renderer: Formatters.plusMinusFormat(2),
-    bottomData: (columnSummary, column, rowData, tableData, columns) => {
+    bottomDataRender: (columnSummary, column, rowData, tableData, columns) => {
       return column.renderer(rowData[column.id]);
-    }
+    },
   },
   {
     id: 'level',
     debug: true,
     type: DataType.NumberOrdinal,
-    bottomData: (columnSummary, column, rowData, tableData, columns) => {
+    bottomDataRender: (columnSummary, column, rowData, tableData, columns) => {
       return rowData[column.id];
-    }
+    },
   },
 ];
 

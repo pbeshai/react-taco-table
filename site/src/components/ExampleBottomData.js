@@ -16,7 +16,7 @@ const columns = [
     sortValue: cellData => cellData.label,
     type: DataType.String,
     width: 250,
-    bottomData: 'Summary'
+    bottomDataRender: 'Summary',
   },
   {
     id: 'receptorStatus',
@@ -36,27 +36,27 @@ const columns = [
     renderer: Formatters.plusMinusFormat(1),
     firstSortDirection: SortDirection.Ascending,
     summarize: Summarizers.meanSummarizer,
-    bottomData: (columnSummary, column, rowData, tableData, columns) => {
+    bottomDataRender: (columnSummary, column, rowData, tableData, columns) => {
       return column.renderer(columnSummary.mean);
-    }
+    },
   },
   {
     id: 'rating',
     type: DataType.Number,
     renderer: Formatters.plusMinusFormat(2),
     summarize: Summarizers.meanSummarizer,
-    bottomData: (columnSummary, column, rowData, tableData, columns) => {
+    bottomDataRender: (columnSummary, column, rowData, tableData, columns) => {
       return column.renderer(columnSummary.sum);
-    }
+    },
   },
   {
     id: 'level',
     debug: true,
     type: DataType.NumberOrdinal,
     summarize: Summarizers.weightedAverageSummarizer('rating'),
-    bottomData: (columnSummary, column, rowData, tableData, columns) => {
+    bottomDataRender: (columnSummary, column, rowData, tableData, columns) => {
       return Formatters.decFormat(1, columnSummary.weightedAverage);
-    }
+    },
   },
 ];
 

@@ -17,7 +17,7 @@ const columns = [
     sortValue: cellData => cellData.label,
     type: DataType.String,
     width: 250,
-    bottomData: ['Sum', 'Mean', 'Weighted Average(Rating)']
+    bottomDataRender: ['Sum', 'Mean', 'Weighted Average(Rating)'],
   },
   {
     id: 'receptorStatus',
@@ -38,7 +38,7 @@ const columns = [
     firstSortDirection: SortDirection.Ascending,
     summarize: Summarizers.compositeSummarizer([Summarizers.meanSummarizer,
       Summarizers.weightedAverageSummarizer('rating')]),
-    bottomData: [
+    bottomDataRender: [
       (columnSummary, column, rowData, tableData, columns) => {
         return column.renderer(columnSummary.sum);
       },
@@ -48,7 +48,7 @@ const columns = [
       (columnSummary, column, rowData, tableData, columns) => {
         return column.renderer(columnSummary.weightedAverage);
       },
-    ]
+    ],
   },
   {
     id: 'rating',
@@ -56,7 +56,7 @@ const columns = [
     renderer: Formatters.plusMinusFormat(2),
     summarize: Summarizers.compositeSummarizer([Summarizers.meanSummarizer,
       Summarizers.weightedAverageSummarizer('rating')]),
-    bottomData: [
+    bottomDataRender: [
       (columnSummary, column, rowData, tableData, columns) => {
         return column.renderer(columnSummary.sum);
       },
@@ -66,7 +66,7 @@ const columns = [
       (columnSummary, column, rowData, tableData, columns) => {
         return column.renderer(columnSummary.weightedAverage);
       },
-    ]
+    ],
   },
   {
     id: 'level',
@@ -74,7 +74,7 @@ const columns = [
     type: DataType.NumberOrdinal,
     summarize: Summarizers.compositeSummarizer([Summarizers.meanSummarizer,
       Summarizers.weightedAverageSummarizer('rating')]),
-    bottomData: [
+    bottomDataRender: [
       (columnSummary, column, rowData, tableData, columns) => {
         return Formatters.decFormat(1, columnSummary.sum);
       },
@@ -84,7 +84,7 @@ const columns = [
       (columnSummary, column, rowData, tableData, columns) => {
         return Formatters.decFormat(1, columnSummary.weightedAverage);
       },
-    ]
+    ],
   },
 ];
 
