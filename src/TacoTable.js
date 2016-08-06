@@ -533,13 +533,13 @@ class TacoTable extends React.Component {
       // figure out the number of rows to render by counting the length of bottomData
       // in the column definitions
       const numBottomRows = columns.reduce((numBottomRows, column) => {
-        if (column.bottomData) {
+        if (column.bottomDataRender) {
           let numRowsForColumn = 0;
           // if it isn't an array, it counts as one row, otherwise one for each entry
-          if (!Array.isArray(column.bottomData)) {
+          if (!Array.isArray(column.bottomDataRender)) {
             numRowsForColumn = 1;
           } else {
-            numRowsForColumn = column.bottomData.length;
+            numRowsForColumn = column.bottomDataRender.length;
           }
 
           if (numRowsForColumn > numBottomRows) {
