@@ -497,22 +497,24 @@ class TacoTable extends React.Component {
     let bottomDataRowComponents;
     let bottomRowData = [];
 
-    // helper function to compute row data based on input data and the column.bottomDataRender configuration
+    // helper function to compute row data based on input data and the
+    // column.bottomDataRender configuration
     const computeRowData = curry((bottomRowIndex, computedRowData, column, columnIndex) => {
       if (column.bottomDataRender) {
-        let columnBottomData = column.bottomDataRender;
+        let { bottomDataRender } = column;
 
         // if it is an array, access it at the right index.
-        if (Array.isArray(columnBottomData)) {
-          columnBottomData = columnBottomData[bottomRowIndex];
+        if (Array.isArray(bottomDataRender)) {
+          bottomDataRender = bottomDataRender[bottomRowIndex];
         }
 
         // run if function, otherwise render directly
-        if (typeof columnBottomData === 'function') {
+        if (typeof bottomDataRender === 'function') {
           const columnSummary = columnSummaries[columnIndex];
-          computedRowData[column.id] = columnBottomData(columnSummary, column, computedRowData, data, columns);
+          computedRowData[column.id] = bottomDataRender(columnSummary, column,
+            computedRowData, data, columns, bottomData);
         } else {
-          computedRowData[column.id] = columnBottomData;
+          computedRowData[column.id] = bottomDataRender;
         }
       }
       return computedRowData;
@@ -523,7 +525,8 @@ class TacoTable extends React.Component {
       bottomRowData = bottomData.map((rowData, bottomRowIndex) => {
         // compute the row data based on the functions in the column data, including
         // the data that was passed in as an argument to the function
-        const computedRowData = columns.reduce(computeRowData(bottomRowIndex), Object.assign({}, rowData));
+        const computedRowData = columns.reduce(computeRowData(bottomRowIndex),
+          Object.assign({}, rowData));
 
         return computedRowData;
       });
