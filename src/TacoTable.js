@@ -5,7 +5,7 @@ import TacoTableHeader from './TacoTableHeader';
 import TacoTableRow from './TacoTableRow';
 import SortDirection from './SortDirection';
 import { sortData, getColumnById, validateColumns } from './Utils';
-
+import curry from 'lodash.curry';
 
 const propTypes = {
   bottomData: React.PropTypes.oneOfType([React.PropTypes.array, React.PropTypes.bool]),
@@ -494,14 +494,42 @@ class TacoTable extends React.Component {
       return null;
     }
 
+    let bottomDataRowComponents;
+    let bottomRowData = [];
 
-    let bottomDataRows;
-    if (Array.isArray(bottomDataRows)) {
-      // TODO: handle explicitly passed in bottom data rows.
-      bottomDataRows = null;
+    // helper function to compute row data based on input data and the column.bottomData configuration
+    const computeRowData = curry((bottomRowIndex, computedRowData, column, columnIndex) => {
+      if (column.bottomData) {
+        let columnBottomData = column.bottomData;
+
+        // if it is an array, access it at the right index.
+        if (Array.isArray(columnBottomData)) {
+          columnBottomData = columnBottomData[bottomRowIndex];
+        }
+
+        // run if function, otherwise render directly
+        if (typeof columnBottomData === 'function') {
+          const columnSummary = columnSummaries[columnIndex];
+          computedRowData[column.id] = columnBottomData(columnSummary, column, computedRowData, data, columns);
+        } else {
+          computedRowData[column.id] = columnBottomData;
+        }
+      }
+      return computedRowData;
+    });
+
+    if (Array.isArray(bottomData)) {
+      // for each row
+      bottomRowData = bottomData.map((rowData, bottomRowIndex) => {
+        // compute the row data based on the functions in the column data, including
+        // the data that was passed in as an argument to the function
+        const computedRowData = columns.reduce(computeRowData(bottomRowIndex), Object.assign({}, rowData));
+
+        return computedRowData;
+      });
+
+    // passed in a truthy value, render based on column definition only.
     } else {
-      // passed in a truthy value, render based on column definition only.
-
       // figure out the number of rows to render by counting the length of bottomData
       // in the column definitions
       const numBottomRows = columns.reduce((numBottomRows, column) => {
@@ -521,39 +549,28 @@ class TacoTable extends React.Component {
         return numBottomRows;
       }, 0);
 
-      bottomDataRows = [];
       // render each row
       for (let bottomRowIndex = 0; bottomRowIndex < numBottomRows; bottomRowIndex++) {
-        const rowData = columns.reduce((rowData, column, columnIndex) => {
-          if (column.bottomData) {
-            let columnBottomData = column.bottomData;
+        // compute the row data based on the functions in the column data
+        const rowData = columns.reduce(computeRowData(bottomRowIndex), {});
 
-            // if it is an array, access it at the right index.
-            if (Array.isArray(columnBottomData)) {
-              columnBottomData = columnBottomData[bottomRowIndex];
-            }
+        bottomRowData.push(rowData);
+      }
+    }
 
-            // run if function, otherwise render directly
-            if (typeof columnBottomData === 'function') {
-              const columnSummary = columnSummaries[columnIndex];
-              rowData[column.id] = columnBottomData(columnSummary, column, rowData, data, columns);
-            } else {
-              rowData[column.id] = columnBottomData;
-            }
-          }
-          return rowData;
-        }, {});
-
+    if (bottomRowData.length) {
+      bottomDataRowComponents = bottomRowData.map((rowData, bottomRowIndex) => {
         // compute the class name if a row class name function is provided
         let className;
+        const rowNumber = `bottom-${bottomRowIndex}`;
         if (rowClassName) {
-          className = rowClassName(rowData, `bottom-${bottomRowIndex}`);
+          className = rowClassName(rowData, rowNumber);
         }
 
-        bottomDataRows.push((
+        return (
           <RowComponent
             key={bottomRowIndex}
-            rowNumber={`bottom-${bottomRowIndex}`}
+            rowNumber={rowNumber}
             rowData={rowData}
             columns={columns}
             columnGroups={columnGroups}
@@ -567,13 +584,14 @@ class TacoTable extends React.Component {
             highlightedColumnId={highlightedColumnId}
             onColumnHighlight={columnHighlighting ? this.handleColumnHighlight : undefined}
           />
-        ));
-      }
+        );
+      });
     }
+
 
     return (
       <tbody className="bottom-data">
-        {bottomDataRows}
+        {bottomDataRowComponents}
       </tbody>
     );
   }

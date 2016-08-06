@@ -38,6 +38,9 @@ import exampleBottomDataCode from '!raw!../components/ExampleBottomData';
 import ExampleBottomDataMulti from '../components/ExampleBottomDataMulti';
 import exampleBottomDataMultiCode from '!raw!../components/ExampleBottomDataMulti';
 
+import ExampleBottomDataArray from '../components/ExampleBottomDataArray';
+import exampleBottomDataArrayCode from '!raw!../components/ExampleBottomDataArray';
+
 
 import '../site.scss';
 import 'react-taco-table/style/taco-table.scss';
@@ -203,6 +206,17 @@ const examples = [
     github: `${githubRoot}/ExampleBottomDataMulti.js`,
     previewCodeStart: 33,
     previewCodeLength: 19,
+  },
+  {
+    id: 'example-bottom-data-array',
+    label: 'Add multiple rows to the bottom of the table with an array of data',
+    description: `This example shows how to add multiple rows to the bottom of the table
+      using an array of data.`,
+    component: ExampleBottomDataArray,
+    code: exampleBottomDataArrayCode,
+    github: `${githubRoot}/ExampleBottomDataArray.js`,
+    previewCodeStart: 70,
+    previewCodeLength: 10,
   },
 ];
 
