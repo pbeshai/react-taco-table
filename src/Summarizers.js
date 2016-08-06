@@ -15,6 +15,34 @@
 import curry from 'lodash.curry';
 import * as Utils from './Utils';
 
+
+
+/**
+ * Combines multiple summarizers until a single object.
+ *
+ * Expected use in a column definition:
+ * ```
+ * {
+ *   ...
+ *   summarize: compositeSummarizer([meanSummarizer, minMaxSummarizer]),
+ * },
+ * ```
+ *
+ * @param {Function[]} summarizers An array of summarizers to run and combine the results of
+ * @param {Object} column The column definition
+ * @param {Object[]} tableData the data for the whole table
+ * @param {Object[]} columns The definitions of columns for the whole table
+ *
+ * @return {Object} The combined summaries in a single object. Duplicate keys will overwrite.
+ */
+export const compositeSummarizer = curry((summarizers, column, tableData, columns) => {
+  return summarizers.reduce((summary, summarizer) => {
+    Object.assign(summary, summarizer(column, tableData, columns));
+
+    return summary;
+  }, {});
+});
+
 /**
  * Computes the minimum and maximum values in a column as `min` and `max`.
  * Does the computation based on the sortValue.
@@ -77,7 +105,7 @@ export function meanSummarizer(column, tableData, columns) {
 
 
 /**
- * Computes the a weighted average based on another column's value as the weight.
+ * Computes a weighted average based on another column's value as the weight.
  * Available as `weightedAverage`.
  * Does the computation based on the sortValue.
  *

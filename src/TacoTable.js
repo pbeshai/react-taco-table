@@ -502,45 +502,73 @@ class TacoTable extends React.Component {
     } else {
       // passed in a truthy value, render based on column definition only.
 
-      // TODO calculate the number of rows to render
-      const bottomRowIndex = 0;
-      const rowData = columns.reduce((rowData, column, columnIndex) => {
+      // figure out the number of rows to render by counting the length of bottomData
+      // in the column definitions
+      const numBottomRows = columns.reduce((numBottomRows, column) => {
         if (column.bottomData) {
-          // run if function, otherwise render directly
-          if (typeof column.bottomData === 'function') {
-            const columnSummary = columnSummaries[columnIndex];
-            rowData[column.id] = column.bottomData(columnSummary, column, rowData, data, columns);
+          let numRowsForColumn = 0;
+          // if it isn't an array, it counts as one row, otherwise one for each entry
+          if (!Array.isArray(column.bottomData)) {
+            numRowsForColumn = 1;
           } else {
-            rowData[column.id] = column.bottomData;
+            numRowsForColumn = column.bottomData.length;
+          }
+
+          if (numRowsForColumn > numBottomRows) {
+            return numRowsForColumn;
           }
         }
-        return rowData;
-      }, {});
+        return numBottomRows;
+      }, 0);
 
-      // compute the class name if a row class name function is provided
-      let className;
-      if (rowClassName) {
-        className = rowClassName(rowData, `bottom-${bottomRowIndex}`);
+      bottomDataRows = [];
+      // render each row
+      for (let bottomRowIndex = 0; bottomRowIndex < numBottomRows; bottomRowIndex++) {
+        const rowData = columns.reduce((rowData, column, columnIndex) => {
+          if (column.bottomData) {
+            let columnBottomData = column.bottomData;
+
+            // if it is an array, access it at the right index.
+            if (Array.isArray(columnBottomData)) {
+              columnBottomData = columnBottomData[bottomRowIndex];
+            }
+
+            // run if function, otherwise render directly
+            if (typeof columnBottomData === 'function') {
+              const columnSummary = columnSummaries[columnIndex];
+              rowData[column.id] = columnBottomData(columnSummary, column, rowData, data, columns);
+            } else {
+              rowData[column.id] = columnBottomData;
+            }
+          }
+          return rowData;
+        }, {});
+
+        // compute the class name if a row class name function is provided
+        let className;
+        if (rowClassName) {
+          className = rowClassName(rowData, `bottom-${bottomRowIndex}`);
+        }
+
+        bottomDataRows.push((
+          <RowComponent
+            key={bottomRowIndex}
+            rowNumber={`bottom-${bottomRowIndex}`}
+            rowData={rowData}
+            columns={columns}
+            columnGroups={columnGroups}
+            columnSummaries={columnSummaries}
+            tableData={data}
+            plugins={plugins}
+            className={className}
+            highlighted={highlightedRowData === rowData}
+            onClick={onRowClick}
+            onHighlight={rowHighlighting ? this.handleRowHighlight : undefined}
+            highlightedColumnId={highlightedColumnId}
+            onColumnHighlight={columnHighlighting ? this.handleColumnHighlight : undefined}
+          />
+        ));
       }
-
-      bottomDataRows = (
-        <RowComponent
-          key={bottomRowIndex}
-          rowNumber={`bottom-${bottomRowIndex}`}
-          rowData={rowData}
-          columns={columns}
-          columnGroups={columnGroups}
-          columnSummaries={columnSummaries}
-          tableData={data}
-          plugins={plugins}
-          className={className}
-          highlighted={highlightedRowData === rowData}
-          onClick={onRowClick}
-          onHighlight={rowHighlighting ? this.handleRowHighlight : undefined}
-          highlightedColumnId={highlightedColumnId}
-          onColumnHighlight={columnHighlighting ? this.handleColumnHighlight : undefined}
-        />
-      );
     }
 
     return (

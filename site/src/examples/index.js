@@ -35,6 +35,8 @@ import exampleHeatmapHighlightOnlyCode from '!raw!../components/ExampleHeatmapHi
 import ExampleBottomData from '../components/ExampleBottomData';
 import exampleBottomDataCode from '!raw!../components/ExampleBottomData';
 
+import ExampleBottomDataMulti from '../components/ExampleBottomDataMulti';
+import exampleBottomDataMultiCode from '!raw!../components/ExampleBottomDataMulti';
 
 
 import '../site.scss';
@@ -188,8 +190,19 @@ const examples = [
     component: ExampleBottomData,
     code: exampleBottomDataCode,
     github: `${githubRoot}/ExampleBottomData.js`,
-    previewCodeStart: 71,
-    previewCodeLength: 18,
+    previewCodeStart: 32,
+    previewCodeLength: 10,
+  },
+  {
+    id: 'example-bottom-data-multi',
+    label: 'Add multiple rows to the bottom of the table',
+    description: `This example shows how to add multiple rows to the bottom of the table
+      using strings and functions in the column definition.`,
+    component: ExampleBottomDataMulti,
+    code: exampleBottomDataMultiCode,
+    github: `${githubRoot}/ExampleBottomDataMulti.js`,
+    previewCodeStart: 33,
+    previewCodeLength: 19,
   },
 ];
 
