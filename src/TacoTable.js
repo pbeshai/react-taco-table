@@ -51,13 +51,13 @@ const defaultProps = {
  * | Name | Type     | Description   |
  * | :----| :------  | :------------ |
  * | `id` | String | The id of the column. Typically corresponds to a key in the rowData object. |
- * | `[bottomDataRender]` | Function or Function[] or String or String[] | `function(columnSummary, column, rowData, tableData, columns)`<br>A function that specifies how to render the bottom data (if enabled on the table). Use an array for multiple rows. The `rowData` is only populated if `bottomData` of the TacoTable is an array. If a string is provided, it is rendered directly. |
+ * | `[bottomDataRender]` | Function or Function[] or String or String[] | `function(columnSummary, column, rowData, tableData, columns, bottomData)`<br>A function that specifies how to render the bottom data (if enabled on the table). Use an array for multiple rows. The `rowData` is only populated if `bottomData` of the TacoTable is an array. If a string is provided, it is rendered directly. |
  * | `[className]` | String | The class name to be applied to both `<td>` and `<th>` |
  * | `[firstSortDirection]` | Boolean | The direction which this column gets sorted by on first click |
  * | `[header]` | Renderable | What is rendered in the column header. If not provided, uses the columnId. |
  * | `[renderer]` | Function | `function (cellData, column, rowData, rowNumber, tableData, columns)`<br>The function that renders the value in the table. Can return anything React can render. |
  * | `[rendererOptions]` | Object | Object of options that can be read by the renderer |
- * | `[renderOnNull]` | Boolean | Whether the cell should render if the cellData is null (default: true) |
+ * | `[renderOnNull]` | Boolean | Whether the cell should render if the cellData is null (default: false) |
  * | `[simpleRenderer]` | Function | `function (cellData, column, rowData, rowNumber, tableData, columns)`<br>The function that render the cell's value in a simpler format. Must return a String or Number. |
  * | `[sortType]` | String | The `DataType` of the column to be used strictly for sorting, if not provided, uses `type` - number, string, etc |
  * | `[sortValue]` | Function | `function (cellData, rowData)`<br>Function to use when sorting instead of `value`. |

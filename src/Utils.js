@@ -254,8 +254,8 @@ export function renderCell(cellData, column, rowData, rowNumber, tableData, colu
 
   // render if not bottom data-- bottomData's cellData is already rendered.
   if (!isBottomData(rowNumber)) {
-    // do not render if value is null and `renderOnNull` is set explicitly to false
-    if (cellData == null && renderOnNull === false) {
+    // do not render if value is null and `renderOnNull` is not explicitly set to true
+    if (cellData == null && renderOnNull !== true) {
       return null;
 
     // render normally if a renderer is provided
