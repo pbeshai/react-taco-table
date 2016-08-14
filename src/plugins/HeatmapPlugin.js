@@ -98,18 +98,17 @@ const defaultColorScheme = ColorSchemes.Blues;
  * @param {Object} props.columnSummary the column summary
  * @param {Object} props.column The column definition
  * @param {Object} props.rowData the data for the row
+ * @param {Boolean} props.isBottomData whether the row is in bottom data area
  * @return {Object} the style object
  */
-function tdStyle(cellData, { columnSummary, column, rowData }) {
+function tdStyle(cellData, { columnSummary, column, rowData, isBottomData }) {
   let domain;
   let backgroundScale;
   let colorScale;
   let colorShift;
   let colorScheme;
   let reverseColors;
-
-  // compute the sort value
-  const sortValue = Utils.getSortValueFromCellData(cellData, column, rowData);
+  let includeBottomData;
 
   // read in from plugin options
   if (column.plugins && column.plugins.heatmap) {
@@ -119,7 +118,17 @@ function tdStyle(cellData, { columnSummary, column, rowData }) {
     colorShift = column.plugins.heatmap.colorShift;
     colorScheme = column.plugins.heatmap.colorScheme;
     reverseColors = column.plugins.heatmap.reverseColors;
+    includeBottomData = column.plugins.heatmap.includeBottomData;
   }
+
+
+  // skip in bottom data area unless this column explicitly says to include it
+  if (isBottomData && !includeBottomData) {
+    return undefined;
+  }
+
+  // compute the sort value
+  const sortValue = Utils.getSortValueFromCellData(cellData, column, rowData);
 
   // default domain if not provided comes from columnSummary
   if (!domain) {
