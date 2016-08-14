@@ -37,15 +37,9 @@ const columns = [
     summarize: Summarizers.compositeSummarizer([Summarizers.meanSummarizer,
       Summarizers.weightedAverageSummarizer('rating')]),
     bottomDataRender: [
-      (columnSummary, column, rowData, tableData, columns) => {
-        return column.renderer(columnSummary.sum);
-      },
-      (columnSummary, column, rowData, tableData, columns) => {
-        return column.renderer(columnSummary.mean);
-      },
-      (columnSummary, column, rowData, tableData, columns) => {
-        return column.renderer(columnSummary.weightedAverage);
-      },
+      ({ columnSummary, column }) => column.renderer(columnSummary.sum),
+      ({ columnSummary, column }) => column.renderer(columnSummary.mean),
+      ({ columnSummary, column }) => column.renderer(columnSummary.weightedAverage),
     ],
   },
   {
@@ -55,15 +49,9 @@ const columns = [
     summarize: Summarizers.compositeSummarizer([Summarizers.meanSummarizer,
       Summarizers.weightedAverageSummarizer('rating')]),
     bottomDataRender: [
-      (columnSummary, column, rowData, tableData, columns) => {
-        return column.renderer(columnSummary.sum);
-      },
-      (columnSummary, column, rowData, tableData, columns) => {
-        return column.renderer(columnSummary.mean);
-      },
-      (columnSummary, column, rowData, tableData, columns) => {
-        return column.renderer(columnSummary.weightedAverage);
-      },
+      ({ columnSummary, column }) => column.renderer(columnSummary.sum),
+      ({ columnSummary, column }) => column.renderer(columnSummary.mean),
+      ({ columnSummary, column }) => column.renderer(columnSummary.weightedAverage),
     ],
   },
   {
@@ -73,15 +61,9 @@ const columns = [
     summarize: Summarizers.compositeSummarizer([Summarizers.meanSummarizer,
       Summarizers.weightedAverageSummarizer('rating')]),
     bottomDataRender: [
-      (columnSummary, column, rowData, tableData, columns) => {
-        return Formatters.decFormat(1, columnSummary.sum);
-      },
-      (columnSummary, column, rowData, tableData, columns) => {
-        return Formatters.decFormat(1, columnSummary.mean);
-      },
-      (columnSummary, column, rowData, tableData, columns) => {
-        return Formatters.decFormat(1, columnSummary.weightedAverage);
-      },
+      ({ columnSummary }) => Formatters.decFormat(1, columnSummary.sum),
+      ({ columnSummary }) => Formatters.decFormat(1, columnSummary.mean),
+      ({ columnSummary }) => Formatters.decFormat(1, columnSummary.weightedAverage),
     ],
   },
 ];

@@ -136,7 +136,7 @@ export default ExampleAlmostMinimal;</code></pre><p>Outputs a table equivalent t
 <tr>
 <td style="text-align:left"><code>[bottomDataRender]</code></td>
 <td style="text-align:left">Function or Function[] or String or String[]</td>
-<td style="text-align:left"><code>function(columnSummary, column, rowData, tableData, columns, bottomData)</code><br>A function that specifies how to render the bottom data (if enabled on the table). Use an array for multiple rows. The <code>rowData</code> is only populated if <code>bottomData</code> of the TacoTable is an array. If a string is provided, it is rendered directly.</td>
+<td style="text-align:left"><code>function(columnSummary, { column, rowData, tableData, columns, bottomData })</code><br>A function that specifies how to render the bottom data (if enabled on the table). Use an array for multiple rows. The <code>rowData</code> is only populated if <code>bottomData</code> of the TacoTable is an array. If a string is provided, it is rendered directly.</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>[className]</code></td>
@@ -156,7 +156,7 @@ export default ExampleAlmostMinimal;</code></pre><p>Outputs a table equivalent t
 <tr>
 <td style="text-align:left"><code>[renderer]</code></td>
 <td style="text-align:left">Function</td>
-<td style="text-align:left"><code>function (cellData, column, rowData, rowNumber, tableData, columns)</code><br>The function that renders the value in the table. Can return anything React can render.</td>
+<td style="text-align:left"><code>function (cellData, { column, rowData, rowNumber, tableData, columns })</code><br>The function that renders the value in the table. Can return anything React can render.</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>[rendererOptions]</code></td>
@@ -171,7 +171,7 @@ export default ExampleAlmostMinimal;</code></pre><p>Outputs a table equivalent t
 <tr>
 <td style="text-align:left"><code>[simpleRenderer]</code></td>
 <td style="text-align:left">Function</td>
-<td style="text-align:left"><code>function (cellData, column, rowData, rowNumber, tableData, columns)</code><br>The function that render the cell's value in a simpler format. Must return a String or Number.</td>
+<td style="text-align:left"><code>function (cellData, { column, rowData, rowNumber, tableData, columns })</code><br>The function that render the cell's value in a simpler format. Must return a String or Number.</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>[sortType]</code></td>
@@ -191,12 +191,12 @@ export default ExampleAlmostMinimal;</code></pre><p>Outputs a table equivalent t
 <tr>
 <td style="text-align:left"><code>[tdClassName]</code></td>
 <td style="text-align:left">Function or String</td>
-<td style="text-align:left"><code>function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)</code><br>A function that returns a class name based on the cell data and column summary or other information. If a string is provided, it is used directly as the class name.</td>
+<td style="text-align:left"><code>function (cellData, { columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns })</code><br>A function that returns a class name based on the cell data and column summary or other information. If a string is provided, it is used directly as the class name.</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>[tdStyle]</code></td>
 <td style="text-align:left">Function or Object</td>
-<td style="text-align:left"><code>function (cellData, columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns)</code><br>A function that returns the style to be applied to the cell. If an object is provided, it is used directly as the style attribute.</td>
+<td style="text-align:left"><code>function (cellData, { columnSummary, column, rowData, highlightedColumn, highlightedRow, rowNumber, tableData, columns })</code><br>A function that returns the style to be applied to the cell. If an object is provided, it is used directly as the style attribute.</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>[thClassName]</code></td>
@@ -211,7 +211,7 @@ export default ExampleAlmostMinimal;</code></pre><p>Outputs a table equivalent t
 <tr>
 <td style="text-align:left"><code>[value]</code></td>
 <td style="text-align:left">Function or String</td>
-<td style="text-align:left"><code>function (rowData, rowNumber, tableData, columns)</code><br>Function to produce cellData's value. If a String, reads that as a key into the rowData object. If not provided, columnId is used as a key into the rowData object.</td>
+<td style="text-align:left"><code>function (rowData, { rowNumber, tableData, columns })</code><br>Function to produce cellData's value. If a String, reads that as a key into the rowData object. If not provided, columnId is used as a key into the rowData object.</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>[width]</code></td>
@@ -339,7 +339,7 @@ export default ExampleAlmostMinimal;</code></pre><p>Outputs a table equivalent t
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Aug 06 2016 01:49:36 GMT-0400 (EDT) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Aug 14 2016 11:37:57 GMT-0400 (EDT) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

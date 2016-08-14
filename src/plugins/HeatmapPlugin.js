@@ -14,7 +14,7 @@
  *
  * Plugin options found in `column.plugins.heatmap` since the plugin has id `heatmap`.
  *
- * - **domain** {Number[]} the domain to use for the color scale, if not provided, uses summary min and max
+ * - **domain** {Number[]} the domain to use for the color scale, if not provided, uses columnSummary min and max
  * - **backgroundScale** {Function} the scale to use for the background-color
  * - **colorScale** {Function} the scale to use for the color
  * - **colorShift** {Number} if provided, shifts the background color to create the foreground color.
@@ -94,12 +94,13 @@ const defaultColorScheme = ColorSchemes.Blues;
  * based on the sort value.
  *
  * @param {Object} cellData the data for the cell
- * @param {Object} summary the column summary
- * @param {Object} column The column definition
- * @param {Object} rowData the data for the row
+ * @param {Object} props Additional properties for the cell
+ * @param {Object} props.columnSummary the column summary
+ * @param {Object} props.column The column definition
+ * @param {Object} props.rowData the data for the row
  * @return {Object} the style object
  */
-function tdStyle(cellData, summary, column, rowData) {
+function tdStyle(cellData, { columnSummary, column, rowData }) {
   let domain;
   let backgroundScale;
   let colorScale;
@@ -120,9 +121,9 @@ function tdStyle(cellData, summary, column, rowData) {
     reverseColors = column.plugins.heatmap.reverseColors;
   }
 
-  // default domain if not provided comes from summary
+  // default domain if not provided comes from columnSummary
   if (!domain) {
-    domain = [summary.min, summary.max];
+    domain = [columnSummary.min, columnSummary.max];
   }
 
   // reverse the domain if specified to get the color scheme inverted

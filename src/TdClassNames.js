@@ -26,13 +26,14 @@ import * as Utils from './Utils';
  * cells that match min and max in the summary
  *
  * @param {Any} cellData the data for the cell
- * @param {Object} columnSummary The column summary
- * @param {Object} column The column definition
- * @param {Array} rowData the data for the row
+ * @param {Object} props Additional props for the cell
+ * @param {Object} props.columnSummary The column summary
+ * @param {Object} props.column The column definition
+ * @param {Array} props.rowData the data for the row
  *
  * @return {String} classnames
  */
-export function minMaxClassName(cellData, columnSummary, column, rowData) {
+export function minMaxClassName(cellData, { columnSummary, column, rowData }) {
   const sortValue = Utils.getSortValueFromCellData(cellData, column, rowData);
   if (sortValue === columnSummary.min) {
     return 'highlight-min-max highlight-min';
@@ -47,13 +48,14 @@ export function minMaxClassName(cellData, columnSummary, column, rowData) {
  * Adds `highlight-min` to the cells that match min in the summary.
  *
  * @param {Any} cellData the data for the cell
- * @param {Object} columnSummary The column summary
- * @param {Object} column The column definition
- * @param {Array} rowData the data for the row
+ * @param {Object} props Additional props for the cell
+ * @param {Object} props.columnSummary The column summary
+ * @param {Object} props.column The column definition
+ * @param {Array} props.rowData the data for the row
  *
  * @return {String} classnames
  */
-export function minClassName(cellData, columnSummary, column, rowData) {
+export function minClassName(cellData, { columnSummary, column, rowData }) {
   const sortValue = Utils.getSortValueFromCellData(cellData, column, rowData);
   if (sortValue === columnSummary.min) {
     return 'highlight-min';
@@ -66,13 +68,14 @@ export function minClassName(cellData, columnSummary, column, rowData) {
  * Adds `highlight-max` to the cells that match max in the summary.
  *
  * @param {Any} cellData the data for the cell
- * @param {Object} columnSummary The column summary
- * @param {Object} column The column definition
- * @param {Array} rowData the data for the row
+ * @param {Object} props Additional props for the cell
+ * @param {Object} props.columnSummary The column summary
+ * @param {Object} props.column The column definition
+ * @param {Array} props.rowData the data for the row
  *
  * @return {String} classnames
  */
-export function maxClassName(cellData, columnSummary, column, rowData) {
+export function maxClassName(cellData, { columnSummary, column, rowData }) {
   const sortValue = Utils.getSortValueFromCellData(cellData, column, rowData);
   if (sortValue === columnSummary.max) {
     return 'highlight-max';

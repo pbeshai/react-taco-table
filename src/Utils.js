@@ -39,7 +39,7 @@ export function getCellData(column, rowData, rowNumber, tableData, columns) {
 
   // call value as a function
   if (typeof value === 'function') {
-    return value(rowData, rowNumber, tableData, columns);
+    return value(rowData, { rowNumber, tableData, columns });
 
   // interpret value as a key
   } else if (value != null) {
@@ -260,7 +260,7 @@ export function renderCell(cellData, column, rowData, rowNumber, tableData, colu
 
     // render normally if a renderer is provided
     } else if (renderer != null) {
-      return renderer(cellData, column, rowData, rowNumber, tableData, columns);
+      return renderer(cellData, { column, rowData, rowNumber, tableData, columns });
     }
   }
 

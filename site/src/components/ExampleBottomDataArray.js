@@ -33,25 +33,19 @@ const columns = [
     type: DataType.Number,
     renderer: Formatters.plusMinusFormat(1),
     firstSortDirection: SortDirection.Ascending,
-    bottomDataRender: (columnSummary, column, rowData, tableData, columns) => {
-      return column.renderer(rowData[column.id]);
-    },
+    bottomDataRender: ({ column, rowData }) => column.renderer(rowData[column.id]),
   },
   {
     id: 'rating',
     type: DataType.Number,
     renderer: Formatters.plusMinusFormat(2),
-    bottomDataRender: (columnSummary, column, rowData, tableData, columns) => {
-      return column.renderer(rowData[column.id]);
-    },
+    bottomDataRender: ({ column, rowData }) => column.renderer(rowData[column.id]),
   },
   {
     id: 'level',
     debug: true,
     type: DataType.NumberOrdinal,
-    bottomDataRender: (columnSummary, column, rowData, tableData, columns) => {
-      return rowData[column.id];
-    },
+    bottomDataRender: ({ column, rowData }) => rowData[column.id],
   },
 ];
 
@@ -59,7 +53,6 @@ const bottomData = [
   { name: 'First', value: 82.321, level: 94 },
   { name: 'Second', value: 1.52, rating: 137, level: 12 },
 ];
-
 
 class ExampleRowClassName extends React.Component {
   render() {

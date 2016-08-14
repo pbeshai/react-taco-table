@@ -32,8 +32,9 @@ function HighlightOnly(Plugin, options = { onRowHighlight: true, onColumnHighlig
       return undefined;
     }
 
-    return function highlightOnlyWrapper(cellData, summary, column, rowData,
-      highlightedColumn, highlightedRow, ...args) {
+    return function highlightOnlyWrapper(cellData, props) {
+      const { column, highlightedRow, highlightedColumn } = props;
+
       // check for override setting on column
       let columnHighlightSetting;
       if (column.plugins && column.plugins[Plugin.id]) {
@@ -44,8 +45,7 @@ function HighlightOnly(Plugin, options = { onRowHighlight: true, onColumnHighlig
       if ((options.onRowHighlight && highlightedRow) ||
           (options.onColumnHighlight && highlightedColumn) ||
           columnHighlightSetting === 'always') {
-        return Plugin.tdStyle(cellData, summary, column, rowData,
-          highlightedColumn, highlightedRow, ...args);
+        return Plugin.tdStyle(cellData, props);
       }
 
       // if not highlighted, do not run it.

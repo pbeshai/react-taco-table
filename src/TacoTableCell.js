@@ -84,20 +84,18 @@ class TacoTableCell extends React.Component {
    * @private
    */
   computeWithPlugins(property, cellData) {
-    const { column, rowData, rowNumber, tableData, columns,
-      highlightedColumn, highlightedRow, columnSummary, plugins } = this.props;
+    const { column, plugins } = this.props;
 
     let result;
 
     /** evaluates `maybeFunction` as a function if it is one, otherwise returns it as a value */
-    function getValue(maybeFunction) {
+    const getValue = (maybeFunction) => {
       if (typeof maybeFunction === 'function') {
-        return maybeFunction(cellData, columnSummary, column, rowData,
-          highlightedColumn, highlightedRow, rowNumber, tableData, columns);
+        return maybeFunction(cellData, this.props);
       }
 
       return maybeFunction;
-    }
+    };
 
     // interpret plugins
     // run the td class name from each plugin

@@ -193,8 +193,8 @@ const examples = [
     component: ExampleBottomData,
     code: exampleBottomDataCode,
     github: `${githubRoot}/ExampleBottomData.js`,
-    previewCodeStart: 32,
-    previewCodeLength: 10,
+    previewCodeStart: 30,
+    previewCodeLength: 8,
   },
   {
     id: 'example-bottom-data-multi',
@@ -204,8 +204,8 @@ const examples = [
     component: ExampleBottomDataMulti,
     code: exampleBottomDataMultiCode,
     github: `${githubRoot}/ExampleBottomDataMulti.js`,
-    previewCodeStart: 33,
-    previewCodeLength: 19,
+    previewCodeStart: 31,
+    previewCodeLength: 13,
   },
   {
     id: 'example-bottom-data-array',
@@ -215,7 +215,7 @@ const examples = [
     component: ExampleBottomDataArray,
     code: exampleBottomDataArrayCode,
     github: `${githubRoot}/ExampleBottomDataArray.js`,
-    previewCodeStart: 57,
+    previewCodeStart: 51,
     previewCodeLength: 19,
   },
 ];

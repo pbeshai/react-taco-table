@@ -34,30 +34,23 @@ const columns = [
     renderer: Formatters.plusMinusFormat(1),
     firstSortDirection: SortDirection.Ascending,
     summarize: Summarizers.meanSummarizer,
-    bottomDataRender: (columnSummary, column, rowData, tableData, columns) => {
-      return column.renderer(columnSummary.mean);
-    },
+    bottomDataRender: ({ columnSummary, column }) => column.renderer(columnSummary.mean),
   },
   {
     id: 'rating',
     type: DataType.Number,
     renderer: Formatters.plusMinusFormat(2),
     summarize: Summarizers.meanSummarizer,
-    bottomDataRender: (columnSummary, column, rowData, tableData, columns) => {
-      return column.renderer(columnSummary.sum);
-    },
+    bottomDataRender: ({ columnSummary, column }) => column.renderer(columnSummary.sum),
   },
   {
     id: 'level',
     debug: true,
     type: DataType.NumberOrdinal,
     summarize: Summarizers.weightedAverageSummarizer('rating'),
-    bottomDataRender: (columnSummary, column, rowData, tableData, columns) => {
-      return Formatters.decFormat(1, columnSummary.weightedAverage);
-    },
+    bottomDataRender: ({ columnSummary }) => Formatters.decFormat(1, columnSummary.weightedAverage),
   },
 ];
-
 
 class ExampleRowClassName extends React.Component {
   render() {
