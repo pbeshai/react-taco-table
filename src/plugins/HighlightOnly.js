@@ -45,7 +45,11 @@ function HighlightOnly(Plugin, options = { onRowHighlight: true, onColumnHighlig
       if ((options.onRowHighlight && highlightedRow) ||
           (options.onColumnHighlight && highlightedColumn) ||
           columnHighlightSetting === 'always') {
-        return Plugin.tdStyle(cellData, props);
+        if (typeof pluginFunc === 'function') {
+          return pluginFunc(cellData, props);
+        }
+
+        return pluginFunc;
       }
 
       // if not highlighted, do not run it.
