@@ -8,15 +8,6 @@ import DataType from './DataType';
 
 
 /**
- * Test if a row is in bottom data based on row number.
- * @param {Number|String} The row number
- * @return {Boolean} True if the row is bottom data, false otherwise
- */
-function isBottomData(rowNumber) {
-  return /bottom/.test(rowNumber);
-}
-
-/**
  * Gets the value of a cell given the row data. If column.value is
  * a function, it gets called, otherwise it is interpreted as a
  * key to rowData. If column.value is not defined, column.id is
@@ -29,11 +20,11 @@ function isBottomData(rowNumber) {
  * @param {Object[]} columns The column definitions for the whole table
  * @return {Any} The value for this cell
  */
-export function getCellData(column, rowData, rowNumber, tableData, columns) {
+export function getCellData(column, rowData, rowNumber, tableData, columns, isBottomData) {
   const { value, id } = column;
 
   // if it is bottom data, just use the value directly.
-  if (isBottomData(rowNumber)) {
+  if (isBottomData) {
     return rowData[id];
   }
 
@@ -248,12 +239,11 @@ export function sortData(data, columnId, sortDirection, columns) {
  * @param {Object[]} columns The column definitions for the whole table
  * @return {Renderable} The contents of the cell
  */
-export function renderCell(cellData, column, rowData, rowNumber, tableData, columns) {
+export function renderCell(cellData, column, rowData, rowNumber, tableData, columns, isBottomData) {
   const { renderer, renderOnNull } = column;
 
-
   // render if not bottom data-- bottomData's cellData is already rendered.
-  if (!isBottomData(rowNumber)) {
+  if (!isBottomData) {
     // do not render if value is null and `renderOnNull` is not explicitly set to true
     if (cellData == null && renderOnNull !== true) {
       return null;

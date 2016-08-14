@@ -10,6 +10,7 @@ const propTypes = {
   columns: React.PropTypes.array,
   highlightedColumn: React.PropTypes.bool,
   highlightedRow: React.PropTypes.bool,
+  isBottomData: React.PropTypes.bool,
   onHighlight: React.PropTypes.func,
   plugins: React.PropTypes.array,
   rowData: React.PropTypes.object.isRequired,
@@ -31,6 +32,7 @@ const defaultProps = {
  * @prop {Object[]} columns            The column definitions
  * @prop {Boolean} highlightedColumn   Whether this column is highlighted or not
  * @prop {Boolean} highlightedRow      Whether this row is highlighted or not
+ * @prop {Boolean} isBottomData      Whether this row is in the bottom data area or not
  * @prop {Function} onHighlight         callback for when a column is highlighted / unhighlighted
  * @prop {Object[]} plugins            Collection of plugins to run to compute cell style,
  *   cell class name, column summaries
@@ -160,12 +162,12 @@ class TacoTableCell extends React.Component {
    */
   render() {
     const { column, rowData, rowNumber, tableData, columns,
-      onHighlight, highlightedColumn, columnGroup } = this.props;
+      onHighlight, highlightedColumn, columnGroup, isBottomData } = this.props;
     const { className, type } = column;
 
-    const cellData = getCellData(column, rowData, rowNumber, tableData, columns);
+    const cellData = getCellData(column, rowData, rowNumber, tableData, columns, isBottomData);
 
-    const rendered = renderCell(cellData, column, rowData, rowNumber, tableData, columns);
+    const rendered = renderCell(cellData, column, rowData, rowNumber, tableData, columns, isBottomData);
 
     // attach mouse listeners for highlighting
     let onMouseEnter;

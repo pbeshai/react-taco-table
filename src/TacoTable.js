@@ -586,6 +586,7 @@ class TacoTable extends React.Component {
             onHighlight={rowHighlighting ? this.handleRowHighlight : undefined}
             highlightedColumnId={highlightedColumnId}
             onColumnHighlight={columnHighlighting ? this.handleColumnHighlight : undefined}
+            isBottomData
           />
         );
       });

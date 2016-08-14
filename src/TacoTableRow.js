@@ -10,6 +10,7 @@ const propTypes = {
   className: React.PropTypes.string,
   highlighted: React.PropTypes.bool,
   highlightedColumnId: React.PropTypes.string,
+  isBottomData: React.PropTypes.bool,
   onClick: React.PropTypes.func,
   onColumnHighlight: React.PropTypes.func,
   onHighlight: React.PropTypes.func,
@@ -35,6 +36,7 @@ const defaultProps = {
  * @prop {String} className  The class name for the row
  * @prop {Boolean} highlighted Whether this row is highlighted or not
  * @prop {String} highlightedColumnId   The ID of the highlighted column
+ * @prop {Boolean} isBottomData  Whether this row is in the bottom data area or not
  * @prop {Function} onClick  callback for when a row is clicked
  * @prop {Function} onColumnHighlight  callback for when a column is highlighted / unhighlighted
  * @prop {Function} onHighlight  callback for when a row is highlighted / unhighlighted
@@ -87,12 +89,12 @@ class TacoTableRow extends React.Component {
   }
 
   /**
-   * Handler for when a row is clicked. Calls `onClick(rowData)`.
+   * Handler for when a row is clicked. Calls `onClick(rowData, rowNumber, isBottomData)`.
    * @private
    */
   handleClick() {
-    const { onClick, rowData } = this.props;
-    onClick(rowData);
+    const { onClick, rowData, rowNumber, isBottomData } = this.props;
+    onClick(rowData, rowNumber, isBottomData);
   }
 
   /**
@@ -102,7 +104,7 @@ class TacoTableRow extends React.Component {
   render() {
     const { className, columnSummaries, columns, rowData, rowNumber, tableData, CellComponent,
       plugins, onHighlight, onClick, onColumnHighlight, highlighted, highlightedColumnId,
-      columnGroups } = this.props;
+      columnGroups, isBottomData } = this.props;
 
     // attach mouse listeners for highlighting
     let onMouseEnter;
@@ -147,6 +149,7 @@ class TacoTableRow extends React.Component {
               onHighlight={onColumnHighlight}
               highlightedColumn={column.id === highlightedColumnId}
               highlightedRow={highlighted}
+              isBottomData={isBottomData}
             />
           );
         })}
