@@ -139,7 +139,7 @@ class TacoTable extends React.Component {
     // store the data in the state to have a unified interface for sortable and
     // non-sortable tables. Take a slice to ensure we do not modify the original
     this.state = {
-      data: props.data.slice(),
+      data: props.data && props.data.slice(),
       columnSummaries: this.summarizeColumns(props),
     };
 
@@ -443,7 +443,7 @@ class TacoTable extends React.Component {
   renderRows() {
     const { columns, RowComponent, rowClassName, rowHighlighting,
       columnHighlighting, plugins, columnGroups, onRowClick, onRowDoubleClick } = this.props;
-    const { data, highlightedRowData, highlightedColumnId, columnSummaries } = this.state;
+    const { data = [], highlightedRowData, highlightedColumnId, columnSummaries } = this.state;
 
     return (
       <tbody>
