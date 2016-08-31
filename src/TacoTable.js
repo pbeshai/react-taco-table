@@ -193,7 +193,7 @@ class TacoTable extends React.Component {
     }
 
     if (data !== nextProps.data) {
-      const newState = Object.assign({}, this.state, { data: nextProps.data.slice() });
+      const newState = Object.assign({}, this.state, { data: nextProps.data && nextProps.data.slice() });
 
       // re-sort the data
       Object.assign(newState, this.sort(newState.sortColumnId, nextProps, newState));
