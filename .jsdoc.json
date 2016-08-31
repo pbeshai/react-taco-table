@@ -13,7 +13,10 @@
     ],
     "templates": {
         "cleverLinks": false,
-        "monospaceLinks": true
+        "monospaceLinks": true,
+        "default": {
+            "includeDate": false
+        }
     },
     "opts": {
         "destination": "./docs/",

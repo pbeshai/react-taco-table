@@ -18,6 +18,7 @@ const propTypes = {
   initialSortColumnId: React.PropTypes.string,
   initialSortDirection: React.PropTypes.bool,
   onRowClick: React.PropTypes.func,
+  onRowDoubleClick: React.PropTypes.func,
   plugins: React.PropTypes.array,
   rowClassName: React.PropTypes.func,
   rowHighlighting: React.PropTypes.bool,
@@ -109,6 +110,7 @@ const defaultProps = {
  * @prop {String} initialSortColumnId   Column ID of the data to sort by initially
  * @prop {Boolean} initialSortDirection=true(Ascending)   Direction by which to sort initially
  * @prop {Function} onRowClick `function (rowData)`<br>Callback for when a row is clicked.
+ * @prop {Function} onRowDoubleClick `function (rowData)`<br>Callback for when a row is double clicked.
  * @prop {Object[]} plugins   Collection of plugins to run to compute cell style,
  *    cell class name, column summaries
  * @prop {Function} rowClassName   Function that maps (rowData, rowNumber) to a class name
@@ -440,7 +442,7 @@ class TacoTable extends React.Component {
    */
   renderRows() {
     const { columns, RowComponent, rowClassName, rowHighlighting,
-      columnHighlighting, plugins, columnGroups, onRowClick } = this.props;
+      columnHighlighting, plugins, columnGroups, onRowClick, onRowDoubleClick } = this.props;
     const { data, highlightedRowData, highlightedColumnId, columnSummaries } = this.state;
 
     return (
@@ -465,6 +467,7 @@ class TacoTable extends React.Component {
               className={className}
               highlighted={highlightedRowData === rowData}
               onClick={onRowClick}
+              onDoubleClick={onRowDoubleClick}
               onHighlight={rowHighlighting ? this.handleRowHighlight : undefined}
               highlightedColumnId={highlightedColumnId}
               onColumnHighlight={columnHighlighting ? this.handleColumnHighlight : undefined}
@@ -486,7 +489,7 @@ class TacoTable extends React.Component {
    */
   renderBottomData() {
     const { bottomData, columns, RowComponent, rowClassName, rowHighlighting,
-      columnHighlighting, plugins, columnGroups, onRowClick } = this.props;
+      columnHighlighting, plugins, columnGroups, onRowClick, onRowDoubleClick } = this.props;
     const { data, highlightedRowData, highlightedColumnId, columnSummaries } = this.state;
 
     // only render if we have it explicitly configured
@@ -583,6 +586,7 @@ class TacoTable extends React.Component {
             className={className}
             highlighted={highlightedRowData === rowData}
             onClick={onRowClick}
+            onDoubleClick={onRowDoubleClick}
             onHighlight={rowHighlighting ? this.handleRowHighlight : undefined}
             highlightedColumnId={highlightedColumnId}
             onColumnHighlight={columnHighlighting ? this.handleColumnHighlight : undefined}
