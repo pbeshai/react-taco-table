@@ -1,6 +1,6 @@
 {
   "name": "react-taco-table",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A react component for creating tables configured by a set of columns.",
   "main": "lib/index.js",
   "scripts": {
