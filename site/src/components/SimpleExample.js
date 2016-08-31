@@ -11,7 +11,7 @@ const columns = [
     id: 'speller',
     type: DataType.String,
     header: 'Speller',
-    renderer(cellData, column, rowData) {
+    renderer(cellData, { column, rowData }) {
       return <a href={rowData.url} target="_blank">{cellData}</a>;
     },
   },
@@ -39,7 +39,7 @@ const columns = [
     id: 'spelledWord',
     type: DataType.String,
     header: 'Spelling',
-    tdClassName(cellData, columnSummary, column, rowData) {
+    tdClassName(cellData, { columnSummary, column, rowData }) {
       if (rowData.error) {
         return 'error-word';
       }
@@ -53,7 +53,7 @@ const columns = [
     renderer: Formatters.decFormat(1),
     firstSortDirection: SortDirection.Descending,
     summarize: Summarizers.minMaxSummarizer,
-    tdStyle(cellData, columnSummary) {
+    tdStyle(cellData, { columnSummary }) {
       if (cellData === columnSummary.min) {
         return { color: 'red' };
       } else if (cellData === columnSummary.max) {
