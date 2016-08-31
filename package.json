@@ -74,7 +74,7 @@
     "karma-sinon-chai": "^1.2.0",
     "karma-webpack": "^1.7.0",
     "lolex": "^1.5.0",
-    "minami": "^1.1.1",
+    "pbeshai/minami": "^1.1.1",
     "mocha": "^2.5.3",
     "node-sass": "^3.7.0",
     "null-loader": "^0.1.1",
