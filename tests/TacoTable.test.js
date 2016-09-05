@@ -166,5 +166,48 @@ describe('TacoTable', function () {
       currentOrder = wrapper.state('data').map(d => d.name);
       expect(currentOrder).to.deep.equal(expectedRowOrder);
     });
+
+    it('sorts on header click', function () {
+      const columns = [columnMap.name, columnMap.value];
+      const data = [
+        { name: 'Item 1', value: 123 },
+        { name: 'Item 2', value: 12 },
+        { name: 'A thing', value: 12345 },
+        { name: 'Another thing', value: 1234 },
+        { name: 'Thing', value: 123456 },
+      ];
+      const wrapper = mount(
+        <TacoTable
+          columns={columns}
+          data={data}
+        />);
+
+      const initialOrder = ['Item 1', 'Item 2', 'A thing', 'Another thing', 'Thing'];
+      const sortedNameOrder = ['A thing', 'Another thing', 'Item 1',
+        'Item 2', 'Thing'];
+      const sortedValueOrder = [12, 123, 1234, 12345, 123456];
+
+      // check that it doesn't sort initially
+      let currentOrder = wrapper.state('data').map(d => d.name);
+      expect(currentOrder).to.deep.equal(initialOrder);
+
+      // click the name header
+      wrapper.find('th.name-col').simulate('click');
+      currentOrder = wrapper.state('data').map(d => d.name);
+      expect(currentOrder).to.deep.equal(sortedNameOrder);
+
+      wrapper.find('th.name-col').simulate('click');
+      currentOrder = wrapper.state('data').map(d => d.name);
+      expect(currentOrder).to.deep.equal(sortedNameOrder.reverse());
+
+      // click the value header
+      wrapper.find('th.value-col').simulate('click');
+      currentOrder = wrapper.state('data').map(d => d.value);
+      expect(currentOrder).to.deep.equal(sortedValueOrder);
+
+      wrapper.find('th.value-col').simulate('click');
+      currentOrder = wrapper.state('data').map(d => d.value);
+      expect(currentOrder).to.deep.equal(sortedValueOrder.reverse());
+    });
   });
 });
