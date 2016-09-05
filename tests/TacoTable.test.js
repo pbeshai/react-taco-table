@@ -209,5 +209,49 @@ describe('TacoTable', function () {
       currentOrder = wrapper.state('data').map(d => d.value);
       expect(currentOrder).to.deep.equal(sortedValueOrder.reverse());
     });
+
+    it('sorts stably with maintained reverse', function () {
+      const columns = [columnMap.name, columnMap.value];
+      const data = [
+        { name: 'Item 1', value: 123 },
+        { name: 'Item 3', value: 123 },
+        { name: 'A thing', value: 12345 },
+        { name: 'Item 2', value: 123 },
+        { name: 'Thing', value: 123456 },
+      ];
+      const wrapper = mount(
+        <TacoTable
+          columns={columns}
+          data={data}
+        />);
+
+      const sortedNameOrder = ['A thing', 'Item 1', 'Item 2', 'Item 3', 'Thing'];
+      let currentOrder;
+
+      // click the value header to sort by value.
+      wrapper.find('th.value-col').simulate('click');
+      currentOrder = wrapper.state('data').map(d => d.name);
+      expect(currentOrder).to.deep.equal(['Item 1', 'Item 3', 'Item 2', 'A thing', 'Thing']);
+
+      // click the name header to sort by name
+      wrapper.find('th.name-col').simulate('click');
+      currentOrder = wrapper.state('data').map(d => d.name);
+      expect(currentOrder).to.deep.equal(sortedNameOrder);
+
+      // click the value header to then sort by value. should maintain name sort
+      wrapper.find('th.value-col').simulate('click');
+      currentOrder = wrapper.state('data').map(d => d.name);
+      expect(currentOrder).to.deep.equal(['Item 1', 'Item 2', 'Item 3', 'A thing', 'Thing']);
+
+      // should keep this sort but make it descending
+      wrapper.find('th.value-col').simulate('click');
+      currentOrder = wrapper.state('data').map(d => d.name);
+      expect(currentOrder).to.deep.equal(['Thing', 'A thing', 'Item 3', 'Item 2', 'Item 1']);
+
+      // should return to the original sort
+      wrapper.find('th.value-col').simulate('click');
+      currentOrder = wrapper.state('data').map(d => d.name);
+      expect(currentOrder).to.deep.equal(['Item 1', 'Item 2', 'Item 3', 'A thing', 'Thing']);
+    });
   });
 });

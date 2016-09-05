@@ -19,6 +19,7 @@ module.exports = function(config) {
       require('karma-sinon-chai'),
       require('karma-webpack'),
       require('karma-chrome-launcher'),
+      require("karma-sourcemap-loader"),
     ],
 
 
@@ -48,8 +49,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'tests/*.js{,x}': ['webpack'],
-      'tests/**/*.js{,x}': ['webpack'],
+      'tests/*.js{,x}': ['webpack', 'sourcemap'],
+      'tests/**/*.js{,x}': ['webpack', 'sourcemap'],
     },
 
 
