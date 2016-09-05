@@ -1,5 +1,8 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
+import sinonChai from 'sinon-chai';
+import chai from 'chai';
+chai.use(sinonChai);
 
 import TacoTable from '../src/TacoTable';
 import SortDirection from '../src/SortDirection';
@@ -18,6 +21,13 @@ describe('TacoTable', function () {
       id: 'value',
       className: 'value-col',
       type: DataType.Number,
+    },
+    score: {
+      id: 'score',
+      value: 'value',
+      className: 'score-col',
+      type: DataType.Number,
+      firstSortDirection: SortDirection.Descending,
     },
   };
     // initialSortColumnId: 'name',
@@ -252,6 +262,65 @@ describe('TacoTable', function () {
       wrapper.find('th.value-col').simulate('click');
       currentOrder = wrapper.state('data').map(d => d.name);
       expect(currentOrder).to.deep.equal(['Item 1', 'Item 2', 'Item 3', 'A thing', 'Thing']);
+    });
+
+    it('sorts calls onSort after sorting', function () {
+      const columns = [columnMap.name, columnMap.value];
+      const data = [
+        { name: 'Item 1', value: 123 },
+        { name: 'Item 3', value: 123 },
+        { name: 'A thing', value: 12345 },
+        { name: 'Item 2', value: 123 },
+        { name: 'Thing', value: 123456 },
+      ];
+      const onSort = sinon.spy();
+      const wrapper = mount(
+        <TacoTable
+          columns={columns}
+          data={data}
+          onSort={onSort}
+        />);
+
+      // click the value header to sort by value.
+      wrapper.find('th.value-col').simulate('click');
+      let sortedData = wrapper.state('data');
+      expect(onSort).to.have.been.calledOnce;
+      expect(onSort).to.have.been.calledWith('value', SortDirection.Ascending, sortedData);
+
+      // click the value header to sort by value.
+      wrapper.find('th.value-col').simulate('click');
+      sortedData = wrapper.state('data');
+      expect(onSort).to.have.been.calledTwice;
+      expect(onSort).to.have.been.calledWith('value', SortDirection.Descending, sortedData);
+
+      // click the name header to sort by name.
+      wrapper.find('th.name-col').simulate('click');
+      sortedData = wrapper.state('data');
+      expect(onSort).to.have.been.calledThrice;
+      expect(onSort).to.have.been.calledWith('name', SortDirection.Ascending, sortedData);
+    });
+
+    it('sorts using first sort', function () {
+      const columns = [columnMap.name, columnMap.value, columnMap.score];
+      const data = [
+        { name: 'Item 1', value: 123 },
+        { name: 'Item 2', value: 12 },
+        { name: 'A thing', value: 12345 },
+        { name: 'Another thing', value: 1234 },
+        { name: 'Thing', value: 123456 },
+      ];
+      const wrapper = mount(
+        <TacoTable
+          columns={columns}
+          data={data}
+        />);
+
+      const sortedValueOrder = [12, 123, 1234, 12345, 123456];
+
+      // click the score header (value with first sort desc)
+      wrapper.find('th.score-col').simulate('click');
+      const currentOrder = wrapper.state('data').map(d => d.value);
+      expect(currentOrder).to.deep.equal(sortedValueOrder.reverse());
     });
   });
 });

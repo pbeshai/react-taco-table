@@ -19,6 +19,7 @@ const propTypes = {
   initialSortDirection: React.PropTypes.bool,
   onRowClick: React.PropTypes.func,
   onRowDoubleClick: React.PropTypes.func,
+  onSort: React.PropTypes.func,
   plugins: React.PropTypes.array,
   rowClassName: React.PropTypes.func,
   rowHighlighting: React.PropTypes.bool,
@@ -111,6 +112,7 @@ const defaultProps = {
  * @prop {Boolean} initialSortDirection=true(Ascending)   Direction by which to sort initially
  * @prop {Function} onRowClick `function (rowData)`<br>Callback for when a row is clicked.
  * @prop {Function} onRowDoubleClick `function (rowData)`<br>Callback for when a row is double clicked.
+ * @prop {Function} onSort `function (columnId, sortDirection, sortedData)`<br>Callback for after the data is sorted when a user clicks a header
  * @prop {Object[]} plugins   Collection of plugins to run to compute cell style,
  *    cell class name, column summaries
  * @prop {Function} rowClassName   Function that maps (rowData, rowNumber) to a class name
@@ -217,18 +219,23 @@ class TacoTable extends React.Component {
 
   /**
    * Callback when a header is clicked. If a sortable table, sorts the table.
+   * If the onSort callback is provided, it is fired with the columnId,
+   * sort direction, and new sorted data as arguments.
    *
    * @param {String} columnId The ID of the column that was clicked.
    * @returns {void}
    * @private
    */
   handleHeaderClick(columnId) {
-    const { sortable } = this.props;
+    const { sortable, onSort } = this.props;
 
     if (sortable) {
       const sortResults = this.sort(columnId);
       if (sortResults) {
         this.setState(sortResults);
+        if (onSort) {
+          onSort(columnId, sortResults.sortDirection, sortResults.data);
+        }
       }
     }
   }
