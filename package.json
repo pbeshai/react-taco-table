@@ -4,6 +4,7 @@
   "description": "A react component for creating tables configured by a set of columns.",
   "main": "lib/index.js",
   "scripts": {
+    "build-all": "npm run build && npm run docs && npm run site-build",
     "build": "grunt build",
     "docs": "jsdoc --configure .jsdoc.json --readme README.md",
     "gh-pages": "gh-pages-deploy",
