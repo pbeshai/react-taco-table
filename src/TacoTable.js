@@ -196,7 +196,7 @@ class TacoTable extends React.Component {
       const newState = Object.assign({}, this.state, { data: nextProps.data && nextProps.data.slice() });
 
       // re-sort the data
-      Object.assign(newState, this.sort(newState.sortColumnId, nextProps, newState));
+      Object.assign(newState, this.sort(newState.sortColumnId, nextProps, newState, true));
 
       // recompute column summaries
       newState.columnSummaries = this.summarizeColumns(nextProps);
@@ -265,11 +265,14 @@ class TacoTable extends React.Component {
    * @param {String} columnId the ID of the column to sort by
    * @param {Object} props=this.props
    * @param {Object} state=this.state
+   * @param {Boolean} keepSortDirection=false Whether to keep the same sort direction if sorting on
+   *   the same column as what the data is already sorted on or not. Used primarily when receiving
+   *   new data that should maintain its current sort.
    * @return {Object} Object representing sort state
    *    `{ sortDirection, sortColumnId, data }`.
    * @private
    */
-  sort(columnId, props = this.props, state = this.state) {
+  sort(columnId, props = this.props, state = this.state, keepSortDirection) {
     const { columns } = props;
     const { sortColumnId, data } = state;
     let { sortDirection } = state;
@@ -284,7 +287,7 @@ class TacoTable extends React.Component {
       sortDirection = column.firstSortDirection;
 
     // if it is the same column, invert direction
-    } else if (columnId === sortColumnId) {
+    } else if (!keepSortDirection && columnId === sortColumnId) {
       sortDirection = !sortDirection;
 
     // otherwise just default to ascending

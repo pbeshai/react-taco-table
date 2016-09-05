@@ -133,5 +133,38 @@ describe('TacoTable', function () {
         expect(currentOrder).to.deep.equal(expectedRowOrder);
       });
     });
+
+    it('maintains sort order on data change', function () {
+      const columns = [columnMap.name, columnMap.value];
+      const data = [
+        { name: 'Item 1', value: 123 },
+        { name: 'Item 2', value: 12 },
+        { name: 'A thing', value: 12345 },
+        { name: 'Another thing', value: 1234 },
+        { name: 'Thing', value: 123456 },
+      ];
+      const wrapper = mount(
+        <TacoTable
+          columns={columns}
+          data={data}
+          initialSortColumnId="name"
+          initialSortDirection={SortDirection.Ascending}
+        />);
+
+      const expectedRowOrder = ['A thing', 'Another thing', 'Item 1',
+        'Item 2', 'Thing'];
+      let currentOrder = wrapper.state('data').map(d => d.name);
+      expect(currentOrder).to.deep.equal(expectedRowOrder);
+
+      // check passing in same data
+      wrapper.setProps({ data });
+      currentOrder = wrapper.state('data').map(d => d.name);
+      expect(currentOrder).to.deep.equal(expectedRowOrder);
+
+      // check passing in new data with same values
+      wrapper.setProps({ data: data.slice() });
+      currentOrder = wrapper.state('data').map(d => d.name);
+      expect(currentOrder).to.deep.equal(expectedRowOrder);
+    });
   });
 });
