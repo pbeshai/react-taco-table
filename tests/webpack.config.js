@@ -1,5 +1,5 @@
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   module: {
     loaders: [
       {
@@ -11,5 +11,12 @@ module.exports = {
         loader: 'null-loader',
       },
     ],
+  },
+  // for Enzyme
+  externals: {
+    cheerio: 'window',
+    'react/addons': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true,
   },
 };
