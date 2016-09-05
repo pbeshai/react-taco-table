@@ -1,5 +1,9 @@
 # Changes
 
+## 0.3.0
+- `onSort` callback added to TacoTable which takes `(columnId, sortDirection, sortedData)` as arguments.
+- Fixed bugs regarding sorting #26, #27, #13
+
 ## 0.2.0
 
 - Wrap extra args for many column definition properties in objects. Add in isBottomData to **tdClassName** and **tdStyle**.
