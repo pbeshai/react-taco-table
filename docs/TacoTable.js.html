@@ -179,7 +179,7 @@ class TacoTable extends React.Component {
     // store the data in the state to have a unified interface for sortable and
     // non-sortable tables. Take a slice to ensure we do not modify the original
     this.state = {
-      data: props.data.slice(),
+      data: props.data &amp;&amp; props.data.slice(),
       columnSummaries: this.summarizeColumns(props),
     };
 
@@ -233,10 +233,10 @@ class TacoTable extends React.Component {
     }
 
     if (data !== nextProps.data) {
-      const newState = Object.assign({}, this.state, { data: nextProps.data.slice() });
+      const newState = Object.assign({}, this.state, { data: nextProps.data &amp;&amp; nextProps.data.slice() });
 
       // re-sort the data
-      Object.assign(newState, this.sort(newState.sortColumnId, nextProps, newState));
+      Object.assign(newState, this.sort(newState.sortColumnId, nextProps, newState, true));
 
       // recompute column summaries
       newState.columnSummaries = this.summarizeColumns(nextProps);
@@ -305,11 +305,14 @@ class TacoTable extends React.Component {
    * @param {String} columnId the ID of the column to sort by
    * @param {Object} props=this.props
    * @param {Object} state=this.state
+   * @param {Boolean} keepSortDirection=false Whether to keep the same sort direction if sorting on
+   *   the same column as what the data is already sorted on or not. Used primarily when receiving
+   *   new data that should maintain its current sort.
    * @return {Object} Object representing sort state
    *    `{ sortDirection, sortColumnId, data }`.
    * @private
    */
-  sort(columnId, props = this.props, state = this.state) {
+  sort(columnId, props = this.props, state = this.state, keepSortDirection) {
     const { columns } = props;
     const { sortColumnId, data } = state;
     let { sortDirection } = state;
@@ -324,7 +327,7 @@ class TacoTable extends React.Component {
       sortDirection = column.firstSortDirection;
 
     // if it is the same column, invert direction
-    } else if (columnId === sortColumnId) {
+    } else if (!keepSortDirection &amp;&amp; columnId === sortColumnId) {
       sortDirection = !sortDirection;
 
     // otherwise just default to ascending
@@ -483,7 +486,7 @@ class TacoTable extends React.Component {
   renderRows() {
     const { columns, RowComponent, rowClassName, rowHighlighting,
       columnHighlighting, plugins, columnGroups, onRowClick, onRowDoubleClick } = this.props;
-    const { data, highlightedRowData, highlightedColumnId, columnSummaries } = this.state;
+    const { data = [], highlightedRowData, highlightedColumnId, columnSummaries } = this.state;
 
     return (
       &lt;tbody>
