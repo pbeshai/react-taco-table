@@ -177,6 +177,42 @@ describe('TacoTable', function () {
       expect(currentOrder).to.deep.equal(expectedRowOrder);
     });
 
+    it('maintains sort order on data change with first sort', function () {
+      const columns = [columnMap.name, columnMap.value, columnMap.score];
+      const data = [
+        { name: 'Item 1', value: 123 },
+        { name: 'Item 2', value: 12 },
+        { name: 'A thing', value: 12345 },
+        { name: 'Another thing', value: 1234 },
+        { name: 'Thing', value: 123456 },
+      ];
+      const wrapper = mount(
+        <TacoTable
+          columns={columns}
+          data={data}
+          initialSortColumnId="name"
+          initialSortDirection={SortDirection.Ascending}
+        />);
+
+      const sortedNameOrder = ['A thing', 'Another thing', 'Item 1',
+        'Item 2', 'Thing'];
+      const sortedValueOrder = [12, 123, 1234, 12345, 123456];
+      const sortedValueOrderReverse = sortedValueOrder.slice().reverse();
+      let currentOrder = wrapper.state('data').map(d => d.name);
+      expect(currentOrder).to.deep.equal(sortedNameOrder);
+
+      // sort by value descending
+      wrapper.find('th.score-col').simulate('click');
+      currentOrder = wrapper.state('data').map(d => d.value);
+      expect(currentOrder).to.deep.equal(sortedValueOrderReverse);
+
+      // check passing in new data with same values
+      // should maintain sort by value descending
+      wrapper.setProps({ data: data.slice() });
+      currentOrder = wrapper.state('data').map(d => d.value);
+      expect(currentOrder).to.deep.equal(sortedValueOrderReverse);
+    });
+
     it('sorts on header click', function () {
       const columns = [columnMap.name, columnMap.value];
       const data = [

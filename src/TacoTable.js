@@ -294,9 +294,10 @@ class TacoTable extends React.Component {
       sortDirection = column.firstSortDirection;
 
     // if it is the same column, invert direction
-    } else if (!keepSortDirection && columnId === sortColumnId) {
-      sortDirection = !sortDirection;
-
+    } else if (columnId === sortColumnId) {
+      if (!keepSortDirection) { // unless we say to keep it
+        sortDirection = !sortDirection;
+      }
     // otherwise just default to ascending
     } else {
       sortDirection = SortDirection.Ascending;
