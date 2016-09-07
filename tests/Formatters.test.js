@@ -39,20 +39,20 @@ describe('Formatters', function () {
     });
   });
 
-  describe('commaNumber', function () {
+  describe('commaFormat', function () {
     it('should format numbers < 1000 normally', function () {
-      assert.equal(Formatters.commaNumber(999), '999');
+      assert.equal(Formatters.commaFormat(999), '999');
     });
 
     it('should format numbers > 1000 with commas', function () {
-      assert.equal(Formatters.commaNumber(9999999), '9,999,999');
+      assert.equal(Formatters.commaFormat(9999999), '9,999,999');
     });
 
     it('should not affect modest number of decimals', function () {
-      assert.equal(Formatters.commaNumber(999.999999), '999.999999');
-      assert.equal(Formatters.commaNumber(9999999.99), '9,999,999.99');
-      assert.equal(Formatters.commaNumber(9999999.9999), '9,999,999.9999');
-      assert.equal(Formatters.commaNumber(9999999.999999), '10,000,000');
+      assert.equal(Formatters.commaFormat(999.999999), '999.999999');
+      assert.equal(Formatters.commaFormat(9999999.99), '9,999,999.99');
+      assert.equal(Formatters.commaFormat(9999999.9999), '9,999,999.9999');
+      assert.equal(Formatters.commaFormat(9999999.999999), '10,000,000');
     });
   });
 });
