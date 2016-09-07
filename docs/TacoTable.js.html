@@ -44,11 +44,11 @@ import classNames from 'classnames';
 import TacoTableHeader from './TacoTableHeader';
 import TacoTableRow from './TacoTableRow';
 import SortDirection from './SortDirection';
-import { sortData, getColumnById, validateColumns } from './Utils';
+import { sortData, getColumnById, validateColumns, renderCell } from './Utils';
 import curry from 'lodash.curry';
 
 const propTypes = {
-  bottomData: React.PropTypes.oneOfType([React.PropTypes.array, React.PropTypes.bool]),
+  bottomData: React.PropTypes.oneOfType([React.PropTypes.array, React.PropTypes.object, React.PropTypes.bool]),
   columns: React.PropTypes.array.isRequired,
   columnGroups: React.PropTypes.array,
   columnHighlighting: React.PropTypes.bool,
@@ -539,8 +539,9 @@ class TacoTable extends React.Component {
    * @private
    */
   renderBottomData() {
-    const { bottomData, columns, RowComponent, rowClassName, rowHighlighting,
-      columnHighlighting, plugins, columnGroups, onRowClick, onRowDoubleClick } = this.props;
+    let { bottomData } = this.props;
+    const { columns, RowComponent, rowClassName, rowHighlighting, columnHighlighting, plugins,
+      columnGroups, onRowClick, onRowDoubleClick } = this.props;
     const { data, highlightedRowData, highlightedColumnId, columnSummaries } = this.state;
 
     // only render if we have it explicitly configured
@@ -554,25 +555,36 @@ class TacoTable extends React.Component {
     // helper function to compute row data based on input data and the
     // column.bottomDataRender configuration
     const computeRowData = curry((bottomRowIndex, computedRowData, column, columnIndex) => {
-      if (column.bottomDataRender) {
-        let { bottomDataRender } = column;
+      let { bottomDataRender } = column;
 
-        // if it is an array, access it at the right index.
-        if (Array.isArray(bottomDataRender)) {
-          bottomDataRender = bottomDataRender[bottomRowIndex];
-        }
-
-        // run if function, otherwise render directly
-        if (typeof bottomDataRender === 'function') {
-          const columnSummary = columnSummaries[columnIndex];
-          computedRowData[column.id] = bottomDataRender({ columnSummary, column,
-            rowData: computedRowData, data, columns, bottomData });
-        } else {
-          computedRowData[column.id] = bottomDataRender;
-        }
+      // if it is an array, access it at the right index.
+      if (Array.isArray(bottomDataRender)) {
+        bottomDataRender = bottomDataRender[bottomRowIndex];
       }
+
+      // if we have a value for this column already and no explicit bottom data render function
+      // then we should use the column renderer on it
+      if (computedRowData[column.id] != null &amp;&amp; bottomDataRender == null) {
+        computedRowData[column.id] = renderCell(computedRowData[column.id], column, computedRowData,
+          `bottom-${bottomRowIndex}`, data, columns, false);
+
+      // run if function, otherwise render directly
+      } else if (typeof bottomDataRender === 'function') {
+        const columnSummary = columnSummaries[columnIndex];
+        computedRowData[column.id] = bottomDataRender({ columnSummary, column,
+          rowData: computedRowData, data, columns, bottomData });
+
+      // not a function, render whatever value is provided
+      } else if (bottomDataRender != null) {
+        computedRowData[column.id] = bottomDataRender;
+      }
+      // otherwise keep whatever computed value was there to begin with or nothing.
       return computedRowData;
     });
+
+    if (typeof bottomData === 'object' &amp;&amp; !Array.isArray(bottomData)) {
+      bottomData = [bottomData];
+    }
 
     if (Array.isArray(bottomData)) {
       // for each row
