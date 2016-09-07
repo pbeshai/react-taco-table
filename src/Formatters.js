@@ -233,3 +233,17 @@ export function moneyFormat(value) {
   return safeFormat(value, d3.format('$,.2f'));
 }
 
+/**
+ * Formatter - renders values formatted as with thousands separated with commas
+ * (or whatever your locale uses as by d3.format(','))
+ *
+ * @example
+ * commaNumber(1396512)
+ * > '1,396,521'
+ *
+ * @param {Number} value value to format
+ * @return {String} formatted value
+ */
+export function commaNumber(value) {
+  return safeFormat(value, d3.format(','));
+}
