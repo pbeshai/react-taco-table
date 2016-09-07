@@ -1,5 +1,8 @@
 # Changes
 
+## 0.3.2
+- Added in Formatters.commaFormat for formatting 1000000 as 1,000,000.
+
 ## 0.3.0
 - `onSort` callback added to TacoTable which takes `(columnId, sortDirection, sortedData)` as arguments.
 - Fixed bugs regarding sorting #26, #27, #13
