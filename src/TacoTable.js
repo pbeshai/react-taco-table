@@ -8,7 +8,7 @@ import { sortData, getColumnById, validateColumns } from './Utils';
 import curry from 'lodash.curry';
 
 const propTypes = {
-  bottomData: React.PropTypes.oneOfType([React.PropTypes.array, React.PropTypes.bool]),
+  bottomData: React.PropTypes.oneOfType([React.PropTypes.array, React.PropTypes.object, React.PropTypes.bool]),
   columns: React.PropTypes.array.isRequired,
   columnGroups: React.PropTypes.array,
   columnHighlighting: React.PropTypes.bool,
@@ -499,8 +499,9 @@ class TacoTable extends React.Component {
    * @private
    */
   renderBottomData() {
-    const { bottomData, columns, RowComponent, rowClassName, rowHighlighting,
-      columnHighlighting, plugins, columnGroups, onRowClick, onRowDoubleClick } = this.props;
+    let { bottomData } = this.props;
+    const { columns, RowComponent, rowClassName, rowHighlighting, columnHighlighting, plugins,
+      columnGroups, onRowClick, onRowDoubleClick } = this.props;
     const { data, highlightedRowData, highlightedColumnId, columnSummaries } = this.state;
 
     // only render if we have it explicitly configured
@@ -533,6 +534,10 @@ class TacoTable extends React.Component {
       }
       return computedRowData;
     });
+
+    if (typeof bottomData === 'object' && !Array.isArray(bottomData)) {
+      bottomData = [bottomData];
+    }
 
     if (Array.isArray(bottomData)) {
       // for each row
