@@ -1,5 +1,9 @@
 # Changes
 
+## 0.4.0
+- bottomData can be specified as an object if there is only one row to show.
+- bottomData now uses the cell renderer by default if bottomData is specified as an array or object and no bottomDataRender is provided on the column.
+
 ## 0.3.2
 - Added in Formatters.commaFormat for formatting 1000000 as 1,000,000.
 
