@@ -16,6 +16,7 @@ const columns = [
     sortValue: cellData => cellData.label,
     type: DataType.String,
     width: 250,
+    bottomDataRender: ({ column, rowData }) => rowData[column.id],
   },
   {
     id: 'receptorStatus',
@@ -33,19 +34,16 @@ const columns = [
     type: DataType.Number,
     renderer: Formatters.plusMinusFormat(1),
     firstSortDirection: SortDirection.Ascending,
-    bottomDataRender: ({ column, rowData }) => column.renderer(rowData[column.id]),
   },
   {
     id: 'rating',
     type: DataType.Number,
     renderer: Formatters.plusMinusFormat(2),
-    bottomDataRender: ({ column, rowData }) => column.renderer(rowData[column.id]),
   },
   {
     id: 'level',
     debug: true,
     type: DataType.NumberOrdinal,
-    bottomDataRender: ({ column, rowData }) => rowData[column.id],
   },
 ];
 

@@ -215,7 +215,7 @@ const examples = [
     component: ExampleBottomDataArray,
     code: exampleBottomDataArrayCode,
     github: `${githubRoot}/ExampleBottomDataArray.js`,
-    previewCodeStart: 51,
+    previewCodeStart: 49,
     previewCodeLength: 19,
   },
 ];
