@@ -130,9 +130,17 @@ function tdStyle(cellData, { columnSummary, column, rowData, isBottomData }) {
   // compute the sort value
   const sortValue = Utils.getSortValueFromCellData(cellData, column, rowData);
 
+  // do not heatmap null or undefined values
+  if (sortValue == null) {
+    return undefined;
+  }
+
   // default domain if not provided comes from columnSummary
   if (!domain) {
-    domain = [columnSummary.min, columnSummary.max];
+    // if we didn't get a min/max, just use [0, 1]
+    const colMin = columnSummary.min == null ? 0 : columnSummary.min;
+    const colMax = columnSummary.max == null ? 1 : columnSummary.max;
+    domain = [colMin, colMax];
   }
 
   // reverse the domain if specified to get the color scheme inverted
