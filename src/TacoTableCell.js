@@ -167,7 +167,7 @@ class TacoTableCell extends React.Component {
 
     const cellData = getCellData(column, rowData, rowNumber, tableData, columns, isBottomData);
 
-    const rendered = renderCell(cellData, column, rowData, rowNumber, tableData, columns, isBottomData,columnSummary );
+    const rendered = renderCell(cellData, column, rowData, rowNumber, tableData, columns, isBottomData, columnSummary);
 
     // attach mouse listeners for highlighting
     let onMouseEnter;
