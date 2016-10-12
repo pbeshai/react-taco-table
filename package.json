@@ -74,7 +74,7 @@
     "mocha": "^3.0.2",
     "node-sass": "^3.7.0",
     "null-loader": "^0.1.1",
-    "pbeshai/minami": "^1.1.1",
+    "minami": "pbeshai/minami",
     "raw-loader": "^0.5.1",
     "react": "^15.1.0",
     "react-addons-perf": "^15.1.0",

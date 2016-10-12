@@ -265,7 +265,7 @@ export function sortData(data, columnId, sortDirection, columns) {
  * @param {Object[]} columns The column definitions for the whole table
  * @return {Renderable} The contents of the cell
  */
-export function renderCell(cellData, column, rowData, rowNumber, tableData, columns, isBottomData) {
+export function renderCell(cellData, column, rowData, rowNumber, tableData, columns, isBottomData, columnSummary) {
   const { renderer, renderOnNull } = column;
 
   // render if not bottom data-- bottomData's cellData is already rendered.
@@ -276,7 +276,7 @@ export function renderCell(cellData, column, rowData, rowNumber, tableData, colu
 
     // render normally if a renderer is provided
     } else if (renderer != null) {
-      return renderer(cellData, { column, rowData, rowNumber, tableData, columns });
+      return renderer(cellData, { column, rowData, rowNumber, tableData, columns, columnSummary });
     }
   }
 
