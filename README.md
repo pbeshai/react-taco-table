@@ -87,7 +87,7 @@ Columns are defined by objects with the following format:
 | `[className]` | String | The class name to be applied to both `<td>` and `<th>` |
 | `[firstSortDirection]` | Boolean | The direction which this column gets sorted by on first click |
 | `[header]` | Renderable | What is rendered in the column header. If not provided, uses the columnId. |
-| `[renderer]` | Function | `function (cellData, { column, rowData, rowNumber, tableData, columns })`<br>The function that renders the value in the table. Can return anything React can render. |
+| `[renderer]` | Function | `function (cellData, { columnSummary, column, rowData, rowNumber, tableData, columns })`<br>The function that renders the value in the table. Can return anything React can render. |
 | `[rendererOptions]` | Object | Object of options that can be read by the renderer |
 | `[renderOnNull]` | Boolean | Whether the cell should render if the cellData is null (default: false) |
 | `[simpleRenderer]` | Function | `function (cellData, { column, rowData, rowNumber, tableData, columns })`<br>The function that render the cell's value in a simpler format. Must return a String or Number. |
