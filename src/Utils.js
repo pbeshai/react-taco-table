@@ -276,7 +276,7 @@ export function renderCell(cellData, column, rowData, rowNumber, tableData, colu
 
     // render normally if a renderer is provided
     } else if (renderer != null) {
-      return renderer(cellData, { column, rowData, rowNumber, tableData, columns , "columnSummary" : columnsSummary[rowNumber] });
+      return renderer(cellData, { column, rowData, rowNumber, tableData, columns ,columnsSummary });
     }
   }
 
