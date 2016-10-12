@@ -526,7 +526,7 @@ class TacoTable extends React.Component {
       // then we should use the column renderer on it
       if (computedRowData[column.id] != null && bottomDataRender == null) {
         computedRowData[column.id] = renderCell(computedRowData[column.id], column, computedRowData,
-          `bottom-${bottomRowIndex}`, data, columns, false);
+          `bottom-${bottomRowIndex}`, data, columns, false, columnSummaries[columnIndex]);
 
       // run if function, otherwise render directly
       } else if (typeof bottomDataRender === 'function') {
