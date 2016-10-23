@@ -1,5 +1,4 @@
 import React from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
 import DataType from './DataType';
 import SortDirection from './SortDirection';
@@ -29,7 +28,7 @@ const defaultProps = {
  *   null or undefined if not sorted
  * @extends React.Component
  */
-class TacoTableHeader extends React.Component {
+class TacoTableHeader extends React.PureComponent {
   /**
    * @param {Object} props React props
    */
@@ -37,16 +36,6 @@ class TacoTableHeader extends React.Component {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
-  }
-
-  /**
-   * Uses `shallowCompare`
-   * @param {Object} nextProps The next props
-   * @param {Object} nextState The next state
-   * @return {Boolean}
-   */
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
   }
 
   /**

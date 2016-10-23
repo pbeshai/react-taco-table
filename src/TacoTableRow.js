@@ -1,5 +1,4 @@
 import React from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
 import TacoTableCell from './TacoTableCell';
 
@@ -50,7 +49,7 @@ const defaultProps = {
  * @prop {Function} CellComponent  Allow configuration of what component to use to render cells
  * @extends React.Component
  */
-class TacoTableRow extends React.Component {
+class TacoTableRow extends React.PureComponent {
   /**
    * @param {Object} props React props
    */
@@ -61,16 +60,6 @@ class TacoTableRow extends React.Component {
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleDoubleClick = this.handleDoubleClick.bind(this);
-  }
-
-  /**
-   * Uses `shallowCompare`
-   * @param {Object} nextProps The next props
-   * @param {Object} nextState The next state
-   * @return {Boolean}
-   */
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
   }
 
   /**

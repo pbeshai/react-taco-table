@@ -1,5 +1,4 @@
 import React from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
 import TacoTableHeader from './TacoTableHeader';
 import TacoTableRow from './TacoTableRow';
@@ -205,16 +204,6 @@ class TacoTable extends React.Component {
 
       this.setState(newState);
     }
-  }
-
-  /**
-   * Uses `shallowCompare`
-   * @param {Object} nextProps The next props
-   * @param {Object} nextState The next state
-   * @return {Boolean} If the component should update
-   */
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
   }
 
   /**
