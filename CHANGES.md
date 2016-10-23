@@ -1,5 +1,9 @@
 # Changes
 
+## 0.5.0
+
+- Increase React requirement to 15.3 to make use of PureComponent, replacing the shallow-compare addon.
+
 ## 0.4.0
 - bottomData can be specified as an object if there is only one row to show.
 - bottomData now uses the cell renderer by default if bottomData is specified as an array or object and no bottomDataRender is provided on the column.
