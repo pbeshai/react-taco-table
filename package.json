@@ -33,6 +33,7 @@
     "d3-scale": "^1.0.0",
     "d3-scale-chromatic": "^1.0.0",
     "lodash.curry": "^4.0.1",
+    "prop-types": "^15.5.10",
     "stable": "^0.1.5"
   },
   "devDependencies": {

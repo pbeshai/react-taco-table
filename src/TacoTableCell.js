@@ -1,20 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getCellData, renderCell } from './Utils';
 
 const propTypes = {
-  column: React.PropTypes.object.isRequired,
-  columnGroup: React.PropTypes.object,
-  columnSummary: React.PropTypes.object,
-  columns: React.PropTypes.array,
-  highlightedColumn: React.PropTypes.bool,
-  highlightedRow: React.PropTypes.bool,
-  isBottomData: React.PropTypes.bool,
-  onHighlight: React.PropTypes.func,
-  plugins: React.PropTypes.array,
-  rowData: React.PropTypes.object.isRequired,
-  rowNumber: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
-  tableData: React.PropTypes.array,
+  column: PropTypes.object.isRequired,
+  columnGroup: PropTypes.object,
+  columnSummary: PropTypes.object,
+  columns: PropTypes.array,
+  highlightedColumn: PropTypes.bool,
+  highlightedRow: PropTypes.bool,
+  isBottomData: PropTypes.bool,
+  onHighlight: PropTypes.func,
+  plugins: PropTypes.array,
+  rowData: PropTypes.object.isRequired,
+  rowNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  tableData: PropTypes.array,
 };
 
 const defaultProps = {

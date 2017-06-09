@@ -1,24 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import TacoTableCell from './TacoTableCell';
 
 const propTypes = {
-  columns: React.PropTypes.array.isRequired,
-  columnGroups: React.PropTypes.array,
-  columnSummaries: React.PropTypes.array,
-  className: React.PropTypes.string,
-  highlighted: React.PropTypes.bool,
-  highlightedColumnId: React.PropTypes.string,
-  isBottomData: React.PropTypes.bool,
-  onClick: React.PropTypes.func,
-  onColumnHighlight: React.PropTypes.func,
-  onDoubleClick: React.PropTypes.func,
-  onHighlight: React.PropTypes.func,
-  plugins: React.PropTypes.array,
-  rowData: React.PropTypes.object.isRequired,
-  rowNumber: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
-  tableData: React.PropTypes.array,
-  CellComponent: React.PropTypes.func,
+  columns: PropTypes.array.isRequired,
+  columnGroups: PropTypes.array,
+  columnSummaries: PropTypes.array,
+  className: PropTypes.string,
+  highlighted: PropTypes.bool,
+  highlightedColumnId: PropTypes.string,
+  isBottomData: PropTypes.bool,
+  onClick: PropTypes.func,
+  onColumnHighlight: PropTypes.func,
+  onDoubleClick: PropTypes.func,
+  onHighlight: PropTypes.func,
+  plugins: PropTypes.array,
+  rowData: PropTypes.object.isRequired,
+  rowNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  tableData: PropTypes.array,
+  CellComponent: PropTypes.func,
 };
 
 const defaultProps = {

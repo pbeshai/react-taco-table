@@ -1,15 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import DataType from './DataType';
 import SortDirection from './SortDirection';
 
 const propTypes = {
-  column: React.PropTypes.object.isRequired,
-  columnGroup: React.PropTypes.object,
-  highlightedColumn: React.PropTypes.bool,
-  onClick: React.PropTypes.func,
-  sortableTable: React.PropTypes.bool,
-  sortDirection: React.PropTypes.bool,
+  column: PropTypes.object.isRequired,
+  columnGroup: PropTypes.object,
+  highlightedColumn: PropTypes.bool,
+  onClick: PropTypes.func,
+  sortableTable: PropTypes.bool,
+  sortDirection: PropTypes.bool,
 };
 
 const defaultProps = {
