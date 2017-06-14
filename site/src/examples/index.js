@@ -41,7 +41,6 @@ import exampleBottomDataMultiCode from '!raw!../components/ExampleBottomDataMult
 import ExampleBottomDataArray from '../components/ExampleBottomDataArray';
 import exampleBottomDataArrayCode from '!raw!../components/ExampleBottomDataArray';
 
-
 import '../site.scss';
 import 'react-taco-table/style/taco-table.scss';
 

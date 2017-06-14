@@ -39,6 +39,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import TacoTableHeader from './TacoTableHeader';
 import TacoTableRow from './TacoTableRow';
@@ -47,25 +48,25 @@ import { sortData, getColumnById, validateColumns, renderCell } from './Utils';
 import curry from 'lodash.curry';
 
 const propTypes = {
-  bottomData: React.PropTypes.oneOfType([React.PropTypes.array, React.PropTypes.object, React.PropTypes.bool]),
-  columns: React.PropTypes.array.isRequired,
-  columnGroups: React.PropTypes.array,
-  columnHighlighting: React.PropTypes.bool,
-  className: React.PropTypes.string,
-  data: React.PropTypes.array,
-  fullWidth: React.PropTypes.bool,
-  initialSortColumnId: React.PropTypes.string,
-  initialSortDirection: React.PropTypes.bool,
-  onRowClick: React.PropTypes.func,
-  onRowDoubleClick: React.PropTypes.func,
-  onSort: React.PropTypes.func,
-  plugins: React.PropTypes.array,
-  rowClassName: React.PropTypes.func,
-  rowHighlighting: React.PropTypes.bool,
-  sortable: React.PropTypes.bool,
-  striped: React.PropTypes.bool,
-  HeaderComponent: React.PropTypes.func,
-  RowComponent: React.PropTypes.func,
+  bottomData: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.bool]),
+  columns: PropTypes.array.isRequired,
+  columnGroups: PropTypes.array,
+  columnHighlighting: PropTypes.bool,
+  className: PropTypes.string,
+  data: PropTypes.array,
+  fullWidth: PropTypes.bool,
+  initialSortColumnId: PropTypes.string,
+  initialSortDirection: PropTypes.bool,
+  onRowClick: PropTypes.func,
+  onRowDoubleClick: PropTypes.func,
+  onSort: PropTypes.func,
+  plugins: PropTypes.array,
+  rowClassName: PropTypes.func,
+  rowHighlighting: PropTypes.bool,
+  sortable: PropTypes.bool,
+  striped: PropTypes.bool,
+  HeaderComponent: PropTypes.func,
+  RowComponent: PropTypes.func,
 };
 
 const defaultProps = {

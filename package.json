@@ -73,7 +73,7 @@
     "karma-webpack": "^1.8.0",
     "lolex": "^1.5.0",
     "mocha": "^3.0.2",
-    "node-sass": "^3.7.0",
+    "node-sass": "^4.5.2",
     "null-loader": "^0.1.1",
     "minami": "pbeshai/minami",
     "raw-loader": "^0.5.1",
