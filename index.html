@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta property="og:locale" content="en-us">
+    <meta property="og:title" content="React Taco Table">
+    <meta property="og:description" content="An extensible table component for React.js that is driven by column configuration.">
+    <meta property="og:site_name" content="React Taco Table">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://pbeshai.github.io/react-taco-table">
+    <meta name="keywords" content="react,reactjs,react component,component,table,taco table,ui,javascript">
+    <meta name="description" content="An extensible table component for React.js that is driven by column configuration.">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300|Roboto:300,500" rel="stylesheet" type="text/css">
+
+    <!-- syntax highlighting -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/tomorrow.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <title>React Taco Table 🌮</title>
+  <link href="site-main.css" rel="stylesheet"></head>
+  <body>
+    <header class="main-header">
+      <div class="container">
+        <h1>React Taco Table 🌮</h1>
+        <p>
+          An extensible table component for <a href="https://facebook.github.io/react/">React.js</a>
+          that is driven by column configuration.
+        </p>
+      </div>
+    </header>
+    <div class="quick-links">
+      <div class="container">
+        <ul class="list-inline">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="docs/">Documentation</a></li>
+          <li><a href="examples.html">Examples</a></li>
+          <li><a href="https://github.com/pbeshai/react-taco-table">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <h2>What is React Taco Table?</h2>
+      <p>
+        React Taco Table is a customizable component that renders a table using <code>table</code> tags based on a provided array of data objects and column configuration objects. It allows you to configure how your table renders with a very high degree of flexibility, which can allow you to easily add interactive features to your table such as heatmapping on hover.
+      </p>
+      <p>
+        If you need to support thousands of items being rendered efficiently, you might be better off taking a look at <a href="http://facebook.github.io/fixed-data-table/">FixedDataTable</a>.
+      </p>
+
+      <h2>Features</h2>
+      <p>
+        Many common table features are built into React Taco Table directly, and others can often easily be accomplished with extensible column configuration API. If you think something fundamental is missing, <a href="https://github.com/pbeshai/react-taco-table/issues">raise an issue</a> and we'll take a look.
+      </p>
+
+      <p>Some of the core features include:</p>
+      <ul>
+        <li>Stable column sorting</li>
+        <li>Any component as a header or cell - not just strings</li>
+        <li>Fixed column widths</li>
+        <li>Row striping</li>
+        <li>Cell classes and styles based on the data in the cell and column</li>
+        <li>Row specific classes based on the data in the row</li>
+        <li>Built-in formatters for common formats</li>
+        <li>Distinction between a cell's value and it's value used for sorting</li>
+        <li>Column grouping and group headers</li>
+        <li>Bundling of cell styling logic through plugins</li>
+      </ul>
+
+      <h2>Getting Started</h2>
+      <p>Use npm to install the component:</p>
+      <pre>npm install react-taco-table</pre>
+      <p>
+        Optionally grab the default stylesheet from <code>dist/react-taco-table.css</code> or just import the stylesheet at <code>react-taco-table/dist/react-taco-table.css</code> and have webpack take care of it. For example,
+      </p>
+      <pre><code class="javascript">import 'react-taco-table/dist/react-taco-table.css';</code></pre>
+
+      <h3>Simple Example</h3>
+      <p>
+        What follows it a simple example of creating a sortable table. To see more, view the rest of <a href="examples.html">the examples</a>.
+      </p>
+
+      <h4>Demo</h4>
+      <div id="react-root"></div>
+
+      <h4>Code</h4>
+      <pre><code class="javascript">import React from 'react';
+import { TacoTable, DataType, SortDirection, Formatters,
+  Summarizers, TdClassNames } from 'react-taco-table';
+
+import data from '../data/spelling.json';
+import './simple-example.scss';
+
+const columns = [
+  {
+    id: 'speller',
+    type: DataType.String,
+    header: 'Speller',
+    renderer(cellData, { column, rowData }) {
+      return &lt;a href={rowData.url} target="_blank"&gt;{cellData}&lt;/a&gt;;
+    },
+  },
+  {
+    id: 'year',
+    type: DataType.NumberOrdinal,
+    header: 'Year',
+  },
+  {
+    id: 'round',
+    type: DataType.NumberOrdinal,
+    header: 'Round',
+  },
+  {
+    id: 'affiliation',
+    type: DataType.String,
+    header: 'Affiliation',
+  },
+  {
+    id: 'word',
+    type: DataType.String,
+    header: 'Word',
+  },
+  {
+    id: 'spelledWord',
+    type: DataType.String,
+    header: 'Spelling',
+    tdClassName(cellData, { columnSummary, column, rowData }) {
+      if (rowData.error) {
+        return 'error-word';
+      }
+      return 'correct-word';
+    },
+  },
+  {
+    id: 'value',
+    type: DataType.Number,
+    header: 'Mystery',
+    renderer: Formatters.decFormat(1),
+    firstSortDirection: SortDirection.Descending,
+    summarize: Summarizers.minMaxSummarizer,
+    tdStyle(cellData, { columnSummary }) {
+      if (cellData === columnSummary.min) {
+        return { color: 'red' };
+      } else if (cellData === columnSummary.max) {
+        return { color: 'green' };
+      }
+
+      return undefined;
+    },
+    tdClassName: TdClassNames.minMaxClassName,
+  },
+];
+
+class SimpleExample extends React.Component {
+  render() {
+    return (
+      &lt;TacoTable
+        className="simple-example"
+        columns={columns}
+        columnHighlighting
+        data={data}
+        striped
+        sortable
+      /&gt;
+    );
+  }
+}
+
+export default SimpleExample;</code></pre>
+
+      <h4>Data</h4>
+      This is the data used for this example, stored in spelling.json. It comes from <a href="https://github.com/octonion/spelling">https://github.com/octonion/spelling</a>.
+
+      <pre class="data"><code class="json">
+[
+   {
+      "year":2016,
+      "round":2,
+      "spellerId":1,
+      "speller":"Erin Howard",
+      "url":"http://spellingbee.com/public/results/2016/round_results/speller/1",
+      "affiliation":"Adventure Travel, Birmingham, Alabama",
+      "word":"abecedarius",
+      "definition":"a poem in which the lines or stanzas begin with the letters of the alphabet in regular order.",
+      "definitionUrl":"http://www.merriam-webster.com/dictionary/abecedarius",
+      "spelledWord":"abecedarius",
+      "error":false,
+      "value":59.159
+   },
+   {
+      "year":2016,
+      "round":2,
+      "spellerId":2,
+      "speller":"Camden Armstrong",
+      "url":"http://spellingbee.com/public/results/2016/round_results/speller/2",
+      "affiliation":"Alaska Dispatch News, Anchorage, Alaska",
+      "word":"plumicorn",
+      "definition":"one of the tufts of lengthened feathers on the head of various owls.",
+      "definitionUrl":"http://www.merriam-webster.com/dictionary/plumicorn",
+      "spelledWord":"plumicorn",
+      "error":false,
+      "value":15.195
+   },
+   {
+      "year":2016,
+      "round":2,
+      "spellerId":3,
+      "speller":"Kaitlyn O'Bryan",
+      "url":"http://spellingbee.com/public/results/2016/round_results/speller/3",
+      "affiliation":"Fairbanks North Star Borough School District, Fairbanks, Alaska",
+      "word":"nimious",
+      "definition":"excessive : extravagant.",
+      "definitionUrl":"http://www.merriam-webster.com/dictionary/nimious",
+      "spelledWord":"nimious",
+      "error":false,
+      "value":10.066
+   },
+   {
+      "year":2016,
+      "round":2,
+      "spellerId":4,
+      "speller":"Debrina Alai'a Su'a",
+      "url":"http://spellingbee.com/public/results/2016/round_results/speller/4",
+      "affiliation":"Samoa News, Pago Pago, American Samoa",
+      "word":"genuflect",
+      "definition":"touch the knee to the floor or ground especially in worship.",
+      "definitionUrl":"http://www.merriam-webster.com/dictionary/genuflect",
+      "spelledWord":"geniaflact",
+      "error":true,
+      "value":87.611
+   },
+   {
+      "year":2016,
+      "round":2,
+      "spellerId":5,
+      "speller":"Nicola Ferguson",
+      "url":"http://spellingbee.com/public/results/2016/round_results/speller/5",
+      "affiliation":"Arizona Educational Foundation, Scottsdale, Arizona",
+      "word":"kanban",
+      "definition":"a manufacturing strategy wherein parts are produced or delivered only as needed.",
+      "definitionUrl":"http://www.merriam-webster.com/dictionary/kanban",
+      "spelledWord":"kanban",
+      "error":false,
+      "value":68.141
+   },
+   {
+      "year":2016,
+      "round":2,
+      "spellerId":6,
+      "speller":"Hannah Norliyn May Pengosro",
+      "url":"http://spellingbee.com/public/results/2016/round_results/speller/6",
+      "affiliation":"Navajo Times Publishing Company, Window Rock, Arizona",
+      "word":"echinoderm",
+      "definition":"one of a phylum of radially symmetrical marine animals that have a calcareous exoskeleton, and a water-vascular system that provides tentacles and organs of locomotion.",
+      "definitionUrl":"http://www.merriam-webster.com/dictionary/echinoderm",
+      "spelledWord":"echinoderm",
+      "error":false,
+      "value":90.322
+   },
+   {
+      "year":2016,
+      "round":2,
+      "spellerId":7,
+      "speller":"Pavani Chittemsetty",
+      "url":"http://spellingbee.com/public/results/2016/round_results/speller/7",
+      "affiliation":"Arkansas Democrat Gazette, Little Rock, Arkansas",
+      "word":"threnody",
+      "definition":"a song, poem, composition or speech of lamentation especially for someone dead or something regarded as dead : a dirge.",
+      "definitionUrl":"http://www.merriam-webster.com/dictionary/threnody",
+      "spelledWord":"threnody",
+      "error":false,
+      "value":80.797
+   },
+   {
+      "year":2016,
+      "round":2,
+      "spellerId":8,
+      "speller":"Thalia Nguyen",
+      "url":"http://spellingbee.com/public/results/2016/round_results/speller/8",
+      "affiliation":"KERO 23 ABC, Bakersfield, California",
+      "word":"strychnine",
+      "definition":"a very poisonous bitter crystalline alkaloid used in medicine chiefly as a tonic and stimulant for the central nervous system and also as a rodenticide.",
+      "definitionUrl":"http://www.merriam-webster.com/dictionary/strychnine",
+      "spelledWord":"strychnine",
+      "error":false,
+      "value":38.66
+   },
+   {
+      "year":2016,
+      "round":2,
+      "spellerId":9,
+      "speller":"Haley Jeffers",
+      "url":"http://spellingbee.com/public/results/2016/round_results/speller/9",
+      "affiliation":"Ventura County Star, Camarillo, California",
+      "word":"ablaut",
+      "definition":"a systematic variation of vowels in the same root or affix or in related roots or affixes in the Indo-European languages usually paralleled by differences in use or meaning.",
+      "definitionUrl":"http://www.merriam-webster.com/dictionary/ablaut",
+      "spelledWord":"ablaut",
+      "error":false,
+      "value":52.343
+   },
+   {
+      "year":2016,
+      "round":2,
+      "spellerId":10,
+      "speller":"Daniel Chen",
+      "url":"http://spellingbee.com/public/results/2016/round_results/speller/10",
+      "affiliation":"Inland Valley Regional Spelling Bee , Diamond Bar, California",
+      "word":"epitaphs",
+      "definition":"inscriptions on or at tombs or graves in memory of those buried there.",
+      "definitionUrl":"http://www.merriam-webster.com/dictionary/epitaphs",
+      "spelledWord":"epitaphs",
+      "error":false,
+      "value":48.104
+   },
+   {
+      "year":2016,
+      "round":2,
+      "spellerId":11,
+      "speller":"Ali Hussain",
+      "url":"http://spellingbee.com/public/results/2016/round_results/speller/11",
+      "affiliation":"Imperial County Office of Education, El Centro, California",
+      "word":"chanoyu",
+      "definition":"a Japanese ceremony consisting of the serving and taking of tea in accordance with an elaborate ritual.",
+      "definitionUrl":"http://www.merriam-webster.com/dictionary/chanoyu",
+      "spelledWord":"chanteau",
+      "error":true,
+      "value":91.244
+   },
+   {
+      "year":2016,
+      "round":2,
+      "spellerId":12,
+      "speller":"Ananya Vinay",
+      "url":"http://spellingbee.com/public/results/2016/round_results/speller/12",
+      "affiliation":"The Fresno Bee , Fresno, California",
+      "word":"arenaceous",
+      "definition":"growing in sandy places.",
+      "definitionUrl":"http://www.merriam-webster.com/dictionary/arenaceous",
+      "spelledWord":"arenaceous",
+      "error":false,
+      "value":8.37
+   },
+   {
+      "year":2016,
+      "round":2,
+      "spellerId":13,
+      "speller":"Cooper Komatsu",
+      "url":"http://spellingbee.com/public/results/2016/round_results/speller/13",
+      "affiliation":"Los Angeles Spelling Bee Collaborative, Los Angeles, California",
+      "word":"tagasaste",
+      "definition":"a shrub of the Canary Islands that yields cattle fodder.",
+      "definitionUrl":"http://www.merriam-webster.com/dictionary/tagasaste",
+      "spelledWord":"tagasaste",
+      "error":false,
+      "value":73.962
+   },
+   {
+      "year":2016,
+      "round":2,
+      "spellerId":14,
+      "speller":"William Cooper",
+      "url":"http://spellingbee.com/public/results/2016/round_results/speller/14",
+      "affiliation":"Record Searchlight, Redding, California",
+      "word":"frazil",
+      "definition":"ice crystals or granules sometimes resembling slush that are formed in turbulent water.",
+      "definitionUrl":"http://www.merriam-webster.com/dictionary/frazil",
+      "spelledWord":"frazil",
+      "error":false,
+      "value":21.959
+   }
+]</code></pre>
+
+    </div>
+    <footer class="main-footer">
+      <div class='taco-bar'>🌮 🌮 🌮</div>
+      <div>React Taco Table is <a href="https://github.com/pbeshai/react-taco-table/blob/master/LICENSE">MIT licensed</a></div>
+    </footer>
+  <script type="text/javascript" src="site-main.js"></script></body>
+</html>
